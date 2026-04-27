@@ -8,6 +8,7 @@ import { HomeActive } from './screens/HomeActive'
 import { CreateOuting } from './screens/CreateOuting'
 import { OutingDetail } from './screens/OutingDetail'
 import { Moments, MomentDetail } from './screens/Moments'
+import { Friends } from './screens/Friends'
 import { Profile } from './screens/Profile'
 import type { Moment } from './screens/Moments'
 
@@ -16,24 +17,26 @@ type Screen =
   | 'home-empty' | 'home-active'
   | 'create' | 'outing-detail'
   | 'moments' | 'moment-detail'
+  | 'friends'
   | 'profile'
 
-type Tab = 'home' | 'moments' | 'profile'
+type Tab = 'home' | 'moments' | 'friends' | 'profile'
 
-const TABBED_SCREENS: Screen[] = ['home-empty', 'home-active', 'moments', 'profile']
+const TABBED_SCREENS: Screen[] = ['home-empty', 'home-active', 'moments', 'friends', 'profile']
 
 export default function App() {
-  const [screen, setScreen]               = useState<Screen>('splash')
-  const [tab, setTab]                     = useState<Tab>('home')
-  const [hasOutings, setHasOutings]       = useState(true)
-  const [activeMoment, setActiveMoment]   = useState<Moment | null>(null)
+  const [screen, setScreen]             = useState<Screen>('splash')
+  const [tab, setTab]                   = useState<Tab>('home')
+  const [hasOutings, setHasOutings]     = useState(true)
+  const [activeMoment, setActiveMoment] = useState<Moment | null>(null)
 
   const go = (s: Screen) => setScreen(s)
 
   const handleTab = (t: Tab) => {
     setTab(t)
-    if (t === 'home')    go(hasOutings ? 'home-active' : 'home-empty')
+    if (t === 'home')         go(hasOutings ? 'home-active' : 'home-empty')
     else if (t === 'moments') go('moments')
+    else if (t === 'friends') go('friends')
     else if (t === 'profile') go('profile')
   }
 
@@ -57,6 +60,7 @@ export default function App() {
         {screen === 'outing-detail' && <OutingDetail onBack={() => go('home-active')} />}
         {screen === 'moments'       && <Moments onMomentTap={openMoment} />}
         {screen === 'moment-detail' && activeMoment && <MomentDetail moment={activeMoment} onBack={() => go('moments')} />}
+        {screen === 'friends'       && <Friends />}
         {screen === 'profile'       && <Profile />}
 
       </div>

@@ -53,15 +53,24 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, position: 'relative', overflow: 'hidden' }}>
 
       {/* Header */}
-      <div style={{ padding: '48px 20px 0', marginBottom: 16 }}>
+      <div style={{ padding: '48px 20px 0', marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink }}>Your week</div>
+        <button onClick={onCreate} style={{
+          width: 40, height: 40, borderRadius: '50%',
+          background: C.ink, border: '2px solid #0A0A0A',
+          boxShadow: '3px 3px 0 0 #0A0A0A',
+          color: C.base, cursor: 'pointer',
+          fontFamily: "'Fredoka', system-ui, sans-serif",
+          fontSize: 26, fontWeight: 400, lineHeight: 1,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>+</button>
       </div>
       <div style={{ padding: '0 20px' }}>
         <SearchInput placeholder="search outings, friends..." />
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '20px 20px 24px', display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '16px 20px 32px', display: 'flex', flexDirection: 'column', gap: 24 }}>
 
         {/* Live pinned card — hero treatment */}
         {live && (
@@ -157,21 +166,6 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>you deleted everything. bold move.</div>
           </div>
         )}
-      </div>
-
-      {/* Full-width create button */}
-      <div style={{ padding: '12px 20px 16px', flexShrink: 0, borderTop: '2px solid #0A0A0A', background: C.grey100 }}>
-        <button onClick={onCreate} style={{
-          width: '100%', height: 52,
-          background: C.ink, border: '2px solid #0A0A0A',
-          borderRadius: 14, color: C.base, cursor: 'pointer',
-          boxShadow: '4px 4px 0 0 #0A0A0A',
-          fontFamily: "'Fredoka', system-ui, sans-serif",
-          fontSize: 18, fontWeight: 700,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-        }}>
-          <span style={{ fontSize: 20 }}>+</span> plan something
-        </button>
       </div>
 
       {/* Delete modal */}
