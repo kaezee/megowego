@@ -10,7 +10,7 @@ interface CardProps {
   noShadow?: boolean
 }
 
-export function Card({ color = C.white, padding = 16, onClick, children, style = {}, noShadow = false }: CardProps) {
+export function Card({ color = C.base, padding = 16, onClick, children, style = {}, noShadow = false }: CardProps) {
   const [pressed, setPressed] = useState(false)
   const isBright = color === C.white || color === C.base || color === C.grey100
   return (

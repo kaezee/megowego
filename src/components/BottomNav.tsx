@@ -29,7 +29,7 @@ const TABS: { id: Tab; label: string; Icon: React.FC<{ on: boolean }> }[] = [
 export function BottomNav({ active, onChange }: BottomNavProps) {
   return (
     <div style={{
-      height: 64, background: C.base,
+      height: 64, background: C.grey100,
       borderTop: '2px solid #0A0A0A',
       display: 'flex', justifyContent: 'space-around', alignItems: 'stretch',
       flexShrink: 0,

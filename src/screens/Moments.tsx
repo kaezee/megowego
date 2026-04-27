@@ -140,10 +140,10 @@ export function Moments({ onMomentTap }: Props) {
   const grouped = group(filtered)
 
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.base, overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, overflow: 'hidden' }}>
 
       {/* Fixed header */}
-      <div style={{ padding: '48px 16px 8px', background: C.base, flexShrink: 0 }}>
+      <div style={{ padding: '48px 16px 8px', background: C.grey100, flexShrink: 0 }}>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginBottom: 12 }}>
           Moments
         </div>
@@ -369,7 +369,7 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
 // ── Full moment detail ──────────────────────────────────────
 export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: () => void }) {
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.base, overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, overflow: 'hidden' }}>
 
       {/* Hero */}
       <div style={{ position: 'relative', flexShrink: 0, height: 280, background: m.color }}>

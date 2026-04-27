@@ -10,7 +10,7 @@ export function Signin({ onBack, onDone }: Props) {
   const OTP = ['4', '7', '2', '9', '', '']
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.base, gap: 24 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.grey100, gap: 24 }}>
       <button onClick={onBack} style={{ alignSelf: 'flex-start', background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>
 
       <div>

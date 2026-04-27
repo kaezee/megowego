@@ -40,7 +40,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
   const back = () => step > 1 ? setStep(s => s - 1) : onBack()
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.base, gap: 24 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.grey100, gap: 24 }}>
       {/* Top bar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>

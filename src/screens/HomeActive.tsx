@@ -50,7 +50,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
   const later  = outings.filter(o => o.date.startsWith('3 MAY'))
 
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.base, position: 'relative', overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, position: 'relative', overflow: 'hidden' }}>
 
       {/* Header */}
       <div style={{ padding: '48px 20px 0', marginBottom: 16 }}>
@@ -160,7 +160,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
       </div>
 
       {/* Full-width create button */}
-      <div style={{ padding: '12px 20px 16px', flexShrink: 0, borderTop: '2px solid #0A0A0A' }}>
+      <div style={{ padding: '12px 20px 16px', flexShrink: 0, borderTop: '2px solid #0A0A0A', background: C.grey100 }}>
         <button onClick={onCreate} style={{
           width: '100%', height: 52,
           background: C.ink, border: '2px solid #0A0A0A',
