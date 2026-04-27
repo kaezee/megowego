@@ -207,7 +207,7 @@ export function SwipeableOutingCard({ children, onDelete, onClick }: Props) {
   const swipingL  = offsetX < 0
 
   return (
-    <div ref={outerRef} style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', userSelect: 'none', touchAction: 'pan-y' }}>
+    <div ref={outerRef} style={{ position: 'relative', borderRadius: 12, userSelect: 'none', touchAction: 'pan-y' }}>
 
       {/* Delete reveal zone */}
       <div style={{
