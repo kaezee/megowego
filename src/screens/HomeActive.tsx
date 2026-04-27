@@ -50,7 +50,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
   const later  = outings.filter(o => o.date.startsWith('3 MAY'))
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: C.base, position: 'relative' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.base, position: 'relative', overflow: 'hidden' }}>
 
       {/* Header */}
       <div style={{ padding: '48px 20px 0', marginBottom: 16 }}>

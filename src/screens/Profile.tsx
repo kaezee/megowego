@@ -5,8 +5,8 @@ import { C } from '../lib/tokens'
 
 export function Profile() {
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: C.base }}>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.base, overflow: 'hidden' }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
         {/* Profile card */}
         <HeaderCard color={C.yellow} padding={20}>
