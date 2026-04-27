@@ -113,16 +113,29 @@ interface Props {
   onMomentTap: (m: Moment) => void
 }
 
-export function Moments({ onMomentTap }: Props) {
-  const [query, setQuery] = useState('')
+type Filter = 'all' | 'food' | 'sport' | 'movies' | 'hangout'
+const FILTERS: { id: Filter; label: string }[] = [
+  { id: 'all',     label: 'All' },
+  { id: 'food',    label: 'food 🍕' },
+  { id: 'sport',   label: 'sport ⚽' },
+  { id: 'movies',  label: 'movies 🎬' },
+  { id: 'hangout', label: 'hangout ✌️' },
+]
 
-  const filtered = query.trim()
-    ? MOMENTS.filter(m =>
-        m.name.toLowerCase().includes(query.toLowerCase()) ||
-        m.vibe.toLowerCase().includes(query.toLowerCase()) ||
-        m.people.some(p => p.name.toLowerCase().includes(query.toLowerCase()))
-      )
-    : MOMENTS
+export function Moments({ onMomentTap }: Props) {
+  const [query,  setQuery]  = useState('')
+  const [filter, setFilter] = useState<Filter>('all')
+
+  const filtered = MOMENTS.filter(m => {
+    const q = query.trim().toLowerCase()
+    const matchesQuery = !q || (
+      m.name.toLowerCase().includes(q) ||
+      m.vibe.toLowerCase().includes(q) ||
+      m.people.some(p => p.name.toLowerCase().includes(q))
+    )
+    const matchesFilter = filter === 'all' || m.type === filter
+    return matchesQuery && matchesFilter
+  })
 
   const grouped = group(filtered)
 
@@ -130,11 +143,36 @@ export function Moments({ onMomentTap }: Props) {
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.base, overflow: 'hidden' }}>
 
       {/* Fixed header */}
-      <div style={{ padding: '48px 16px 12px', background: C.base, flexShrink: 0 }}>
+      <div style={{ padding: '48px 16px 8px', background: C.base, flexShrink: 0 }}>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginBottom: 12 }}>
           Moments
         </div>
         <SearchInput placeholder="search by outing, vibe, or person..." value={query} onChange={setQuery} />
+
+        {/* Filter chips */}
+        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 2, marginTop: 12, scrollbarWidth: 'none' }}>
+          {FILTERS.map(f => (
+            <button
+              key={f.id}
+              onClick={() => setFilter(f.id)}
+              style={{
+                flexShrink: 0,
+                height: 32, padding: '0 14px',
+                borderRadius: 100,
+                border: '2px solid #0A0A0A',
+                background: filter === f.id ? C.ink : C.base,
+                color: filter === f.id ? C.base : C.ink,
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontWeight: 600, fontSize: 13,
+                cursor: 'pointer',
+                boxShadow: filter === f.id ? '2px 2px 0 0 #0A0A0A' : 'none',
+                transition: 'background 120ms, color 120ms',
+              }}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Scrollable grid */}
@@ -158,11 +196,11 @@ export function Moments({ onMomentTap }: Props) {
             <div key={year}>
               {/* Year header */}
               <div style={{
-                fontFamily: "'Fredoka', system-ui, sans-serif",
-                fontWeight: 700, fontSize: 30, color: C.ink,
-                paddingTop: 4, paddingBottom: 8,
+                display: 'flex', alignItems: 'center', gap: 12,
+                paddingTop: 4, paddingBottom: 10,
               }}>
-                {year}
+                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 22, color: C.ink }}>{year}</div>
+                <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
               </div>
 
               {months.map(({ month, items }) => (
@@ -174,7 +212,7 @@ export function Moments({ onMomentTap }: Props) {
                   }}>
                     {month.toUpperCase()}
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
                     {items.map(m => (
                       <MomentTile key={m.id} moment={m} onClick={() => onMomentTap(m)} />
                     ))}
@@ -314,7 +352,7 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
         position: 'absolute', bottom: 0, left: 0, right: 0,
         padding: '0 5px 5px',
         fontFamily: "'Fredoka', system-ui, sans-serif",
-        fontWeight: 600, fontSize: 10.5,
+        fontWeight: 600, fontSize: 14,
         color: '#FAFAF0', lineHeight: 1.2,
         overflow: 'hidden',
         display: '-webkit-box',

@@ -63,18 +63,42 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
       {/* Scrollable content */}
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '20px 20px 24px', display: 'flex', flexDirection: 'column', gap: 24 }}>
 
-        {/* Live pinned card */}
+        {/* Live pinned card — hero treatment */}
         {live && (
           <SwipeableOutingCard onClick={onOutingTap} onDelete={() => setDeletingId(live.id)}>
-            <HeaderCard color={C.orange}>
-              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, letterSpacing: '0.06em', color: C.ink, opacity: 0.8 }}>HAPPENING NOW</div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginTop: 4 }}>it's happening right now 🔥</div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginTop: 8 }}>{live.name}</div>
-              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.ink, marginTop: 6 }}>STARTED 18 MIN AGO · BANDRA</div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 14 }}>
-                <AvatarStack people={live.people} size={28} />
-                <Chip color={C.white}>i'm coming</Chip>
+            <HeaderCard color={C.orange} padding={24}>
+              {/* Live badge */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.ink, flexShrink: 0 }} />
+                <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, letterSpacing: '0.08em', color: C.ink }}>HAPPENING NOW</div>
               </div>
+
+              {/* Outing name — the hero */}
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 32, color: C.ink, lineHeight: 1.1 }}>{live.name}</div>
+
+              {/* Meta */}
+              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.ink, opacity: 0.65, marginTop: 10, letterSpacing: '0.04em' }}>
+                STARTED 18 MIN AGO · BANDRA
+              </div>
+
+              {/* Who's there */}
+              <div style={{ marginTop: 18 }}>
+                <AvatarStack people={live.people} size={36} />
+              </div>
+
+              {/* I'm coming CTA */}
+              <button
+                onClick={e => { e.stopPropagation(); onOutingTap() }}
+                style={{
+                  width: '100%', height: 48, marginTop: 18,
+                  background: C.ink, border: '2px solid #0A0A0A',
+                  borderRadius: 12, color: C.base, cursor: 'pointer',
+                  fontFamily: "'Fredoka', system-ui, sans-serif",
+                  fontSize: 18, fontWeight: 700,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                }}>
+                i'm coming 🙋
+              </button>
             </HeaderCard>
           </SwipeableOutingCard>
         )}
