@@ -61,7 +61,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '20px 20px 80px', display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '20px 20px 24px', display: 'flex', flexDirection: 'column', gap: 24 }}>
 
         {/* Live pinned card */}
         {live && (
@@ -135,17 +135,20 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         )}
       </div>
 
-      {/* FAB */}
-      <button onClick={onCreate} style={{
-        position: 'absolute', bottom: 24, right: 20,
-        width: 56, height: 56, borderRadius: '50%',
-        background: C.ink, border: '2px solid #0A0A0A',
-        color: C.base, cursor: 'pointer',
-        boxShadow: '4px 4px 0 0 #0A0A0A',
-        fontFamily: "'Fredoka', system-ui, sans-serif",
-        fontSize: 28, fontWeight: 400,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>+</button>
+      {/* Full-width create button */}
+      <div style={{ padding: '12px 20px 16px', flexShrink: 0, borderTop: '2px solid #0A0A0A' }}>
+        <button onClick={onCreate} style={{
+          width: '100%', height: 52,
+          background: C.ink, border: '2px solid #0A0A0A',
+          borderRadius: 14, color: C.base, cursor: 'pointer',
+          boxShadow: '4px 4px 0 0 #0A0A0A',
+          fontFamily: "'Fredoka', system-ui, sans-serif",
+          fontSize: 18, fontWeight: 700,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+        }}>
+          <span style={{ fontSize: 20 }}>+</span> plan something
+        </button>
+      </div>
 
       {/* Delete modal */}
       {deletingId && deletingOuting && (
