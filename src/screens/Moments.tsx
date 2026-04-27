@@ -137,15 +137,17 @@ export function Moments({ onMomentTap }: Props) {
         <SearchInput placeholder="search by outing, vibe, or person..." value={query} onChange={setQuery} />
       </div>
 
-      {/* On this day row — hidden while searching */}
-      {!query && anniversaryMoments.length > 0 && (
-        <OnThisDay moments={anniversaryMoments} onTap={onMomentTap} />
-      )}
-
-      <div style={{ height: 1, background: C.grey100, flexShrink: 0 }} />
-
       {/* Scrollable grid */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px 40px' }}>
+
+        {/* On this day row — scrolls with content, hidden while searching */}
+        {!query && anniversaryMoments.length > 0 && (
+          <>
+            <OnThisDay moments={anniversaryMoments} onTap={onMomentTap} />
+            <div style={{ height: 1, background: C.grey100, margin: '0 0 12px' }} />
+          </>
+        )}
+
         {filtered.length === 0 ? (
           <div style={{ paddingTop: 60, textAlign: 'center' }}>
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 20, color: C.ink }}>nothing found 😐</div>
