@@ -37,4 +37,4 @@ export const S = {
 
 // Returns white text on dark accents, black on light ones
 export const fgFor = (bg: string): string =>
-  [C.purple, C.blue, C.ink, C.inkAlt].includes(bg) ? C.base : C.ink;
+  ([C.purple, C.blue, C.ink, C.inkAlt] as string[]).includes(bg) ? C.base : C.ink;

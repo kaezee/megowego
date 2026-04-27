@@ -1,53 +1,62 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import { BottomNav } from './components/BottomNav'
+import { Splash } from './screens/Splash'
+import { Signup } from './screens/Signup'
+import { Signin } from './screens/Signin'
+import { HomeEmpty } from './screens/HomeEmpty'
+import { HomeActive } from './screens/HomeActive'
+import { CreateOuting } from './screens/CreateOuting'
+import { OutingDetail } from './screens/OutingDetail'
+import { Moments } from './screens/Moments'
+import { Profile } from './screens/Profile'
 
-// Screens — stub placeholders until each is built
-function Splash() {
-  return (
-    <div style={{
-      flex: 1, display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center',
-      padding: '48px 20px 24px', background: '#FAFAF0', gap: 32,
-    }}>
-      <div style={{
-        fontFamily: "'Fredoka', system-ui, sans-serif",
-        fontWeight: 700, fontSize: 56, lineHeight: 1,
-        color: '#0A0A0A', letterSpacing: '-0.02em', textAlign: 'center',
-      }}>
-        mego<br />
-        <span style={{ color: '#FF5C9A', WebkitTextStroke: '2px #0A0A0A' }}>wego</span>
-      </div>
-      <div style={{
-        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-        fontSize: 15, color: '#6B6760', textAlign: 'center', maxWidth: 280,
-      }}>
-        plan outings. show up. roast the ones who don't.
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
-        <button style={{
-          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-          fontWeight: 600, fontSize: 16, height: 52,
-          background: '#0A0A0A', color: '#FAFAF0', border: 'none',
-          borderRadius: 16, boxShadow: '4px 4px 0 0 #0A0A0A',
-          cursor: 'pointer', width: '100%',
-        }}>let's go →</button>
-        <button style={{
-          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-          fontWeight: 600, fontSize: 16, height: 52,
-          background: 'transparent', color: '#0A0A0A', border: 'none',
-          borderRadius: 16, cursor: 'pointer', width: '100%',
-        }}>already one of us? sign in</button>
-      </div>
-    </div>
-  )
-}
+type Screen =
+  | 'splash' | 'signup' | 'signin'
+  | 'home-empty' | 'home-active'
+  | 'create' | 'outing-detail'
+  | 'moments' | 'profile'
+
+type Tab = 'home' | 'moments' | 'profile'
+
+const TABBED_SCREENS: Screen[] = ['home-empty', 'home-active', 'moments', 'profile']
 
 export default function App() {
+  const [screen, setScreen] = useState<Screen>('splash')
+  const [tab, setTab] = useState<Tab>('home')
+
+  // Demo: after first outing created, home becomes active
+  const [hasOutings, setHasOutings] = useState(true)
+
+  const go = (s: Screen) => setScreen(s)
+
+  const handleTab = (t: Tab) => {
+    setTab(t)
+    if (t === 'home') go(hasOutings ? 'home-active' : 'home-empty')
+    else if (t === 'moments') go('moments')
+    else if (t === 'profile') go('profile')
+  }
+
+  const showNav = TABBED_SCREENS.includes(screen)
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Splash />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100svh' }}>
+      {/* Screen */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
+        {screen === 'splash'       && <Splash onSignup={() => go('signup')} onSignin={() => go('signin')} />}
+        {screen === 'signup'       && <Signup onBack={() => go('splash')} onDone={() => { setHasOutings(true); go('home-active') }} />}
+        {screen === 'signin'       && <Signin onBack={() => go('splash')} onDone={() => go('home-active')} />}
+        {screen === 'home-empty'   && <HomeEmpty onCreate={() => go('create')} />}
+        {screen === 'home-active'  && <HomeActive onOutingTap={() => go('outing-detail')} onCreate={() => go('create')} />}
+        {screen === 'create'       && <CreateOuting onBack={() => go(hasOutings ? 'home-active' : 'home-empty')} onDone={() => { setHasOutings(true); go('home-active') }} />}
+        {screen === 'outing-detail'&& <OutingDetail onBack={() => go('home-active')} />}
+        {screen === 'moments'      && <Moments />}
+        {screen === 'profile'      && <Profile />}
+      </div>
+
+      {/* Bottom nav */}
+      {showNav && (
+        <BottomNav active={tab} onChange={handleTab} />
+      )}
+    </div>
   )
 }
