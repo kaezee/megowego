@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Base */
+  --mw-base: #FAFAF0;
+  --mw-ink: #0A0A0A;
+  --mw-ink-alt: #1A1916;
+  --mw-white: #FFFFFF;
+
+  /* Grey ramp */
+  --mw-grey-100: #F0EEE8;
+  --mw-grey-200: #E0DDD6;
+  --mw-grey-400: #A8A49C;
+  --mw-grey-600: #6B6760;
+
+  /* Accents */
+  --mw-pink: #FF5C9A;
+  --mw-yellow: #FFD93D;
+  --mw-green: #4DDB7A;
+  --mw-blue: #3D7FFF;
+  --mw-orange: #FF7043;
+  --mw-purple: #7C4DFF;
+
+  /* Semantic */
+  --mw-error: #FF3B5C;
+
+  /* Typography */
+  --mw-font-display: 'Fredoka', system-ui, sans-serif;
+  --mw-font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mw-font-mono: 'Space Mono', ui-monospace, monospace;
+
+  /* Shadows */
+  --mw-shadow: 4px 4px 0 0 #0A0A0A;
+  --mw-shadow-sm: 2px 2px 0 0 #0A0A0A;
+  --mw-shadow-lg: 6px 6px 0 0 #0A0A0A;
+
+  /* Motion */
+  --mw-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  height: 100%;
+  background: #E6E3DA;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #E6E3DA;
+  color: var(--mw-ink);
+  font-family: var(--mw-font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100svh;
+  max-width: 430px;
+  margin: 0 auto;
+  background: var(--mw-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
