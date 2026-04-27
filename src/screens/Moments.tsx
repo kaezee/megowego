@@ -140,10 +140,10 @@ export function Moments({ onMomentTap }: Props) {
   const grouped = group(filtered)
 
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
 
       {/* Fixed header */}
-      <div style={{ padding: '48px 16px 8px', background: C.grey100, flexShrink: 0 }}>
+      <div style={{ padding: '48px 16px 8px', background: C.surface, flexShrink: 0 }}>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginBottom: 12 }}>
           Moments
         </div>
@@ -182,7 +182,7 @@ export function Moments({ onMomentTap }: Props) {
         {!query && anniversaryMoments.length > 0 && (
           <>
             <OnThisDay moments={anniversaryMoments} onTap={onMomentTap} />
-            <div style={{ height: 1, background: C.grey100, margin: '0 0 12px' }} />
+            <div style={{ height: 1, background: C.surface, margin: '0 0 12px' }} />
           </>
         )}
 
@@ -369,7 +369,7 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
 // ── Full moment detail ──────────────────────────────────────
 export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: () => void }) {
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
 
       {/* Hero */}
       <div style={{ position: 'relative', flexShrink: 0, height: 280, background: m.color }}>
@@ -410,7 +410,7 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
           <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.grey600, marginTop: 6 }}>{m.date}</div>
         </div>
 
-        <div style={{ background: C.grey100, borderRadius: 12, padding: 16 }}>
+        <div style={{ background: C.surface, borderRadius: 12, padding: 16 }}>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 12 }}>WHO SHOWED UP</div>
           <AvatarStack people={m.people} size={36} max={6} />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>
@@ -421,7 +421,7 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
         </div>
 
         {m.bills && (
-          <div style={{ background: C.grey100, borderRadius: 12, padding: 16 }}>
+          <div style={{ background: C.surface, borderRadius: 12, padding: 16 }}>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 8 }}>BILLS</div>
             <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 18, color: C.ink }}>{m.bills}</div>
           </div>

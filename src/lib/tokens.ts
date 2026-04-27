@@ -1,12 +1,13 @@
 // Mego Wego design tokens — always use these, never raw values
 
 export const C = {
-  base:     '#FAFAF0',
+  base:     '#FAFAF0',   // card surface
+  surface:  '#E6E3DA',   // screen background
   ink:      '#0A0A0A',
   inkAlt:   '#1A1916',
   white:    '#FFFFFF',
 
-  grey100:  '#F0EEE8',
+  grey100:  '#F0EEE8',   // recessed surfaces inside cards
   grey200:  '#E0DDD6',
   grey400:  '#A8A49C',
   grey600:  '#6B6760',

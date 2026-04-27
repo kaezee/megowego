@@ -6,7 +6,7 @@ interface Props { onSignup: () => void; onSignin: () => void }
 
 export function Splash({ onSignup, onSignin }: Props) {
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.grey100 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
         <div style={{
           fontFamily: "'Fredoka', system-ui, sans-serif",

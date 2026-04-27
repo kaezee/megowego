@@ -40,7 +40,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
   const back = () => step > 1 ? setStep(s => s - 1) : onBack()
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.grey100, gap: 24 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface, gap: 24 }}>
       {/* Top bar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
@@ -107,7 +107,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
           <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>looking good 👀</div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>double-check before we send the invites</div>
 
-          <div style={{ background: C.grey100, border: '2px solid #E0DDD6', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ background: C.surface, border: '2px solid #E0DDD6', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 12, color: C.grey600, marginBottom: 4 }}>OUTING</div>
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 20, color: C.ink }}>{name || 'untitled outing'}</div>

@@ -5,7 +5,7 @@ import { C } from '../lib/tokens'
 
 export function Profile() {
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
         {/* Profile card */}
@@ -31,7 +31,7 @@ export function Profile() {
               { label: 'bailed',    value: '3' },
               { label: 'bailed on you', value: '7' },
             ].map(s => (
-              <div key={s.label} style={{ background: C.grey100, borderRadius: 8, padding: 12 }}>
+              <div key={s.label} style={{ background: C.surface, borderRadius: 8, padding: 12 }}>
                 <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 24, color: C.ink }}>{s.value}</div>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 2 }}>{s.label}</div>
               </div>

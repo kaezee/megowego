@@ -40,7 +40,7 @@ export function OutingDetail({ onBack }: Props) {
   const ghost  = PEOPLE.filter(p => p.rsvp === 'pending')
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: C.grey100 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: C.surface }}>
       {/* Top bar */}
       <div style={{ padding: '48px 20px 16px', display: 'flex', alignItems: 'center', gap: 12, borderBottom: `2px solid ${C.grey100}` }}>
         <button onClick={onBack} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>

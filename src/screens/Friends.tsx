@@ -37,7 +37,7 @@ export function Friends() {
     : FRIENDS
 
   return (
-    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.grey100, overflow: 'hidden' }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
 
       {/* Header */}
       <div style={{ padding: '48px 20px 12px', flexShrink: 0 }}>
