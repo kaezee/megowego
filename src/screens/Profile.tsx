@@ -23,7 +23,7 @@ export function Profile() {
 
         {/* Stats */}
         <Card padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 16 }}>your stats</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 16 }}>Your stats</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {[
               { label: 'organised', value: '14' },
@@ -41,7 +41,7 @@ export function Profile() {
 
         {/* Achievements */}
         <Card padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 12 }}>titles earned</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 12 }}>Titles earned</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {['serial organiser 🫡', 'the reliable one ✅', 'hype man 🔥'].map(t => (
               <Chip key={t} color={C.grey100}>{t}</Chip>
@@ -51,7 +51,7 @@ export function Profile() {
 
         {/* Debt */}
         <Card padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 4 }}>debt overview</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 4 }}>Debt overview</div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 12 }}>
             <div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600 }}>you are owed</div>
@@ -64,14 +64,6 @@ export function Profile() {
           </div>
         </Card>
 
-        {/* Wrapped teaser */}
-        <HeaderCard color={C.purple} padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 20 }}>2026 wrapped 🎁</div>
-          <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, marginTop: 4, opacity: 0.9 }}>14 outings · ₹4,200 spent · Diya bailed 3 times</div>
-          <button style={{ marginTop: 12, background: C.base, border: '2px solid #0A0A0A', borderRadius: 12, padding: '8px 16px', fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: C.ink, cursor: 'pointer' }}>
-            see your wrapped →
-          </button>
-        </HeaderCard>
       </div>
     </div>
   )

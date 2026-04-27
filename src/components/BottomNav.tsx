@@ -21,9 +21,9 @@ function UserIcon({ on }: { on: boolean }) {
 }
 
 const TABS: { id: Tab; label: string; Icon: React.FC<{ on: boolean }> }[] = [
-  { id: 'home',    label: 'home',    Icon: HomeIcon },
-  { id: 'moments', label: 'moments', Icon: SparkleIcon },
-  { id: 'profile', label: 'profile', Icon: UserIcon },
+  { id: 'home',    label: 'Home',    Icon: HomeIcon },
+  { id: 'moments', label: 'Moments', Icon: SparkleIcon },
+  { id: 'profile', label: 'Profile', Icon: UserIcon },
 ]
 
 export function BottomNav({ active, onChange }: BottomNavProps) {

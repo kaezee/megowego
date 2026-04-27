@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Avatar, AvatarStack } from '../components/ui/Avatar'
+import { AvatarStack } from '../components/ui/Avatar'
 import { Card, HeaderCard } from '../components/ui/Card'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
@@ -53,9 +53,8 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: C.base, position: 'relative' }}>
 
       {/* Header */}
-      <div style={{ padding: '48px 20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink }}>your week</div>
-        <Avatar name="A" color={C.yellow} size={36} />
+      <div style={{ padding: '48px 20px 0', marginBottom: 16 }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink }}>Your week</div>
       </div>
       <div style={{ padding: '0 20px' }}>
         <SearchInput placeholder="search outings, friends..." />
@@ -83,7 +82,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         {/* Coming up */}
         {coming.length > 0 && (
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 12 }}>coming up</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 12 }}>Coming up</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {coming.map(o => (
                 <SwipeableOutingCard key={o.id} onClick={onOutingTap} onDelete={() => setDeletingId(o.id)}>
@@ -108,7 +107,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         {/* Further out */}
         {later.length > 0 && (
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: C.grey600, marginBottom: 12 }}>further out</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: C.grey600, marginBottom: 12 }}>Further out</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {later.map(o => (
                 <SwipeableOutingCard key={o.id} onClick={onOutingTap} onDelete={() => setDeletingId(o.id)}>

@@ -45,7 +45,7 @@ export default function App() {
   const showNav = TABBED_SCREENS.includes(screen)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100svh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
 
         {screen === 'splash'        && <Splash onSignup={() => go('signup')} onSignin={() => go('signin')} />}

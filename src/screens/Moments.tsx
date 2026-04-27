@@ -80,12 +80,7 @@ const MOMENTS: Moment[] = [
   { id: '33', name: 'first trip together',  date: 'SUN 28 APR 2024', month: 'April',    year: '2024', vibe: 'legendary', vibeEmoji: '🏆', type: 'hangout', color: C.purple,  people: [PEOPLE[0], PEOPLE[1], PEOPLE[2]], bills: '₹4,400 split 3 ways' },
 ]
 
-// Completed years only (Wrapped doesn't appear for the current year in progress)
 const CURRENT_YEAR = '2026'
-const WRAPPED: Record<string, { outings: number; topFriend: string; spent: string; topVibe: string }> = {
-  '2025': { outings: 38, topFriend: 'Diya', spent: '₹24,800', topVibe: 'legendary' },
-  '2024': { outings: 22, topFriend: 'Aarav', spent: '₹18,200', topVibe: 'chaotic' },
-}
 
 // Today = April 27, 2026 — find moments from same month in past years
 const THIS_MONTH = 'April'
@@ -137,7 +132,7 @@ export function Moments({ onMomentTap }: Props) {
       {/* Fixed header */}
       <div style={{ padding: '48px 16px 12px', background: C.base, flexShrink: 0 }}>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginBottom: 12 }}>
-          moments
+          Moments
         </div>
         <SearchInput placeholder="search by outing, vibe, or person..." value={query} onChange={setQuery} />
       </div>
@@ -185,10 +180,6 @@ export function Moments({ onMomentTap }: Props) {
                 </div>
               ))}
 
-              {/* Wrapped — only for completed years, at the bottom of that year's section */}
-              {year !== CURRENT_YEAR && WRAPPED[year] && (
-                <WrappedBanner year={year} data={WRAPPED[year]} />
-              )}
             </div>
           ))
         )}
@@ -273,64 +264,6 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
             </button>
           )
         })}
-      </div>
-    </div>
-  )
-}
-
-// ── Wrapped banner ──────────────────────────────────────────
-function WrappedBanner({ year, data }: { year: string; data: typeof WRAPPED[string] }) {
-  return (
-    <div style={{
-      background: C.ink,
-      border: '2px solid #0A0A0A',
-      borderRadius: 12,
-      boxShadow: '4px 4px 0 0 #0A0A0A',
-      padding: '20px 20px',
-      marginBottom: 28,
-      cursor: 'pointer',
-    }}>
-      {/* Label */}
-      <div style={{
-        fontFamily: "'Space Mono', ui-monospace, monospace",
-        fontSize: 10, fontWeight: 700, color: C.yellow,
-        letterSpacing: '0.1em', marginBottom: 6,
-      }}>
-        {year} WRAPPED 🎁
-      </div>
-
-      {/* Headline */}
-      <div style={{
-        fontFamily: "'Fredoka', system-ui, sans-serif",
-        fontWeight: 700, fontSize: 22, color: C.base, lineHeight: 1.2, marginBottom: 16,
-      }}>
-        {data.outings} outings. {data.topFriend} was always there.
-      </div>
-
-      {/* Stats row */}
-      <div style={{ display: 'flex', gap: 20, marginBottom: 16 }}>
-        {[
-          { label: 'spent', value: data.spent },
-          { label: 'top vibe', value: data.topVibe },
-          { label: 'MVP', value: data.topFriend },
-        ].map(s => (
-          <div key={s.label}>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 10, color: C.grey400, letterSpacing: '0.04em' }}>{s.label.toUpperCase()}</div>
-            <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 13, color: C.base, marginTop: 1 }}>{s.value}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* CTA */}
-      <div style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-        background: C.yellow, border: '2px solid #0A0A0A',
-        borderRadius: 100, padding: '6px 14px',
-        fontFamily: "'Fredoka', system-ui, sans-serif",
-        fontWeight: 700, fontSize: 14, color: C.ink,
-        boxShadow: '2px 2px 0 0 #0A0A0A',
-      }}>
-        see full {year} →
       </div>
     </div>
   )
