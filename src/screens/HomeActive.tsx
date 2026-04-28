@@ -6,6 +6,7 @@ import { SearchInput } from '../components/ui/Input'
 import { SwipeableOutingCard } from '../components/SwipeableOutingCard'
 import { DeleteOutingModal } from '../components/DeleteOutingModal'
 import type { Outing } from '../App'
+import { Blob } from '../components/ui/Blob'
 import { C } from '../lib/tokens'
 
 function bucketOutings(outings: Outing[]) {
@@ -103,7 +104,10 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {/* Coming up */}
         {coming.length > 0 && (
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 12 }}>Coming up</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <Blob color={C.green} shape="oval" expression="excited" size={32} />
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Coming up</div>
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {coming.map(o => (
                 <SwipeableOutingCard key={o.id} onClick={onOutingTap} onDelete={() => setDeletingId(o.id)}>
@@ -128,7 +132,10 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {/* Further out */}
         {later.length > 0 && (
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.grey600, marginBottom: 12 }}>Further out</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <Blob color={C.blue} shape="wide" expression="meh" size={32} />
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.grey600 }}>Further out</div>
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {later.map(o => (
                 <SwipeableOutingCard key={o.id} onClick={onOutingTap} onDelete={() => setDeletingId(o.id)}>
@@ -149,9 +156,12 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
 
         {/* Empty state */}
         {outings.length === 0 && (
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, paddingTop: 60, textAlign: 'center' }}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>clean slate 💀</div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>you deleted everything. bold move.</div>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, paddingTop: 48, textAlign: 'center' }}>
+            <Blob color={C.purple} shape="puffy" expression="sad" size={110} />
+            <div>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>clean slate 💀</div>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600, marginTop: 6 }}>you deleted everything. bold move.</div>
+            </div>
           </div>
         )}
       </div>

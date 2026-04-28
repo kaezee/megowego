@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Avatar } from '../components/ui/Avatar'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
+import { Blob } from '../components/ui/Blob'
 import { C } from '../lib/tokens'
 
 interface Friend {
@@ -109,12 +110,13 @@ export function Friends() {
         {/* Suggested — hidden while searching */}
         {!query && (
           <div>
-            <div style={{
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              fontWeight: 600, fontSize: 11, color: C.grey600,
-              letterSpacing: '0.06em', marginBottom: 10,
-            }}>
-              SUGGESTED
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <Blob color={C.orange} shape="bean" expression="happy" size={28} />
+              <div style={{
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontWeight: 600, fontSize: 11, color: C.grey600,
+                letterSpacing: '0.06em',
+              }}>SUGGESTED</div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -155,23 +157,18 @@ export function Friends() {
         {/* Invite from contacts */}
         {!query && (
           <div style={{
-            background: C.base, border: '2px solid #0A0A0A',
+            background: C.yellow, border: '2px solid #0A0A0A',
             borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A',
-            padding: '18px 20px',
-            display: 'flex', alignItems: 'center', gap: 16,
+            padding: '16px 20px',
+            display: 'flex', alignItems: 'center', gap: 12, overflow: 'hidden', position: 'relative',
           }}>
-            <div style={{
-              width: 48, height: 48, borderRadius: '50%',
-              background: C.yellow, border: '2px solid #0A0A0A',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 22, flexShrink: 0,
-            }}>📱</div>
+            <Blob color={C.pink} shape="bean" expression="excited" size={72} style={{ marginLeft: -8, flexShrink: 0 }} />
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink }}>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
                 Invite from contacts
               </div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 2 }}>
-                See which friends are already on Mego Wego
+              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.ink, marginTop: 2, opacity: 0.6 }}>
+                See who's already on Mego Wego
               </div>
             </div>
             <Chip color={C.ink} style={{ flexShrink: 0 }}>

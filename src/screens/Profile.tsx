@@ -1,6 +1,7 @@
 import { Card, HeaderCard } from '../components/ui/Card'
 import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
+import { Blob } from '../components/ui/Blob'
 import { C } from '../lib/tokens'
 
 export function Profile() {
@@ -8,22 +9,28 @@ export function Profile() {
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
-        {/* Profile card */}
+        {/* Profile card — blob sits top-right corner of the yellow header */}
         <HeaderCard color={C.yellow} padding={20}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Avatar name="A" color={C.pink} size={56} />
-            <div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink }}>Aarav Sharma</div>
-              <Chip color={C.ink} style={{ marginTop: 8, fontSize: 12 }}>
-                <span style={{ color: C.base }}>serial organiser 🫡</span>
-              </Chip>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <Avatar name="A" color={C.pink} size={56} />
+              <div>
+                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink }}>Aarav Sharma</div>
+                <Chip color={C.ink} style={{ marginTop: 8, fontSize: 12 }}>
+                  <span style={{ color: C.base }}>serial organiser 🫡</span>
+                </Chip>
+              </div>
             </div>
+            <Blob color={C.purple} shape="puffy" expression="cool" size={72} style={{ marginRight: -8, marginTop: -8 }} />
           </div>
         </HeaderCard>
 
         {/* Stats */}
         <Card padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 16 }}>Your stats</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+            <Blob color={C.green} shape="oval" expression="excited" size={30} />
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Your stats</div>
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {[
               { label: 'organised', value: '14' },
@@ -41,7 +48,10 @@ export function Profile() {
 
         {/* Achievements */}
         <Card padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 12 }}>Titles earned</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+            <Blob color={C.orange} shape="bean" expression="happy" size={30} />
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Titles earned</div>
+          </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {['serial organiser 🫡', 'the reliable one ✅', 'hype man 🔥'].map(t => (
               <Chip key={t} color={C.grey100}>{t}</Chip>
@@ -51,7 +61,10 @@ export function Profile() {
 
         {/* Debt */}
         <Card padding={20}>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 4 }}>Debt overview</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+            <Blob color={C.pink} shape="bean" expression="meh" size={30} />
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
+          </div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>
           <div style={{ display: 'flex', gap: 12 }}>
             <div style={{ flex: 1, background: '#E8F9EE', border: '2px solid #0A0A0A', borderRadius: 10, padding: 14 }}>
