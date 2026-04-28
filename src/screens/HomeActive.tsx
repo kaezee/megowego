@@ -19,24 +19,47 @@ const PEOPLE = [
 interface Outing {
   id: string
   name: string
-  date: string
+  date: string        // display string
+  sortDate: string    // ISO date for bucketing, or 'LIVE'
   type: string
   color: string
   people: typeof PEOPLE
 }
 
+// Today = 28 Apr 2026
+// "coming up"  = within the next 7 days  (≤ 5 May)
+// "further out" = beyond 7 days
 const INITIAL_OUTINGS: Outing[] = [
-  { id: '1', name: 'chai @ irani',       date: 'HAPPENING NOW',      type: 'food 🍕',      color: C.yellow, people: PEOPLE.slice(0,4) },
-  { id: '2', name: 'shuka dinner',       date: 'FRI 24 APR · 8:00 PM', type: 'food 🍕',    color: C.yellow, people: PEOPLE.slice(0,5) },
-  { id: '3', name: 'matinee madness',    date: 'SAT 25 APR · 3:30 PM', type: 'movies 🎬',  color: C.pink,   people: [PEOPLE[1], PEOPLE[3], PEOPLE[5]] },
-  { id: '4', name: 'goa boys (real this time)', date: '3 MAY · WEEKEND', type: 'hangout ✌️', color: C.blue, people: PEOPLE },
+  { id: '1', name: 'chai @ irani',            date: 'HAPPENING NOW',        sortDate: 'LIVE',       type: 'food 🍕',     color: C.yellow, people: PEOPLE.slice(0,4) },
+  { id: '2', name: 'shuka dinner',            date: 'FRI 1 MAY · 8:00 PM',  sortDate: '2026-05-01', type: 'food 🍕',     color: C.yellow, people: PEOPLE.slice(0,5) },
+  { id: '3', name: 'matinee madness',         date: 'WED 30 APR · 3:30 PM', sortDate: '2026-04-30', type: 'movies 🎬',  color: C.pink,   people: [PEOPLE[1], PEOPLE[3], PEOPLE[5]] },
+  { id: '4', name: 'goa boys (real this time)', date: 'FRI 29 MAY · WEEKEND', sortDate: '2026-05-29', type: 'hangout ✌️', color: C.blue,  people: PEOPLE },
 ]
+
+function bucketOutings(outings: Outing[]) {
+  const now = new Date()
+  const sevenDaysOut = new Date(now)
+  sevenDaysOut.setDate(now.getDate() + 7)
+
+  const live   = outings.find(o => o.sortDate === 'LIVE')
+  const coming = outings.filter(o => {
+    if (o.sortDate === 'LIVE') return false
+    const d = new Date(o.sortDate)
+    return d >= now && d <= sevenDaysOut
+  })
+  const later  = outings.filter(o => {
+    if (o.sortDate === 'LIVE') return false
+    const d = new Date(o.sortDate)
+    return d > sevenDaysOut
+  })
+  return { live, coming, later }
+}
 
 interface Props { onOutingTap: () => void; onCreate: () => void }
 
 export function HomeActive({ onOutingTap, onCreate }: Props) {
-  const [outings, setOutings]           = useState(INITIAL_OUTINGS)
-  const [deletingId, setDeletingId]     = useState<string | null>(null)
+  const [outings, setOutings]       = useState(INITIAL_OUTINGS)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
 
   const deletingOuting = outings.find(o => o.id === deletingId)
 
@@ -45,9 +68,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
     setDeletingId(null)
   }
 
-  const live   = outings.find(o => o.date === 'HAPPENING NOW')
-  const coming = outings.filter(o => o.date.startsWith('FRI') || o.date.startsWith('SAT'))
-  const later  = outings.filter(o => o.date.startsWith('3 MAY'))
+  const { live, coming, later } = bucketOutings(outings)
 
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, position: 'relative', overflow: 'hidden' }}>
@@ -76,26 +97,17 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         {live && (
           <SwipeableOutingCard onClick={onOutingTap} onDelete={() => setDeletingId(live.id)}>
             <HeaderCard color={C.orange} padding={24}>
-              {/* Live badge */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.ink, flexShrink: 0 }} />
                 <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, letterSpacing: '0.08em', color: C.ink }}>HAPPENING NOW</div>
               </div>
-
-              {/* Outing name — the hero */}
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 32, color: C.ink, lineHeight: 1.1 }}>{live.name}</div>
-
-              {/* Meta */}
               <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.ink, opacity: 0.65, marginTop: 10, letterSpacing: '0.04em' }}>
                 STARTED 18 MIN AGO · BANDRA
               </div>
-
-              {/* Who's there */}
               <div style={{ marginTop: 18 }}>
                 <AvatarStack people={live.people} size={36} />
               </div>
-
-              {/* I'm coming CTA */}
               <button
                 onClick={e => { e.stopPropagation(); onOutingTap() }}
                 style={{
