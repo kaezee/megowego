@@ -5,36 +5,8 @@ import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
 import { SwipeableOutingCard } from '../components/SwipeableOutingCard'
 import { DeleteOutingModal } from '../components/DeleteOutingModal'
+import type { Outing } from '../App'
 import { C } from '../lib/tokens'
-
-const PEOPLE = [
-  { name: 'Aarav', color: C.pink },
-  { name: 'Diya',  color: C.yellow },
-  { name: 'Kabir', color: C.green },
-  { name: 'Mira',  color: C.blue },
-  { name: 'Rhea',  color: C.purple },
-  { name: 'Vir',   color: C.orange },
-]
-
-interface Outing {
-  id: string
-  name: string
-  date: string        // display string
-  sortDate: string    // ISO date for bucketing, or 'LIVE'
-  type: string
-  color: string
-  people: typeof PEOPLE
-}
-
-// Today = 28 Apr 2026
-// "coming up"  = within the next 7 days  (≤ 5 May)
-// "further out" = beyond 7 days
-const INITIAL_OUTINGS: Outing[] = [
-  { id: '1', name: 'chai @ irani',            date: 'HAPPENING NOW',        sortDate: 'LIVE',       type: 'food 🍕',     color: C.yellow, people: PEOPLE.slice(0,4) },
-  { id: '2', name: 'shuka dinner',            date: 'FRI 1 MAY · 8:00 PM',  sortDate: '2026-05-01', type: 'food 🍕',     color: C.yellow, people: PEOPLE.slice(0,5) },
-  { id: '3', name: 'matinee madness',         date: 'WED 30 APR · 3:30 PM', sortDate: '2026-04-30', type: 'movies 🎬',  color: C.pink,   people: [PEOPLE[1], PEOPLE[3], PEOPLE[5]] },
-  { id: '4', name: 'goa boys (real this time)', date: 'FRI 29 MAY · WEEKEND', sortDate: '2026-05-29', type: 'hangout ✌️', color: C.blue,  people: PEOPLE },
-]
 
 function bucketOutings(outings: Outing[]) {
   const now = new Date()
@@ -55,16 +27,20 @@ function bucketOutings(outings: Outing[]) {
   return { live, coming, later }
 }
 
-interface Props { onOutingTap: () => void; onCreate: () => void }
+interface Props {
+  outings: Outing[]
+  onOutingsChange: (outings: Outing[]) => void
+  onOutingTap: () => void
+  onCreate: () => void
+}
 
-export function HomeActive({ onOutingTap, onCreate }: Props) {
-  const [outings, setOutings]       = useState(INITIAL_OUTINGS)
+export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: Props) {
   const [deletingId, setDeletingId] = useState<string | null>(null)
 
   const deletingOuting = outings.find(o => o.id === deletingId)
 
   const handleDelete = () => {
-    setOutings(prev => prev.filter(o => o.id !== deletingId))
+    onOutingsChange(outings.filter(o => o.id !== deletingId))
     setDeletingId(null)
   }
 
@@ -93,7 +69,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
       {/* Scrollable content */}
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '16px 20px 32px', display: 'flex', flexDirection: 'column', gap: 24 }}>
 
-        {/* Live pinned card — hero treatment */}
+        {/* Live pinned card */}
         {live && (
           <SwipeableOutingCard onClick={onOutingTap} onDelete={() => setDeletingId(live.id)}>
             <HeaderCard color={C.orange} padding={24}>
@@ -171,7 +147,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
           </div>
         )}
 
-        {/* Empty state after all deleted */}
+        {/* Empty state */}
         {outings.length === 0 && (
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, paddingTop: 60, textAlign: 'center' }}>
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>clean slate 💀</div>

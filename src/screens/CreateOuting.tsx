@@ -3,9 +3,13 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
+import type { Outing } from '../App'
 import { C } from '../lib/tokens'
 
-interface Props { onBack: () => void; onDone: () => void }
+interface Props {
+  onBack: () => void
+  onDone: (outing: Outing) => void
+}
 
 const OUTING_TYPES = [
   { label: 'movies 🎬', color: C.pink },
@@ -15,7 +19,6 @@ const OUTING_TYPES = [
   { label: 'other',    color: C.grey200 },
 ]
 
-// Friends already on the app — pulled from your friends list
 const MY_FRIENDS = [
   { id: '1', name: 'Diya',   initials: 'D', color: C.yellow },
   { id: '2', name: 'Kabir',  initials: 'K', color: C.green  },
@@ -24,6 +27,20 @@ const MY_FRIENDS = [
   { id: '5', name: 'Vir',    initials: 'V', color: C.orange },
   { id: '6', name: 'Ananya', initials: 'A', color: C.pink   },
 ]
+
+function formatDisplayDate(datetime: string): string {
+  if (!datetime) return 'DATE TBD'
+  const d = new Date(datetime)
+  const days   = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  const day  = days[d.getDay()]
+  const date = d.getDate()
+  const mon  = months[d.getMonth()]
+  const h    = d.getHours() % 12 || 12
+  const m    = d.getMinutes().toString().padStart(2, '0')
+  const ampm = d.getHours() >= 12 ? 'PM' : 'AM'
+  return `${day} ${date} ${mon} · ${h}:${m} ${ampm}`
+}
 
 function StepProgress({ step }: { step: number }) {
   return (
@@ -41,25 +58,41 @@ function StepProgress({ step }: { step: number }) {
 }
 
 export function CreateOuting({ onBack, onDone }: Props) {
-  const [step, setStep]           = useState(1)
-  const [name, setName]           = useState('')
-  const [type, setType]           = useState('food 🍕')
-  const [date, setDate]           = useState('')
-  const [selected, setSelected]   = useState<string[]>([])
+  const [step, setStep]             = useState(1)
+  const [name, setName]             = useState('')
+  const [type, setType]             = useState('food 🍕')
+  const [date, setDate]             = useState('')
+  const [selected, setSelected]     = useState<string[]>([])
   const [linkCopied, setLinkCopied] = useState(false)
 
-  const next = () => step < 3 ? setStep(s => s + 1) : onDone()
+  const next = () => {
+    if (step < 3) { setStep(s => s + 1); return }
+    // Build and return the new outing
+    const typeColor = OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200
+    const people    = MY_FRIENDS.filter(f => selected.includes(f.id)).map(f => ({ name: f.name, color: f.color }))
+    const newOuting: Outing = {
+      id:       Date.now().toString(),
+      name:     name.trim() || 'untitled outing',
+      date:     formatDisplayDate(date),
+      sortDate: date ? date.split('T')[0] : new Date().toISOString().split('T')[0],
+      type,
+      color:    typeColor,
+      people,
+    }
+    onDone(newOuting)
+  }
+
   const back = () => step > 1 ? setStep(s => s - 1) : onBack()
 
   const toggleFriend = (id: string) =>
     setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
 
   const handleShareLink = async () => {
-    const fakeLink = `https://megowego.app/join/abc123`
+    const link = `https://megowego.app/join/abc123`
     if (navigator.share) {
-      await navigator.share({ title: `Join ${name || 'our outing'} on Mego Wego`, url: fakeLink })
+      await navigator.share({ title: `Join ${name || 'our outing'} on Mego Wego`, url: link })
     } else {
-      await navigator.clipboard.writeText(fakeLink)
+      await navigator.clipboard.writeText(link)
       setLinkCopied(true)
       setTimeout(() => setLinkCopied(false), 2000)
     }
@@ -108,7 +141,6 @@ export function CreateOuting({ onBack, onDone }: Props) {
         <>
           <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>who's invited?</div>
 
-          {/* Friends on the app */}
           <div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 12 }}>YOUR FRIENDS</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -131,8 +163,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
                       width: 22, height: 22, borderRadius: '50%',
                       border: '2px solid #0A0A0A',
                       background: on ? C.ink : 'transparent',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      flexShrink: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     }}>
                       {on && <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.yellow }} />}
                     </div>
@@ -142,11 +173,9 @@ export function CreateOuting({ onBack, onDone }: Props) {
             </div>
           </div>
 
-          {/* Invite someone not on the app */}
           <div style={{
             background: C.base, border: '2px solid #0A0A0A',
-            borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A',
-            padding: '16px 20px',
+            borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A', padding: '16px 20px',
           }}>
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 4 }}>
               Not on Mego Wego yet?
@@ -180,8 +209,12 @@ export function CreateOuting({ onBack, onDone }: Props) {
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>{name || 'untitled outing'}</div>
             </div>
             <div>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>WHEN</div>
+              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 13, color: C.ink }}>{formatDisplayDate(date)}</div>
+            </div>
+            <div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>TYPE</div>
-              <Chip color={OUTING_TYPES.find(t => t.label === type)?.color || C.grey200}>{type}</Chip>
+              <Chip color={OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200}>{type}</Chip>
             </div>
             {selectedFriends.length > 0 && (
               <div>
@@ -206,7 +239,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
 
       <div style={{ flex: 1 }} />
       <Button full onClick={next} disabled={step === 1 && !name.trim()}>
-        {step < 3 ? 'next →' : 'send invites →'}
+        {step < 3 ? 'next →' : 'done →'}
       </Button>
     </div>
   )
