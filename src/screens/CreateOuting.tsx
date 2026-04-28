@@ -113,7 +113,13 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Step 1 — name + type + date */}
       {step === 1 && (
         <>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>okay so what's the plan?</div>
+          {/* Heading with illustration on the left */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <img src="/Whats the plan.png" alt="" style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.25 }}>
+              okay so,<br />what's the plan?
+            </div>
+          </div>
 
           <div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 8 }}>outing name</div>
@@ -200,8 +206,15 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Step 3 — confirm */}
       {step === 3 && (
         <>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>looking good 👀</div>
-          <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>double-check before we send the invites</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <img src="/Eventcreated.png" alt="" style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
+            <div>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.25 }}>
+                looking good 👀
+              </div>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginTop: 4 }}>double-check before we send the invites</div>
+            </div>
+          </div>
 
           <div style={{ background: C.base, border: '2px solid #0A0A0A', borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div>
