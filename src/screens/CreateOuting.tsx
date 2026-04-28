@@ -48,7 +48,7 @@ function StepProgress({ step }: { step: number }) {
       {[1, 2, 3].map(i => (
         <div key={i} style={{
           flex: 1, height: 8,
-          background: i === step ? C.yellow : i < step ? C.ink : C.grey200,
+          background: i <= step ? C.ink : C.grey200,
           border: '2px solid #0A0A0A', borderRadius: 100,
         }} />
       ))}
@@ -58,28 +58,34 @@ function StepProgress({ step }: { step: number }) {
 }
 
 export function CreateOuting({ onBack, onDone }: Props) {
-  const [step, setStep]             = useState(1)
-  const [name, setName]             = useState('')
-  const [type, setType]             = useState('food 🍕')
-  const [date, setDate]             = useState('')
-  const [selected, setSelected]     = useState<string[]>([])
-  const [linkCopied, setLinkCopied] = useState(false)
+  const [step, setStep]               = useState(1)
+  const [name, setName]               = useState('')
+  const [type, setType]               = useState('food 🍕')
+  const [date, setDate]               = useState('')
+  const [selected, setSelected]       = useState<string[]>([])
+  const [linkCopied, setLinkCopied]   = useState(false)
+  const [createdOuting, setCreatedOuting] = useState<Outing | null>(null)
 
   const next = () => {
     if (step < 3) { setStep(s => s + 1); return }
-    // Build and return the new outing
-    const typeColor = OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200
-    const people    = MY_FRIENDS.filter(f => selected.includes(f.id)).map(f => ({ name: f.name, color: f.color }))
-    const newOuting: Outing = {
-      id:       Date.now().toString(),
-      name:     name.trim() || 'untitled outing',
-      date:     formatDisplayDate(date),
-      sortDate: date ? date.split('T')[0] : new Date().toISOString().split('T')[0],
-      type,
-      color:    typeColor,
-      people,
+    if (step === 3) {
+      // Build the outing and advance to celebration screen
+      const typeColor = OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200
+      const people    = MY_FRIENDS.filter(f => selected.includes(f.id)).map(f => ({ name: f.name, color: f.color }))
+      setCreatedOuting({
+        id:       Date.now().toString(),
+        name:     name.trim() || 'untitled outing',
+        date:     formatDisplayDate(date),
+        sortDate: date ? date.split('T')[0] : new Date().toISOString().split('T')[0],
+        type,
+        color:    typeColor,
+        people,
+      })
+      setStep(4)
+      return
     }
-    onDone(newOuting)
+    // Step 4 — hand off to home
+    if (createdOuting) onDone(createdOuting)
   }
 
   const back = () => step > 1 ? setStep(s => s - 1) : onBack()
@@ -102,13 +108,15 @@ export function CreateOuting({ onBack, onDone }: Props) {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface, gap: 24 }}>
-      {/* Top bar */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
-          {step === 1 ? '×' : '←'}
-        </button>
-        <StepProgress step={step} />
-      </div>
+      {/* Top bar — hidden on celebration screen */}
+      {step < 4 && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
+            {step === 1 ? '×' : '←'}
+          </button>
+          <StepProgress step={step} />
+        </div>
+      )}
 
       {/* Step 1 — name + type + date */}
       {step === 1 && (
@@ -250,9 +258,61 @@ export function CreateOuting({ onBack, onDone }: Props) {
         </>
       )}
 
+      {/* Step 4 — celebration */}
+      {step === 4 && createdOuting && (
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, textAlign: 'center' }}>
+          <img
+            src="/Eventcreated.png"
+            alt="event created"
+            style={{ width: 200, height: 200, objectFit: 'contain' }}
+          />
+          <div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 30, color: C.ink, lineHeight: 1.2 }}>
+              you're all set! 🎉
+            </div>
+            <div style={{
+              fontFamily: "'Fredoka', system-ui, sans-serif",
+              fontSize: 20, color: C.grey600, marginTop: 6,
+            }}>
+              {createdOuting.name}
+            </div>
+            <div style={{
+              fontFamily: "'Space Mono', ui-monospace, monospace",
+              fontSize: 11, color: C.grey400, marginTop: 8, letterSpacing: '0.05em',
+            }}>
+              {createdOuting.date}
+            </div>
+          </div>
+
+          {/* Invited friends chips */}
+          {createdOuting.people.length > 0 && (
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
+              {createdOuting.people.map(p => (
+                <div key={p.name} style={{
+                  background: p.color, border: '2px solid #0A0A0A',
+                  borderRadius: 100, padding: '4px 12px',
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  fontSize: 13, fontWeight: 500, color: C.ink,
+                }}>
+                  {p.name}
+                </div>
+              ))}
+              <div style={{
+                background: C.grey100, border: '2px solid #0A0A0A',
+                borderRadius: 100, padding: '4px 12px',
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontSize: 13, fontWeight: 500, color: C.grey600,
+              }}>
+                invites sent ✓
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       <div style={{ flex: 1 }} />
       <Button full onClick={next} disabled={step === 1 && !name.trim()}>
-        {step < 3 ? 'next →' : 'done →'}
+        {step === 1 || step === 2 ? 'next →' : step === 3 ? 'send invites →' : 'see my plans →'}
       </Button>
     </div>
   )
