@@ -144,7 +144,7 @@ export function Moments({ onMomentTap }: Props) {
 
       {/* Fixed header */}
       <div style={{ padding: '48px 16px 8px', background: C.surface, flexShrink: 0 }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginBottom: 12 }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, marginBottom: 12 }}>
           Moments
         </div>
         <SearchInput placeholder="search by outing, vibe, or person..." value={query} onChange={setQuery} />
@@ -188,7 +188,7 @@ export function Moments({ onMomentTap }: Props) {
 
         {filtered.length === 0 ? (
           <div style={{ paddingTop: 60, textAlign: 'center' }}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 20, color: C.ink }}>nothing found 😐</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>nothing found 😐</div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600, marginTop: 8 }}>try a different name, vibe, or person</div>
           </div>
         ) : (
@@ -199,7 +199,7 @@ export function Moments({ onMomentTap }: Props) {
                 display: 'flex', alignItems: 'center', gap: 12,
                 paddingTop: 4, paddingBottom: 10,
               }}>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 22, color: C.ink }}>{year}</div>
+                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>{year}</div>
                 <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
               </div>
 
@@ -235,7 +235,7 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
         <span style={{ fontSize: 14 }}>📅</span>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: C.ink }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink }}>
           on this day
         </div>
         <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600 }}>
@@ -291,7 +291,7 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
               {/* Year ago pill */}
               <div style={{
                 fontFamily: "'Space Mono', ui-monospace, monospace",
-                fontSize: 9, fontWeight: 700,
+                fontSize: 9, fontWeight: 600,
                 color: C.base,
                 background: C.ink,
                 borderRadius: 100,
@@ -388,7 +388,7 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
           background: 'rgba(250,250,240,0.9)', border: '2px solid #0A0A0A',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', fontFamily: "'Fredoka', system-ui, sans-serif",
-          fontWeight: 700, fontSize: 18, color: C.ink,
+          fontWeight: 600, fontSize: 18, color: C.ink,
           boxShadow: '2px 2px 0 0 #0A0A0A',
         }}>←</button>
 
@@ -406,7 +406,7 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
       {/* Detail body */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '20px 20px 40px', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 28, color: C.ink, lineHeight: 1.2 }}>{m.name}</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 28, color: C.ink, lineHeight: 1.2 }}>{m.name}</div>
           <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.grey600, marginTop: 6 }}>{m.date}</div>
         </div>
 
@@ -423,12 +423,12 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
         {m.bills && (
           <div style={{ background: C.surface, borderRadius: 12, padding: 16 }}>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 8 }}>BILLS</div>
-            <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 18, color: C.ink }}>{m.bills}</div>
+            <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 600, fontSize: 18, color: C.ink }}>{m.bills}</div>
           </div>
         )}
 
         <div>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 12 }}>share the memory</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 12 }}>share the memory</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <Button full variant="secondary">moment card 📸</Button>
             <Button full variant="secondary">fomo card 😭</Button>

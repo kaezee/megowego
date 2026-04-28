@@ -41,7 +41,7 @@ export function Friends() {
 
       {/* Header */}
       <div style={{ padding: '48px 20px 12px', flexShrink: 0 }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, marginBottom: 12 }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, marginBottom: 12 }}>
           Friends
         </div>
         <SearchInput placeholder="search friends..." value={query} onChange={setQuery} />
@@ -72,7 +72,7 @@ export function Friends() {
               }}>
                 <Avatar name={f.initials} color={f.color} size={44} />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 17, color: C.ink }}>
+                  <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
                     {f.name}
                   </div>
                   <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 1 }}>
@@ -129,7 +129,7 @@ export function Friends() {
                 }}>
                   <Avatar name={s.initials} color={s.color} size={44} />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 17, color: C.ink }}>
+                    <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
                       {s.name}
                     </div>
                     <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 1 }}>
@@ -167,7 +167,7 @@ export function Friends() {
               fontSize: 22, flexShrink: 0,
             }}>📱</div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: C.ink }}>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink }}>
                 Invite from contacts
               </div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 2 }}>

@@ -10,7 +10,7 @@ export function Splash({ onSignup, onSignin }: Props) {
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
         <div style={{
           fontFamily: "'Fredoka', system-ui, sans-serif",
-          fontWeight: 700, fontSize: 64, lineHeight: 0.95,
+          fontWeight: 600, fontSize: 64, lineHeight: 0.95,
           color: C.ink, letterSpacing: '-0.02em', textAlign: 'center',
         }}>
           mego<br />

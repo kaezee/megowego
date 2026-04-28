@@ -14,7 +14,7 @@ export function Avatar({ name, color = C.pink, size = 32 }: AvatarProps) {
       border: '2px solid #0A0A0A',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: "'Fredoka', system-ui, sans-serif",
-      fontWeight: 700, fontSize: Math.round(size * 0.42),
+      fontWeight: 600, fontSize: Math.round(size * 0.42),
       flexShrink: 0, lineHeight: 1,
       userSelect: 'none',
     }}>
@@ -46,7 +46,7 @@ export function AvatarStack({ people, max = 5, size = 32 }: StackProps) {
             background: C.white, color: C.ink, border: '2px solid #0A0A0A',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontFamily: "'Space Mono', ui-monospace, monospace",
-            fontWeight: 700, fontSize: Math.round(size * 0.34),
+            fontWeight: 600, fontSize: Math.round(size * 0.34),
           }}>+{extra}</div>
         </div>
       )}

@@ -38,7 +38,7 @@ export function DeleteOutingModal({ outingName, onConfirm, onCancel }: Props) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{
             fontFamily: "'Fredoka', system-ui, sans-serif",
-            fontWeight: 700, fontSize: 24, color: C.ink, lineHeight: 1.2,
+            fontWeight: 600, fontSize: 24, color: C.ink, lineHeight: 1.2,
           }}>
             delete "{outingName}"?
           </div>

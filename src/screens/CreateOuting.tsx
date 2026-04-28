@@ -43,7 +43,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface, gap: 24 }}>
       {/* Top bar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
+        <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
           {step === 1 ? '×' : '←'}
         </button>
         <StepProgress step={step} />
@@ -52,7 +52,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Step 1 — name + type + date */}
       {step === 1 && (
         <>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>okay so what's the plan?</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>okay so what's the plan?</div>
 
           <div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 8 }}>outing name</div>
@@ -78,7 +78,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Step 2 — invite */}
       {step === 2 && (
         <>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>who's invited?</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>who's invited?</div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>add phone numbers — they don't need the app</div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -104,13 +104,13 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Step 3 — confirm */}
       {step === 3 && (
         <>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>looking good 👀</div>
+          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>looking good 👀</div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>double-check before we send the invites</div>
 
           <div style={{ background: C.surface, border: '2px solid #E0DDD6', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 12, color: C.grey600, marginBottom: 4 }}>OUTING</div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 20, color: C.ink }}>{name || 'untitled outing'}</div>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>{name || 'untitled outing'}</div>
             </div>
             <div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 12, color: C.grey600, marginBottom: 4 }}>TYPE</div>

@@ -2,7 +2,7 @@
 
 export const C = {
   base:     '#FAFAF0',   // card surface
-  surface:  '#E6E3DA',   // screen background
+  surface:  '#EDE8DC',   // screen background
   ink:      '#0A0A0A',
   inkAlt:   '#1A1916',
   white:    '#FFFFFF',

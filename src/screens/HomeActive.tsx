@@ -54,7 +54,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
 
       {/* Header */}
       <div style={{ padding: '48px 20px 0', marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink }}>Your week</div>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink }}>Your week</div>
         <button onClick={onCreate} style={{
           width: 40, height: 40, borderRadius: '50%',
           background: C.ink, border: '2px solid #0A0A0A',
@@ -83,7 +83,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
               </div>
 
               {/* Outing name — the hero */}
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 32, color: C.ink, lineHeight: 1.1 }}>{live.name}</div>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 32, color: C.ink, lineHeight: 1.1 }}>{live.name}</div>
 
               {/* Meta */}
               <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.ink, opacity: 0.65, marginTop: 10, letterSpacing: '0.04em' }}>
@@ -103,7 +103,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
                   background: C.ink, border: '2px solid #0A0A0A',
                   borderRadius: 12, color: C.base, cursor: 'pointer',
                   fontFamily: "'Fredoka', system-ui, sans-serif",
-                  fontSize: 18, fontWeight: 700,
+                  fontSize: 18, fontWeight: 600,
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                 }}>
                 i'm coming 🙋
@@ -115,14 +115,14 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         {/* Coming up */}
         {coming.length > 0 && (
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink, marginBottom: 12 }}>Coming up</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 12 }}>Coming up</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {coming.map(o => (
                 <SwipeableOutingCard key={o.id} onClick={onOutingTap} onDelete={() => setDeletingId(o.id)}>
                   <Card padding={16}>
                     <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: C.ink }}>{o.name}</div>
+                        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>{o.name}</div>
                         <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.grey600, marginTop: 4 }}>{o.date}</div>
                       </div>
                       <Chip color={o.color}>{o.type}</Chip>
@@ -140,14 +140,14 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         {/* Further out */}
         {later.length > 0 && (
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: C.grey600, marginBottom: 12 }}>Further out</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.grey600, marginBottom: 12 }}>Further out</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {later.map(o => (
                 <SwipeableOutingCard key={o.id} onClick={onOutingTap} onDelete={() => setDeletingId(o.id)}>
                   <Card padding={14} style={{ opacity: 0.85 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <div>
-                        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: C.ink }}>{o.name}</div>
+                        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink }}>{o.name}</div>
                         <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.grey600, marginTop: 4 }}>{o.date}</div>
                       </div>
                       <Chip color={o.color}>{o.type}</Chip>
@@ -162,7 +162,7 @@ export function HomeActive({ onOutingTap, onCreate }: Props) {
         {/* Empty state after all deleted */}
         {outings.length === 0 && (
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, paddingTop: 60, textAlign: 'center' }}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 22, color: C.ink }}>clean slate 💀</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>clean slate 💀</div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600 }}>you deleted everything. bold move.</div>
           </div>
         )}

@@ -11,10 +11,10 @@ export function Signin({ onBack, onDone }: Props) {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface, gap: 24 }}>
-      <button onClick={onBack} style={{ alignSelf: 'flex-start', background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>
+      <button onClick={onBack} style={{ alignSelf: 'flex-start', background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>
 
       <div>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 700, fontSize: 28, color: C.ink, lineHeight: 1.2 }}>welcome back</div>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 28, color: C.ink, lineHeight: 1.2 }}>welcome back</div>
         <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600, marginTop: 8 }}>let's see what chaos awaits</div>
       </div>
 
@@ -34,7 +34,7 @@ export function Signin({ onBack, onDone }: Props) {
               borderRadius: 12,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontFamily: "'Space Mono', ui-monospace, monospace",
-              fontWeight: 700, fontSize: 22,
+              fontWeight: 600, fontSize: 22,
               color: d ? C.ink : C.grey400,
             }}>{d || '—'}</div>
           ))}

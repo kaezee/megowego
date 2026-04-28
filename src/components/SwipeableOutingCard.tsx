@@ -237,7 +237,7 @@ export function SwipeableOutingCard({ children, onDelete, onClick }: Props) {
           <Trash2 size={20} strokeWidth={2.5} />
           <span style={{
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-            fontWeight: 700, fontSize: 11, letterSpacing: '0.04em', color: C.base,
+            fontWeight: 600, fontSize: 11, letterSpacing: '0.04em', color: C.base,
           }}>delete</span>
         </button>
       </div>
