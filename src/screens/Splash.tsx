@@ -1,5 +1,4 @@
 import { Button } from '../components/ui/Button'
-import { Illo } from '../components/ui/Illo'
 import { C } from '../lib/tokens'
 
 interface Props { onSignup: () => void; onSignin: () => void }
@@ -16,7 +15,11 @@ export function Splash({ onSignup, onSignin }: Props) {
           mego<br />
           <span style={{ color: C.pink, WebkitTextStroke: '2px #0A0A0A' }}>wego</span>
         </div>
-        <Illo color={C.purple} height={240} label="[ illustration — friend chaos ]" style={{ width: '100%' }} />
+        <img
+          src="/splash-illo.png"
+          alt="friend chaos"
+          style={{ width: '100%', maxWidth: 380, objectFit: 'contain' }}
+        />
         <div style={{
           fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           fontSize: 15, color: C.grey600, textAlign: 'center', maxWidth: 280, lineHeight: 1.5,
