@@ -20,6 +20,10 @@ export const C = {
   purple:   '#7C4DFF',
 
   error:    '#FF3B5C',
+
+  /* Semantic tints */
+  debtPositive: '#E8F9EE',   // owed to you — green tint
+  debtNegative: '#FFF0F2',   // you owe — red tint
 } as const;
 
 export const F = {

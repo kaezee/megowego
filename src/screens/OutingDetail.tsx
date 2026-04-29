@@ -40,7 +40,7 @@ export function OutingDetail({ onBack }: Props) {
   const ghost  = PEOPLE.filter(p => p.rsvp === 'pending')
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: C.surface }}>
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
       {/* Top bar */}
       <div style={{ padding: '48px 20px 16px', display: 'flex', alignItems: 'center', gap: 12, borderBottom: `2px solid ${C.grey100}` }}>
         <button onClick={onBack} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>
@@ -70,7 +70,7 @@ export function OutingDetail({ onBack }: Props) {
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '4px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '4px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
         {/* PLAN */}
         {stage === 'plan' && <>

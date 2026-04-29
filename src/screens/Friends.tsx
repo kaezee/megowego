@@ -31,7 +31,9 @@ const SUGGESTED: { id: string; name: string; initials: string; color: string; mu
 ]
 
 export function Friends() {
-  const [query, setQuery] = useState('')
+  const [query, setQuery]       = useState('')
+  const [invited, setInvited]   = useState<string[]>([])
+  const [added, setAdded]       = useState<string[]>([])
 
   const filtered = query.trim()
     ? FRIENDS.filter(f => f.name.toLowerCase().includes(query.toLowerCase()))
@@ -93,14 +95,18 @@ export function Friends() {
                     </div>
                   )}
                 </div>
-                <button style={{
-                  background: 'transparent', border: '2px solid #0A0A0A',
-                  borderRadius: 100, padding: '6px 14px', cursor: 'pointer',
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                  fontWeight: 600, fontSize: 12, color: C.ink,
-                  whiteSpace: 'nowrap', flexShrink: 0,
-                }}>
-                  invite
+                <button
+                  onClick={() => setInvited(p => p.includes(f.id) ? p : [...p, f.id])}
+                  style={{
+                    background: invited.includes(f.id) ? C.green : 'transparent',
+                    border: '2px solid #0A0A0A',
+                    borderRadius: 100, padding: '6px 14px', cursor: 'pointer',
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                    fontWeight: 600, fontSize: 12, color: C.ink,
+                    whiteSpace: 'nowrap', flexShrink: 0,
+                    transition: 'background 0.15s',
+                  }}>
+                  {invited.includes(f.id) ? 'invited ✓' : 'invite'}
                 </button>
               </div>
             ))}
@@ -138,15 +144,19 @@ export function Friends() {
                       {s.mutual} mutual friend{s.mutual !== 1 ? 's' : ''}
                     </div>
                   </div>
-                  <button style={{
-                    background: C.ink, border: '2px solid #0A0A0A',
-                    borderRadius: 100, padding: '6px 14px', cursor: 'pointer',
-                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                    fontWeight: 600, fontSize: 12, color: C.base,
-                    whiteSpace: 'nowrap', flexShrink: 0,
-                    boxShadow: '2px 2px 0 0 #0A0A0A',
-                  }}>
-                    + add
+                  <button
+                    onClick={() => setAdded(p => p.includes(s.id) ? p : [...p, s.id])}
+                    style={{
+                      background: added.includes(s.id) ? C.green : C.ink,
+                      border: '2px solid #0A0A0A',
+                      borderRadius: 100, padding: '6px 14px', cursor: 'pointer',
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      fontWeight: 600, fontSize: 12, color: C.base,
+                      whiteSpace: 'nowrap', flexShrink: 0,
+                      boxShadow: added.includes(s.id) ? 'none' : '2px 2px 0 0 #0A0A0A',
+                      transition: 'background 0.15s',
+                    }}>
+                    {added.includes(s.id) ? 'added ✓' : '+ add'}
                   </button>
                 </div>
               ))}

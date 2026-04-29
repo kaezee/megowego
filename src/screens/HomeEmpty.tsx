@@ -12,7 +12,7 @@ export function HomeEmpty({ onCreate }: Props) {
       </div>
       <div style={{ flex: 1, padding: '32px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, textAlign: 'center' }}>
         {/* Three blobs hanging out, bored */}
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', gap: -8 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', gap: 0 }}>
           <Blob color={C.pink}   shape="bean"  expression="sad"  size={90}  flip style={{ marginRight: -12, marginBottom: 12 }} />
           <Blob color={C.yellow} shape="round" expression="meh"  size={120} />
           <Blob color={C.green}  shape="oval"  expression="sad"  size={90}  style={{ marginLeft: -12, marginBottom: 8 }} />
