@@ -3,6 +3,7 @@ import { Avatar } from '../components/ui/Avatar'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
 import { Blob } from '../components/ui/Blob'
+import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
 
 interface Friend {
@@ -117,7 +118,7 @@ export function Friends() {
         {!query && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <Blob color={C.orange} shape="bean" expression="happy" size={28} />
+              <SectionBadge icon="🌸" color={C.purple} />
               <div style={{
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontWeight: 600, fontSize: 11, color: C.grey600,
@@ -169,11 +170,11 @@ export function Friends() {
           <div style={{
             background: C.yellow, border: '2px solid #0A0A0A',
             borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A',
-            padding: '16px 20px',
-            display: 'flex', alignItems: 'center', gap: 12, overflow: 'hidden', position: 'relative',
+            padding: '14px 16px',
+            display: 'flex', alignItems: 'center', gap: 10,
           }}>
-            <Blob color={C.pink} shape="bean" expression="excited" size={72} style={{ marginLeft: -8, flexShrink: 0 }} />
-            <div style={{ flex: 1 }}>
+            <Blob color={C.pink} shape="bean" expression="excited" size={52} style={{ flexShrink: 0 }} />
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
                 Invite from contacts
               </div>

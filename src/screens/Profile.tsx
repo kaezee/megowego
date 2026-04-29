@@ -2,6 +2,7 @@ import { Card, HeaderCard } from '../components/ui/Card'
 import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
 import { Blob } from '../components/ui/Blob'
+import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
 
 export function Profile() {
@@ -28,7 +29,7 @@ export function Profile() {
         {/* Stats */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-            <Blob color={C.green} shape="oval" expression="excited" size={30} />
+            <SectionBadge icon="🎯" color={C.pink} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Your stats</div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -49,8 +50,8 @@ export function Profile() {
         {/* Achievements */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <Blob color={C.orange} shape="bean" expression="happy" size={30} />
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Titles earned</div>
+            <SectionBadge icon="🏆" color={C.yellow} />
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Achievements</div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {['serial organiser 🫡', 'the reliable one ✅', 'hype man 🔥'].map(t => (
@@ -62,7 +63,7 @@ export function Profile() {
         {/* Debt */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <Blob color={C.pink} shape="bean" expression="meh" size={30} />
+            <SectionBadge icon="🪙" color={C.green} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
           </div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>

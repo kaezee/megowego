@@ -7,6 +7,7 @@ import { SwipeableOutingCard } from '../components/SwipeableOutingCard'
 import { DeleteOutingModal } from '../components/DeleteOutingModal'
 import type { Outing } from '../App'
 import { Blob } from '../components/ui/Blob'
+import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
 
 function bucketOutings(outings: Outing[]) {
@@ -105,7 +106,7 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {coming.length > 0 && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <Blob color={C.green} shape="oval" expression="excited" size={32} />
+              <SectionBadge icon="⚡" color={C.yellow} />
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Coming up</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -133,7 +134,7 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {later.length > 0 && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <Blob color={C.blue} shape="wide" expression="meh" size={32} />
+              <SectionBadge icon="🗺️" color={C.blue} />
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.grey600 }}>Further out</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
