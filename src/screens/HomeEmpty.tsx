@@ -14,7 +14,6 @@ export function HomeEmpty({ onCreate }: Props) {
           src="/empty state.png"
           alt=""
           style={{ width: '100%', maxWidth: 280, objectFit: 'contain' }}
-          fetchpriority="high"
         />
         <div>
           <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>no plans? really?</div>

@@ -18,7 +18,6 @@ export function Splash({ onSignup, onSignin }: Props) {
         <img
           src="/splash-illo.png"
           alt="friend chaos"
-          fetchpriority="high"
           style={{ width: '100%', maxWidth: 380, objectFit: 'contain' }}
         />
         <div style={{
