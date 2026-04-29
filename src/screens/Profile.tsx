@@ -29,7 +29,7 @@ export function Profile() {
         {/* Stats */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-            <SectionBadge icon="🎯" color={C.pink} />
+            <SectionBadge icon="🎯" color={C.pink} size={28} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Your stats</div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
@@ -50,7 +50,7 @@ export function Profile() {
         {/* Achievements */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <SectionBadge icon="🏆" color={C.yellow} />
+            <SectionBadge icon="🏆" color={C.yellow} size={28} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Achievements</div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -63,7 +63,7 @@ export function Profile() {
         {/* Debt */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <SectionBadge icon="🪙" color={C.green} />
+            <SectionBadge icon="🪙" color={C.green} size={28} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
           </div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>

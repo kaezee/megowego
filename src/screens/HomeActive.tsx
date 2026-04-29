@@ -106,7 +106,7 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {coming.length > 0 && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <SectionBadge icon="⚡" color={C.yellow} />
+              <SectionBadge icon="⚡" color={C.yellow} size={28} />
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Coming up</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -134,7 +134,7 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {later.length > 0 && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <SectionBadge icon="🗺️" color={C.blue} />
+              <SectionBadge icon="🗺️" color={C.blue} size={28} />
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.grey600 }}>Further out</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
