@@ -1,7 +1,6 @@
 import { Card, HeaderCard } from '../components/ui/Card'
 import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
-import { Blob } from '../components/ui/Blob'
 import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
 
@@ -10,33 +9,40 @@ export function Profile() {
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
-        {/* Profile card — blob sits top-right corner of the yellow header */}
+        {/* Profile card */}
         <HeaderCard color={C.yellow} padding={20}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              <Avatar name="A" color={C.pink} size={56} />
-              <div>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink }}>Aarav Sharma</div>
-                <Chip color={C.ink} style={{ marginTop: 8, fontSize: 12 }}>
-                  <span style={{ color: C.base }}>serial organiser 🫡</span>
-                </Chip>
-              </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <Avatar name="A" color={C.pink} size={56} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink }}>Aarav Sharma</div>
+              <Chip color={C.ink} style={{ marginTop: 8, fontSize: 12 }}>
+                <span style={{ color: C.base }}>serial organiser 🫡</span>
+              </Chip>
             </div>
-            <Blob color={C.purple} shape="puffy" expression="cool" size={72} style={{ marginRight: -8, marginTop: -8 }} />
+            {/* Edit profile button */}
+            <button style={{
+              width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
+              background: C.ink, border: '2px solid #0A0A0A',
+              boxShadow: '2px 2px 0 0 #0A0A0A',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer',
+            }}>
+              <span style={{ fontSize: 16, lineHeight: 1 }}>✏️</span>
+            </button>
           </div>
         </HeaderCard>
 
         {/* Stats */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-            <SectionBadge icon="🎯" color={C.pink} size={28} />
+            <SectionBadge icon="🎯" color={C.pink} size={32} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Your stats</div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {[
-              { label: 'organised', value: '14' },
-              { label: 'showed up', value: '23' },
-              { label: 'bailed',    value: '3' },
+              { label: 'organised',    value: '14' },
+              { label: 'showed up',    value: '23' },
+              { label: 'bailed',       value: '3'  },
               { label: 'bailed on you', value: '7' },
             ].map(s => (
               <div key={s.label} style={{ background: C.surface, borderRadius: 8, padding: 12 }}>
@@ -50,7 +56,7 @@ export function Profile() {
         {/* Achievements */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <SectionBadge icon="🏆" color={C.yellow} size={28} />
+            <SectionBadge icon="🏆" color={C.yellow} size={32} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Achievements</div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -63,7 +69,7 @@ export function Profile() {
         {/* Debt */}
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <SectionBadge icon="🪙" color={C.green} size={28} />
+            <SectionBadge icon="🪙" color={C.green} size={32} />
             <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
           </div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>
@@ -83,8 +89,20 @@ export function Profile() {
 
         {/* Settings */}
         <Card padding={0}>
+          {/* Settings header row */}
+          <div style={{
+            padding: '14px 20px',
+            borderBottom: `1px solid ${C.grey100}`,
+            display: 'flex', alignItems: 'center', gap: 8,
+          }}>
+            <span style={{ fontSize: 18 }}>⚙️</span>
+            <span style={{
+              fontFamily: "'Fredoka', system-ui, sans-serif",
+              fontWeight: 600, fontSize: 18, color: C.ink,
+            }}>Settings</span>
+          </div>
+
           {[
-            { emoji: '✏️', label: 'Edit profile' },
             { emoji: '🔔', label: 'Notifications' },
             { emoji: '🤝', label: 'Invite friends' },
             { emoji: '🚪', label: 'Sign out', danger: true },

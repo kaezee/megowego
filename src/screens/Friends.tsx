@@ -118,7 +118,7 @@ export function Friends() {
         {!query && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <SectionBadge icon="🌸" color={C.purple} size={28} />
+              <SectionBadge icon="🌸" color={C.purple} size={32} />
               <div style={{
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontWeight: 600, fontSize: 11, color: C.grey600,
