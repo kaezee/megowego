@@ -107,16 +107,20 @@ export function CreateOuting({ onBack, onDone }: Props) {
   const selectedFriends = MY_FRIENDS.filter(f => selected.includes(f.id))
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface, gap: 24 }}>
-      {/* Top bar — hidden on celebration screen */}
+    <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
+
+      {/* Top bar — fixed, never scrolls, hidden on celebration */}
       {step < 4 && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ padding: '48px 20px 0', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 12 }}>
           <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
             {step === 1 ? '×' : '←'}
           </button>
           <StepProgress step={step} />
         </div>
       )}
+
+      {/* Scrollable content — grows and scrolls, button stays below */}
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '24px 20px 8px', display: 'flex', flexDirection: 'column', gap: 24 }}>
 
       {/* Step 1 — name + type + date */}
       {step === 1 && (
@@ -310,10 +314,15 @@ export function CreateOuting({ onBack, onDone }: Props) {
         </div>
       )}
 
-      <div style={{ flex: 1 }} />
-      <Button full onClick={next} disabled={step === 1 && !name.trim()}>
-        {step === 1 || step === 2 ? 'next →' : step === 3 ? 'send invites →' : 'see my plans →'}
-      </Button>
+      </div> {/* end scrollable content */}
+
+      {/* CTA — always pinned at the bottom, never scrolls */}
+      <div style={{ padding: '12px 20px 32px', flexShrink: 0 }}>
+        <Button full onClick={next} disabled={step === 1 && !name.trim()}>
+          {step === 1 || step === 2 ? 'next →' : step === 3 ? 'send invites →' : 'see my plans →'}
+        </Button>
+      </div>
+
     </div>
   )
 }
