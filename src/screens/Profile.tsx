@@ -78,7 +78,8 @@ export function Profile() {
         <Card padding={20}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
             <SectionBadge icon="🪙" color={C.green} size={32} />
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, flex: 1 }}>Debt overview</div>
+            <img src="/In debt.png" alt="" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
           </div>
           <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>
           <div style={{ display: 'flex', gap: 12 }}>

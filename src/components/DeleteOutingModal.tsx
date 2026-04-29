@@ -34,6 +34,9 @@ export function DeleteOutingModal({ outingName, onConfirm, onCancel }: Props) {
         {/* Handle */}
         <div style={{ width: 40, height: 4, borderRadius: 100, background: C.grey200, margin: '0 auto -8px' }} />
 
+        {/* Illustration */}
+        <img src="/Bailing.png" alt="" style={{ width: 120, height: 120, objectFit: 'contain', margin: '0 auto' }} />
+
         {/* Copy */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Avatar } from '../components/ui/Avatar'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
-import { Blob } from '../components/ui/Blob'
 import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
 
@@ -173,7 +172,7 @@ export function Friends() {
             padding: '14px 16px',
             display: 'flex', alignItems: 'center', gap: 10,
           }}>
-            <Blob color={C.pink} shape="bean" expression="excited" size={52} style={{ flexShrink: 0 }} />
+            <img src="/Invite.png" alt="" style={{ width: 56, height: 56, objectFit: 'contain', flexShrink: 0 }} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
                 Invite from contacts
