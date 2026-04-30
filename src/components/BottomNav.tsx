@@ -1,8 +1,8 @@
 import { C } from '../lib/tokens'
 
-type Tab = 'home' | 'moments' | 'friends' | 'profile'
+export type Tab = 'home' | 'moments' | 'friends' | 'more'
 
-interface BottomNavProps {
+interface Props {
   active: Tab
   onChange: (tab: Tab) => void
 }
@@ -26,19 +26,25 @@ function FriendsIcon({ on }: { on: boolean }) {
     </svg>
   )
 }
-function UserIcon({ on }: { on: boolean }) {
-  const s = on ? C.ink : C.grey400
-  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={s} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+function DotsIcon({ on }: { on: boolean }) {
+  const fill = on ? C.ink : C.grey400
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <circle cx="5"  cy="12" r="2" fill={fill} />
+      <circle cx="12" cy="12" r="2" fill={fill} />
+      <circle cx="19" cy="12" r="2" fill={fill} />
+    </svg>
+  )
 }
 
 const TABS: { id: Tab; label: string; Icon: React.FC<{ on: boolean }> }[] = [
   { id: 'home',    label: 'Home',    Icon: HomeIcon },
   { id: 'moments', label: 'Moments', Icon: SparkleIcon },
   { id: 'friends', label: 'Friends', Icon: FriendsIcon },
-  { id: 'profile', label: 'Profile', Icon: UserIcon },
+  { id: 'more',    label: 'More',    Icon: DotsIcon },
 ]
 
-export function BottomNav({ active, onChange }: BottomNavProps) {
+export function BottomNav({ active, onChange }: Props) {
   return (
     <div style={{
       height: 64, background: C.surface,
