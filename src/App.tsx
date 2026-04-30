@@ -78,6 +78,7 @@ export default function App() {
   const [outings, setOutings]           = useState<Outing[]>(INITIAL_OUTINGS)
   const [activeMoment, setActiveMoment] = useState<Moment | null>(null)
   const [showMore, setShowMore]         = useState(false)
+  const [returnScreen, setReturnScreen] = useState<Screen>('home-active')
 
   const hasOutings = outings.length > 0
   const go = (s: Screen) => setScreen(s)
@@ -132,8 +133,8 @@ export default function App() {
         {screen === 'moments'       && <Moments onMomentTap={openMoment} />}
         {screen === 'moment-detail' && activeMoment && <MomentDetail moment={activeMoment} onBack={() => go('moments')} />}
         {screen === 'friends'       && <Friends />}
-        {screen === 'profile'       && <Profile />}
-        {screen === 'settings'      && <Settings onBack={() => go('profile')} />}
+        {screen === 'profile'  && <Profile  onBack={() => { setTab(returnScreen === 'moments' ? 'moments' : returnScreen === 'friends' ? 'friends' : 'home'); go(returnScreen) }} />}
+        {screen === 'settings' && <Settings onBack={() => go('profile')} />}
 
       </div>
 
@@ -165,7 +166,7 @@ export default function App() {
 
             {/* Profile */}
             <button
-              onClick={() => { setTab('more'); setShowMore(false); go('profile') }}
+              onClick={() => { setReturnScreen(screen); setTab('more'); setShowMore(false); go('profile') }}
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', gap: 14,
                 padding: '18px 20px',
@@ -182,7 +183,7 @@ export default function App() {
 
             {/* Settings */}
             <button
-              onClick={() => { setTab('more'); setShowMore(false); go('settings') }}
+              onClick={() => { setReturnScreen(screen); setTab('more'); setShowMore(false); go('settings') }}
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', gap: 14,
                 padding: '18px 20px',

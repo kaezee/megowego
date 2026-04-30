@@ -10,20 +10,14 @@ export function Settings({ onBack }: Props) {
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
 
       {/* Header */}
-      <div style={{ padding: '48px 20px 16px', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+      <div style={{ padding: '48px 20px 16px', display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
         <button
           onClick={onBack}
-          style={{
-            width: 36, height: 36, borderRadius: '50%',
-            background: C.base, border: '2px solid #0A0A0A',
-            boxShadow: '2px 2px 0 0 #0A0A0A',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer', flexShrink: 0,
-            fontFamily: "'Fredoka', system-ui, sans-serif",
-            fontSize: 18, color: C.ink,
-          }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', flexShrink: 0 }}
         >
-          ←
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
         </button>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink }}>
           Settings

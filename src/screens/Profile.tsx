@@ -4,10 +4,22 @@ import { Avatar } from '../components/ui/Avatar'
 import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
 
-export function Profile() {
+interface Props { onBack: () => void }
+
+export function Profile({ onBack }: Props) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+        {/* Back */}
+        <button
+          onClick={onBack}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', alignSelf: 'flex-start' }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
+        </button>
 
         {/* Profile card */}
         <HeaderCard color={C.yellow} padding={20}>
