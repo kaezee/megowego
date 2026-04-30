@@ -117,20 +117,37 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
                 background: '#FFFFFF',
                 padding: '16px 20px 20px',
               }}>
-                {/* Avatar name chips */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
-                  {live.people.map(p => (
+                {/* Avatar circles — overlapping, max 4 + overflow count */}
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+                  {live.people.slice(0, 4).map((p, i) => (
                     <div key={p.name} style={{
+                      width: 38, height: 38, borderRadius: '50%',
                       background: p.color,
                       border: '2px solid #0A0A0A',
-                      borderRadius: 100,
-                      padding: '4px 12px',
-                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                      fontSize: 13, fontWeight: 600, color: C.ink,
+                      marginLeft: i === 0 ? 0 : -10,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontFamily: "'Fredoka', system-ui, sans-serif",
+                      fontWeight: 600, fontSize: 16, color: C.ink,
+                      flexShrink: 0,
+                      zIndex: i,
                     }}>
-                      {p.name}
+                      {p.name[0]}
                     </div>
                   ))}
+                  {live.people.length > 4 && (
+                    <div style={{
+                      width: 38, height: 38, borderRadius: '50%',
+                      background: C.grey200,
+                      border: '2px solid #0A0A0A',
+                      marginLeft: -10,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      fontWeight: 700, fontSize: 12, color: C.ink,
+                      flexShrink: 0,
+                    }}>
+                      +{live.people.length - 4}
+                    </div>
+                  )}
                 </div>
                 {/* CTA */}
                 <button
