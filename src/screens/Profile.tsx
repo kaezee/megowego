@@ -1,5 +1,4 @@
 import { Card, HeaderCard } from '../components/ui/Card'
-import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
 import { SectionBadge } from '../components/ui/SectionBadge'
 import { C } from '../lib/tokens'
@@ -108,7 +107,7 @@ export function Profile({ onBack }: Props) {
               fontWeight: 600, fontSize: 13,
               color: C.grey600,
               textDecoration: 'underline',
-              textDecorationColor: C.grey300,
+              textDecorationColor: C.grey200,
               marginLeft: 2,
             }}
           >
