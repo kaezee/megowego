@@ -48,7 +48,7 @@ export function OutingDetail({ onBack }: Props) {
           <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>chai @ irani</div>
           <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.grey600, marginTop: 2 }}>FRI 24 APR · 8:00 PM · BANDRA</div>
         </div>
-        <Chip color={C.yellow}>food 🍕</Chip>
+        <Chip color={C.yellow}>food</Chip>
       </div>
 
       {/* Stage tabs */}
@@ -81,15 +81,15 @@ export function OutingDetail({ onBack }: Props) {
           </HeaderCard>
 
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>they're in ({yes.length})</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>They're in ({yes.length})</div>
             {yes.map(p => <Row key={p.name} person={p} badge="✓" badgeColor={C.green} />)}
           </div>
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>they're out ({no.length})</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>They're out ({no.length})</div>
             {no.map(p => <Row key={p.name} person={p} badge="✗" badgeColor={C.error} />)}
           </div>
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>still ghosting you ({ghost.length + maybe.length})</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>Still ghosting you ({ghost.length + maybe.length})</div>
             {[...ghost, ...maybe].map(p => <Row key={p.name} person={p} badge="?" badgeColor={C.grey400} action={<Chip style={{ fontSize: 11 }}>poke</Chip>} />)}
           </div>
         </>}
@@ -102,7 +102,7 @@ export function OutingDetail({ onBack }: Props) {
             <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 13, color: C.ink, marginTop: 6 }}>{yes.length} locked in · {maybe.length + ghost.length} still thinking</div>
           </HeaderCard>
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>confirmed squad</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 10 }}>Confirmed squad</div>
             <AvatarStack people={yes} size={40} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -128,7 +128,7 @@ export function OutingDetail({ onBack }: Props) {
         {/* SETTLE */}
         {stage === 'settle' && <>
           <Card padding={20}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 16 }}>who paid?</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 16 }}>Who paid?</div>
             {yes.slice(0, 2).map((p, i) => (
               <div key={p.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 12, marginBottom: i < 1 ? 12 : 0, borderBottom: i < 1 ? `1px solid ${C.grey100}` : 'none' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -140,7 +140,7 @@ export function OutingDetail({ onBack }: Props) {
             ))}
           </Card>
           <Card padding={20}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 16 }}>everyone owes</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 16 }}>Everyone owes</div>
             {yes.map(p => (
               <div key={p.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -161,9 +161,9 @@ export function OutingDetail({ onBack }: Props) {
           </HeaderCard>
 
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 12 }}>how was it?</div>
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 12 }}>How was it?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {['legendary 🏆', 'chaotic 💀', 'wholesome 🫶', 'mid 😐', 'unhinged 🤯'].map(v => (
+              {['legendary', 'chaotic', 'wholesome', 'mid', 'unhinged'].map(v => (
                 <Chip key={v} color={vibeTag === v ? C.yellow : C.white} active={false} onClick={() => setVibeTag(v)}>{v}</Chip>
               ))}
             </div>

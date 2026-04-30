@@ -73,17 +73,14 @@ export function Profile({ onBack }: Props) {
 
         {/* Profile card */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <HeaderCard color={C.yellow} padding={20}>
+            <HeaderCard color={C.yellow} padding={20}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               <Avatar name="A" color={C.pink} size={56} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.1 }}>
-                  Aarav Sharma
-                </div>
-                {/* Achievement title pill */}
+                {/* Achievement title pill — above the name */}
                 <div style={{
                   display: 'inline-block',
-                  marginTop: 6,
+                  marginBottom: 5,
                   background: C.ink,
                   color: C.base,
                   fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
@@ -94,25 +91,22 @@ export function Profile({ onBack }: Props) {
                 }}>
                   serial organiser
                 </div>
+                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.1 }}>
+                  Aarav Sharma
+                </div>
               </div>
+              {/* Pencil edit button */}
+              <button style={{
+                alignSelf: 'flex-start',
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: 4, flexShrink: 0,
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                </svg>
+              </button>
             </div>
           </HeaderCard>
-
-          {/* Edit profile link — below the card */}
-          <button
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-              alignSelf: 'flex-start',
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              fontWeight: 600, fontSize: 13,
-              color: C.grey600,
-              textDecoration: 'underline',
-              textDecorationColor: C.grey200,
-              marginLeft: 2,
-            }}
-          >
-            edit profile
-          </button>
         </div>
 
         {/* Stats */}
