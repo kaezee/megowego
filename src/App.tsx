@@ -13,8 +13,28 @@ import { Friends } from './screens/Friends'
 import { Profile } from './screens/Profile'
 import { Settings } from './screens/Settings'
 import type { Moment } from './screens/Moments'
-import { Avatar } from './components/ui/Avatar'
 import { C } from './lib/tokens'
+
+function PersonIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="7" r="5" fill={C.ink} />
+      <path d="M3 22c0-5 4-9 9-9s9 4 9 9H3z" fill={C.ink} />
+    </svg>
+  )
+}
+
+function GearIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M12 2L13.8 5L17 4.3L18.7 7.3L22 8.5L21 12L22 15.5L18.7 16.7L17 19.7L13.8 19L12 22L10.2 19L7 19.7L5.3 16.7L2 15.5L3 12L2 8.5L5.3 7.3L7 4.3L10.2 5Z"
+        fill={C.ink}
+      />
+      <circle cx="12" cy="12" r="3.5" fill={C.base} />
+    </svg>
+  )
+}
 
 type Screen =
   | 'splash' | 'signup' | 'signin'
@@ -143,36 +163,18 @@ export default function App() {
               <div style={{ width: 40, height: 4, borderRadius: 100, background: C.grey200 }} />
             </div>
 
-            {/* User row */}
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 12,
-              padding: '12px 20px 16px',
-              borderBottom: `1px solid ${C.grey100}`,
-            }}>
-              <Avatar name="A" color={C.pink} size={40} />
-              <div>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>Aarav Sharma</div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600 }}>serial organiser 🫡</div>
-              </div>
-            </div>
-
             {/* Profile */}
             <button
               onClick={() => { setTab('more'); setShowMore(false); go('profile') }}
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', gap: 14,
-                padding: '16px 20px',
+                padding: '18px 20px',
                 background: 'transparent', border: 'none', cursor: 'pointer',
                 borderBottom: `1px solid ${C.grey100}`, textAlign: 'left',
               }}
             >
-              <span style={{
-                width: 36, height: 36, borderRadius: '50%',
-                background: C.yellow, border: '2px solid #0A0A0A',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 16, flexShrink: 0,
-              }}>👤</span>
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 15, color: C.ink, flex: 1 }}>
+              <PersonIcon />
+              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>
                 Profile
               </span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
@@ -183,18 +185,13 @@ export default function App() {
               onClick={() => { setTab('more'); setShowMore(false); go('settings') }}
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', gap: 14,
-                padding: '16px 20px',
+                padding: '18px 20px',
                 background: 'transparent', border: 'none', cursor: 'pointer',
                 textAlign: 'left',
               }}
             >
-              <span style={{
-                width: 36, height: 36, borderRadius: '50%',
-                background: C.blue, border: '2px solid #0A0A0A',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 16, flexShrink: 0,
-              }}>⚙️</span>
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 15, color: C.ink, flex: 1 }}>
+              <GearIcon />
+              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>
                 Settings
               </span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
