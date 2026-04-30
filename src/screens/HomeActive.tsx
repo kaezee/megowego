@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AvatarStack } from '../components/ui/Avatar'
-import { Card, HeaderCard } from '../components/ui/Card'
+import { Card } from '../components/ui/Card'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
 import { SwipeableOutingCard } from '../components/SwipeableOutingCard'
@@ -74,31 +74,79 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
         {/* Live pinned card */}
         {live && (
           <SwipeableOutingCard onClick={onOutingTap} onDelete={() => setDeletingId(live.id)}>
-            <HeaderCard color={C.orange} padding={24}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.ink, flexShrink: 0 }} />
-                <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, letterSpacing: '0.08em', color: C.ink }}>HAPPENING NOW</div>
-              </div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 32, color: C.ink, lineHeight: 1.1 }}>{live.name}</div>
-              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.ink, opacity: 0.65, marginTop: 10, letterSpacing: '0.04em' }}>
-                STARTED 18 MIN AGO · BANDRA
-              </div>
-              <div style={{ marginTop: 18 }}>
-                <AvatarStack people={live.people} size={36} />
-              </div>
-              <button
-                onClick={e => { e.stopPropagation(); onOutingTap() }}
-                style={{
-                  width: '100%', height: 48, marginTop: 18,
-                  background: C.ink, border: '2px solid #0A0A0A',
-                  borderRadius: 12, color: C.base, cursor: 'pointer',
-                  fontFamily: "'Fredoka', system-ui, sans-serif",
-                  fontSize: 18, fontWeight: 600,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+            <div style={{
+              border: '2px solid #0A0A0A',
+              borderRadius: 12,
+              boxShadow: '3px 3px 0 0 #0A0A0A',
+              overflow: 'hidden',
+            }}>
+              {/* Purple header strip */}
+              <div style={{
+                background: C.purple,
+                padding: '18px 20px 20px',
+              }}>
+                {/* "happening now" label */}
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 6,
+                  marginBottom: 8,
                 }}>
-                i'm coming 🙋
-              </button>
-            </HeaderCard>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: C.base, flexShrink: 0 }} />
+                  <span style={{
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                    fontWeight: 500, fontSize: 12, color: C.base,
+                  }}>happening now</span>
+                </div>
+                {/* Outing name */}
+                <div style={{
+                  fontFamily: "'Fredoka', system-ui, sans-serif",
+                  fontWeight: 600, fontSize: 24, color: C.base, lineHeight: 1.1,
+                }}>
+                  {live.name}
+                </div>
+                {/* Started x min ago */}
+                <div style={{
+                  fontFamily: "'Space Mono', ui-monospace, monospace",
+                  fontSize: 11, color: C.base, opacity: 0.7, marginTop: 6,
+                }}>
+                  started 18 min ago
+                </div>
+              </div>
+
+              {/* White content zone */}
+              <div style={{
+                background: '#FFFFFF',
+                padding: '16px 20px 20px',
+              }}>
+                {/* Avatar name chips */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+                  {live.people.map(p => (
+                    <div key={p.name} style={{
+                      background: p.color,
+                      border: '2px solid #0A0A0A',
+                      borderRadius: 100,
+                      padding: '4px 12px',
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      fontSize: 13, fontWeight: 600, color: C.ink,
+                    }}>
+                      {p.name}
+                    </div>
+                  ))}
+                </div>
+                {/* CTA */}
+                <button
+                  onClick={e => { e.stopPropagation(); onOutingTap() }}
+                  style={{
+                    width: '100%', height: 48,
+                    background: C.ink, border: '2px solid #0A0A0A',
+                    borderRadius: 10, color: C.base, cursor: 'pointer',
+                    fontFamily: "'Fredoka', system-ui, sans-serif",
+                    fontSize: 18, fontWeight: 600,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                  I'm coming
+                </button>
+              </div>
+            </div>
           </SwipeableOutingCard>
         )}
 
