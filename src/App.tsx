@@ -107,7 +107,7 @@ export default function App() {
   const showNav = TABBED_SCREENS.includes(screen)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
 
         {screen === 'splash'        && <Splash onSignup={() => go('signup')} onSignin={() => go('signin')} />}
@@ -144,7 +144,7 @@ export default function App() {
         <div
           onClick={() => setShowMore(false)}
           style={{
-            position: 'fixed', inset: 0, zIndex: 200,
+            position: 'absolute', inset: 0, zIndex: 200,
             background: 'rgba(10,10,10,0.45)',
             display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
           }}
