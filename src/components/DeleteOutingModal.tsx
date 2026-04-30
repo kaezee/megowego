@@ -13,7 +13,7 @@ export function DeleteOutingModal({ outingName, onConfirm, onCancel }: Props) {
     <div
       onClick={onCancel}
       style={{
-        position: 'fixed', inset: 0, zIndex: 100,
+        position: 'absolute', inset: 0, zIndex: 100,
         background: 'rgba(10,10,10,0.5)',
         display: 'flex', alignItems: 'flex-end',
       }}
