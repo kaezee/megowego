@@ -64,10 +64,10 @@ const PEOPLE = [
 ]
 
 const INITIAL_OUTINGS: Outing[] = [
-  { id: '1', name: 'chai @ irani',              date: 'HAPPENING NOW',         sortDate: 'LIVE',       type: 'food 🍕',     color: C.yellow, people: PEOPLE.slice(0,4) },
-  { id: '2', name: 'shuka dinner',              date: 'FRI 1 MAY · 8:00 PM',   sortDate: '2026-05-01', type: 'food 🍕',     color: C.yellow, people: PEOPLE.slice(0,5) },
-  { id: '3', name: 'matinee madness',           date: 'WED 30 APR · 3:30 PM',  sortDate: '2026-04-30', type: 'movies 🎬',  color: C.pink,   people: [PEOPLE[1], PEOPLE[3], PEOPLE[5]] },
-  { id: '4', name: 'goa boys (real this time)', date: 'FRI 29 MAY · WEEKEND',  sortDate: '2026-05-29', type: 'hangout ✌️', color: C.blue,   people: PEOPLE },
+  { id: '1', name: 'chai @ irani',              date: 'HAPPENING NOW',         sortDate: 'LIVE',       type: 'food',    color: C.yellow, people: PEOPLE.slice(0,4) },
+  { id: '2', name: 'shuka dinner',              date: 'FRI 1 MAY · 8:00 PM',   sortDate: '2026-05-01', type: 'food',    color: C.yellow, people: PEOPLE.slice(0,5) },
+  { id: '3', name: 'matinee madness',           date: 'WED 30 APR · 3:30 PM',  sortDate: '2026-04-30', type: 'movies',  color: C.pink,   people: [PEOPLE[1], PEOPLE[3], PEOPLE[5]] },
+  { id: '4', name: 'goa boys (real this time)', date: 'FRI 29 MAY · WEEKEND',  sortDate: '2026-05-29', type: 'hangout', color: C.blue,   people: PEOPLE },
 ]
 
 const TABBED_SCREENS: Screen[] = ['home-empty', 'home-active', 'moments', 'friends', 'profile', 'settings']

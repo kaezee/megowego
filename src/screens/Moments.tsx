@@ -6,6 +6,62 @@ import { Illo } from '../components/ui/Illo'
 import { Button } from '../components/ui/Button'
 import { C } from '../lib/tokens'
 
+// ── Vibe icons (SVG placeholders, no emoji) ──────────────────
+function VibeIcon({ vibe, size = 28 }: { vibe: string; size?: number }) {
+  const s = size
+  switch (vibe) {
+    case 'legendary':
+      // Trophy silhouette
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+          <path d="M8 2h8v8c0 3.3-2.7 6-6 6s-6-2.7-6-6V2z" fill="rgba(255,255,255,0.9)" stroke="rgba(255,255,255,0.9)" strokeWidth="0"/>
+          <path d="M5 2H3v4c0 1.7 1.3 3 3 3" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+          <path d="M19 2h2v4c0 1.7-1.3 3-3 3" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+          <path d="M12 16v3" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M9 19h6" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M9 2h6v7a3 3 0 0 1-6 0V2z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      )
+    case 'chaotic':
+      // Lightning bolt
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L5 14h7l-1 8 9-12h-7l2-8z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      )
+    case 'wholesome':
+      // Heart
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+          <path d="M12 21C12 21 3 15 3 8.5A5 5 0 0 1 12 6a5 5 0 0 1 9 2.5C21 15 12 21 12 21z" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      )
+    case 'mid':
+      // Flat line / meh face
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" fill="rgba(255,255,255,0.9)"/>
+          <path d="M8 14h8" stroke="rgba(0,0,0,0.35)" strokeWidth="1.8" strokeLinecap="round"/>
+          <circle cx="9" cy="10" r="1" fill="rgba(0,0,0,0.35)"/>
+          <circle cx="15" cy="10" r="1" fill="rgba(0,0,0,0.35)"/>
+        </svg>
+      )
+    case 'unhinged':
+      // Spiral / asterisk
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+          <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="rgba(255,255,255,0.9)" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      )
+    default:
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+      )
+  }
+}
+
 const PEOPLE = [
   { name: 'Aarav', color: C.pink },
   { name: 'Diya',  color: C.yellow },
@@ -116,10 +172,10 @@ interface Props {
 type Filter = 'all' | 'food' | 'sport' | 'movies' | 'hangout'
 const FILTERS: { id: Filter; label: string }[] = [
   { id: 'all',     label: 'All' },
-  { id: 'food',    label: 'food 🍕' },
-  { id: 'sport',   label: 'sport ⚽' },
-  { id: 'movies',  label: 'movies 🎬' },
-  { id: 'hangout', label: 'hangout ✌️' },
+  { id: 'food',    label: 'food' },
+  { id: 'sport',   label: 'sport' },
+  { id: 'movies',  label: 'movies' },
+  { id: 'hangout', label: 'hangout' },
 ]
 
 export function Moments({ onMomentTap }: Props) {
@@ -272,9 +328,8 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
                   borderRadius: '50%',
                   background: m.color,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 24,
                 }}>
-                  {m.vibeEmoji}
+                  <VibeIcon vibe={m.vibe} size={26} />
                 </div>
               </div>
 
@@ -334,9 +389,8 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
           width: '100%', height: '100%',
           background: m.color,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 30,
         }}>
-          {m.vibeEmoji}
+          <VibeIcon vibe={m.vibe} size={36} />
         </div>
       )}
 
@@ -378,7 +432,7 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
         ) : (
           <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Illo color={m.color} height={180} label={`[ ${m.name} ]`} style={{ width: '80%', border: 'none', background: 'transparent' }} />
-            <div style={{ position: 'absolute', fontSize: 72, opacity: 0.2 }}>{m.vibeEmoji}</div>
+            <div style={{ position: 'absolute', opacity: 0.18 }}><VibeIcon vibe={m.vibe} size={80} /></div>
           </div>
         )}
 
@@ -393,7 +447,9 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
         }}>←</button>
 
         <div style={{ position: 'absolute', top: 52, right: 16 }}>
-          <Chip color={m.color} style={{ background: 'rgba(250,250,240,0.9)' }}>{m.vibe} {m.vibeEmoji}</Chip>
+          <Chip color={m.color} style={{ background: 'rgba(250,250,240,0.9)', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <VibeIcon vibe={m.vibe} size={14} />{m.vibe}
+          </Chip>
         </div>
 
         <div style={{

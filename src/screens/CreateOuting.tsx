@@ -12,11 +12,11 @@ interface Props {
 }
 
 const OUTING_TYPES = [
-  { label: 'movies 🎬', color: C.pink },
-  { label: 'food 🍕',   color: C.yellow },
-  { label: 'sport ⚽',  color: C.green },
-  { label: 'hangout ✌️', color: C.blue },
-  { label: 'other',    color: C.grey200 },
+  { label: 'movies',  color: C.pink },
+  { label: 'food',    color: C.yellow },
+  { label: 'sport',   color: C.green },
+  { label: 'hangout', color: C.blue },
+  { label: 'other',   color: C.grey200 },
 ]
 
 const MY_FRIENDS = [
@@ -60,7 +60,7 @@ function StepProgress({ step }: { step: number }) {
 export function CreateOuting({ onBack, onDone }: Props) {
   const [step, setStep]               = useState(1)
   const [name, setName]               = useState('')
-  const [type, setType]               = useState('food 🍕')
+  const [type, setType]               = useState('food')
   const [date, setDate]               = useState('')
   const [selected, setSelected]       = useState<string[]>([])
   const [linkCopied, setLinkCopied]   = useState(false)
