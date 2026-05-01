@@ -39,7 +39,7 @@ export function NoteField({ placeholder, value, onChange }: Props) {
   }
 
   return (
-    <div style={{ background: C.grey100, border: `2px solid #0A0A0A`, borderRadius: 10, padding: '12px 14px', position: 'relative' }}>
+    <div style={{ background: C.grey100, border: `2px solid ${C.purple}`, borderRadius: 10, padding: '12px 14px', position: 'relative' }}>
       <textarea
         autoFocus
         value={value}

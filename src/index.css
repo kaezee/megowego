@@ -45,6 +45,28 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Remove browser default focus outlines — we draw our own */
+:focus {
+  outline: none;
+}
+
+/* Keyboard navigation only: purple focus ring */
+:focus-visible {
+  outline: 2px solid #7C4DFF;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Input/textarea/select: no outline — border colour handles focus state */
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none !important;
+}
+
 html {
   height: 100%;
   background: #EDE8DC;
