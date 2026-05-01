@@ -180,30 +180,28 @@ export function Profile({ onBack }: Props) {
 
         {/* Debt */}
         <div style={{
-          background: C.green,
           border: '2px solid #0A0A0A',
           borderRadius: 12,
           boxShadow: '3px 3px 0 0 #0A0A0A',
-          padding: 14,
+          overflow: 'hidden',
         }}>
-          {/* Green zone — title left, illustration right */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 12 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 4 }}>
-              <SectionBadge icon="🪙" color={C.base} size={52} />
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink, lineHeight: 1.15 }}>
-                Debt<br />overview
-              </div>
+          {/* Green header strip — illustration left, title right */}
+          <div style={{
+            background: C.green,
+            padding: '14px 16px',
+            display: 'flex', alignItems: 'center', gap: 12,
+          }}>
+            <img src="/In debt.png" alt="" style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
+            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.1 }}>
+              Debt<br />overview
             </div>
-            <img src="/In debt.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }} />
           </div>
 
-          {/* White content box */}
-          <div style={{
-            background: '#FFFFFF',
-            borderRadius: 10,
-            border: '2px solid #0A0A0A',
-            padding: 12,
-          }}>
+          {/* White content zone */}
+          <div style={{ background: '#FFFFFF', padding: '14px 14px 16px' }}>
+            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 10 }}>
+              across 3 recent outings
+            </div>
             <div style={{ display: 'flex', gap: 10 }}>
               <div style={{ flex: 1, background: C.debtPositive, border: '2px solid #0A0A0A', borderRadius: 8, padding: 12 }}>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600 }}>owed to you</div>
