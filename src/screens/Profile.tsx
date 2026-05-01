@@ -179,35 +179,28 @@ export function Profile({ onBack }: Props) {
         </Card>
 
         {/* Debt */}
-        <Card padding={0}>
-          {/* Level 2 strip — colored top with character placeholder */}
-          <div style={{
-            height: 80,
-            background: C.green,
-            borderRadius: '10px 10px 0 0',
-            border: '2px solid #0A0A0A',
-            borderBottom: 'none',
-            position: 'relative',
-            display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',
-            overflow: 'hidden',
-          }}>
-            <div style={{
-              position: 'absolute', bottom: -8, right: 16,
-              width: 64, height: 72,
-              background: C.surface,
-              border: '2px dashed #0A0A0A',
-              borderRadius: 8,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              <img src="/In debt.png" alt="" style={{ width: 56, height: 56, objectFit: 'contain' }} />
-            </div>
+        <div style={{
+          background: C.green,
+          border: '2px solid #0A0A0A',
+          borderRadius: 12,
+          boxShadow: '3px 3px 0 0 #0A0A0A',
+          padding: 16,
+        }}>
+          {/* Illustration in green zone */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 12 }}>
+            <img src="/In debt.png" alt="" style={{ width: 110, height: 110, objectFit: 'contain' }} />
           </div>
 
-          {/* Content zone */}
-          <div style={{ padding: '16px 20px 20px', borderTop: 'none' }}>
+          {/* White content box */}
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: 10,
+            border: '2px solid #0A0A0A',
+            padding: '16px 16px 20px',
+          }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
               <SectionBadge icon="🪙" color={C.green} size={32} />
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, flex: 1 }}>Debt overview</div>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
             </div>
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>
             <div style={{ display: 'flex', gap: 12 }}>
@@ -223,7 +216,7 @@ export function Profile({ onBack }: Props) {
               </div>
             </div>
           </div>
-        </Card>
+        </div>
 
       </div>
     </div>
