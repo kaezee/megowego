@@ -184,11 +184,17 @@ export function Profile({ onBack }: Props) {
           border: '2px solid #0A0A0A',
           borderRadius: 12,
           boxShadow: '3px 3px 0 0 #0A0A0A',
-          padding: 16,
+          padding: 14,
         }}>
-          {/* Illustration in green zone */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 12 }}>
-            <img src="/In debt.png" alt="" style={{ width: 110, height: 110, objectFit: 'contain' }} />
+          {/* Green zone — title left, illustration right */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4 }}>
+              <SectionBadge icon="🪙" color={C.ink} size={28} />
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink, lineHeight: 1.1 }}>
+                Debt overview
+              </div>
+            </div>
+            <img src="/In debt.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }} />
           </div>
 
           {/* White content box */}
@@ -196,22 +202,17 @@ export function Profile({ onBack }: Props) {
             background: '#FFFFFF',
             borderRadius: 10,
             border: '2px solid #0A0A0A',
-            padding: '16px 16px 20px',
+            padding: 12,
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-              <SectionBadge icon="🪙" color={C.green} size={32} />
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>Debt overview</div>
-            </div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 14 }}>across 3 recent outings</div>
-            <div style={{ display: 'flex', gap: 12 }}>
-              <div style={{ flex: 1, background: C.debtPositive, border: '2px solid #0A0A0A', borderRadius: 10, padding: 14 }}>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <div style={{ flex: 1, background: C.debtPositive, border: '2px solid #0A0A0A', borderRadius: 8, padding: 12 }}>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600 }}>owed to you</div>
-                <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 600, fontSize: 22, color: C.green, marginTop: 4 }}>₹640</div>
+                <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 600, fontSize: 20, color: C.green, marginTop: 4 }}>₹640</div>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: C.grey600, marginTop: 4 }}>from Kabir, Vir</div>
               </div>
-              <div style={{ flex: 1, background: C.debtNegative, border: '2px solid #0A0A0A', borderRadius: 10, padding: 14 }}>
+              <div style={{ flex: 1, background: C.debtNegative, border: '2px solid #0A0A0A', borderRadius: 8, padding: 12 }}>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600 }}>you owe</div>
-                <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 600, fontSize: 22, color: C.error, marginTop: 4 }}>₹180</div>
+                <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 600, fontSize: 20, color: C.error, marginTop: 4 }}>₹180</div>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: C.grey600, marginTop: 4 }}>to Diya</div>
               </div>
             </div>
