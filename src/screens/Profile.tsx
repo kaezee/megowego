@@ -59,7 +59,7 @@ const ACHIEVEMENTS = [
 export function Profile({ onBack }: Props) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
-      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '48px 20px 48px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
         {/* Back */}
         <button
