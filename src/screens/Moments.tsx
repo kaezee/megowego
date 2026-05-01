@@ -4,6 +4,7 @@ import { AvatarStack } from '../components/ui/Avatar'
 import { Chip } from '../components/ui/Chip'
 import { Illo } from '../components/ui/Illo'
 import { Button } from '../components/ui/Button'
+import { TypeIcon } from '../components/ui/TypeIcon'
 import { C } from '../lib/tokens'
 
 // ── Vibe icons (SVG placeholders, no emoji) ──────────────────
@@ -224,6 +225,7 @@ export function Moments({ onMomentTap }: Props) {
                 transition: 'background 120ms, color 120ms',
               }}
             >
+              {f.id !== 'all' && <TypeIcon type={f.id} size={13} color={filter === f.id ? '#FAFAF0' : '#0A0A0A'} />}
               {f.label}
             </button>
           ))}

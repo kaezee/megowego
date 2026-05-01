@@ -3,6 +3,7 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
+import { TypeIcon } from '../components/ui/TypeIcon'
 import type { Outing } from '../App'
 import { C } from '../lib/tokens'
 
@@ -142,7 +143,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 10 }}>what kind of chaos?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {OUTING_TYPES.map(t => (
-                <Chip key={t.label} color={t.color} tint={type !== t.label} active={type === t.label} onClick={() => setType(t.label)}>{t.label}</Chip>
+                <Chip key={t.label} color={t.color} tint={type !== t.label} active={type === t.label} onClick={() => setType(t.label)}><TypeIcon type={t.label} size={14} />{t.label}</Chip>
               ))}
             </div>
           </div>
@@ -238,7 +239,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
             </div>
             <div>
               <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>TYPE</div>
-              <Chip color={OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200}>{type}</Chip>
+              <Chip color={OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200}><TypeIcon type={type} size={13} />{type}</Chip>
             </div>
             {selectedFriends.length > 0 && (
               <div>

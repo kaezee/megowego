@@ -11,6 +11,9 @@ import { OutingDetail } from './screens/OutingDetail'
 import { Moments, MomentDetail } from './screens/Moments'
 import { Friends } from './screens/Friends'
 import { Profile } from './screens/Profile'
+import { Achievements } from './screens/Achievements'
+import { Wrapped } from './screens/Wrapped'
+import { Shop } from './screens/Shop'
 import { Settings } from './screens/Settings'
 import type { Moment } from './screens/Moments'
 import { C } from './lib/tokens'
@@ -27,10 +30,7 @@ function PersonIcon() {
 function GearIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 2L13.8 5L17 4.3L18.7 7.3L22 8.5L21 12L22 15.5L18.7 16.7L17 19.7L13.8 19L12 22L10.2 19L7 19.7L5.3 16.7L2 15.5L3 12L2 8.5L5.3 7.3L7 4.3L10.2 5Z"
-        fill={C.ink}
-      />
+      <path d="M12 2L13.8 5L17 4.3L18.7 7.3L22 8.5L21 12L22 15.5L18.7 16.7L17 19.7L13.8 19L12 22L10.2 19L7 19.7L5.3 16.7L2 15.5L3 12L2 8.5L5.3 7.3L7 4.3L10.2 5Z" fill={C.ink} />
       <circle cx="12" cy="12" r="3.5" fill={C.base} />
     </svg>
   )
@@ -42,7 +42,8 @@ type Screen =
   | 'create' | 'outing-detail'
   | 'moments' | 'moment-detail'
   | 'friends'
-  | 'profile' | 'settings'
+  | 'profile' | 'achievements' | 'wrapped' | 'shop'
+  | 'settings'
 
 export interface Outing {
   id: string
@@ -84,10 +85,7 @@ export default function App() {
   const go = (s: Screen) => setScreen(s)
 
   const handleTab = (t: Tab) => {
-    if (t === 'more') {
-      setShowMore(true)
-      return
-    }
+    if (t === 'more') { setShowMore(true); return }
     setTab(t)
     setShowMore(false)
     if (t === 'home')         go(hasOutings ? 'home-active' : 'home-empty')
@@ -95,17 +93,13 @@ export default function App() {
     else if (t === 'friends') go('friends')
   }
 
-  const openMoment = (m: Moment) => {
-    setActiveMoment(m)
-    go('moment-detail')
-  }
+  const openMoment = (m: Moment) => { setActiveMoment(m); go('moment-detail') }
 
-  const handleOutingCreated = (o: Outing) => {
-    setOutings(prev => [...prev, o])
-    go('home-active')
-  }
+  const handleOutingCreated = (o: Outing) => { setOutings(prev => [...prev, o]); go('home-active') }
 
   const showNav = TABBED_SCREENS.includes(screen)
+
+  const goProfile = () => { setReturnScreen(screen); setTab('more'); setShowMore(false); go('profile') }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
@@ -123,18 +117,23 @@ export default function App() {
             onCreate={() => go('create')}
           />
         )}
-        {screen === 'create'        && (
-          <CreateOuting
-            onBack={() => go(hasOutings ? 'home-active' : 'home-empty')}
-            onDone={handleOutingCreated}
-          />
-        )}
+        {screen === 'create'        && <CreateOuting onBack={() => go(hasOutings ? 'home-active' : 'home-empty')} onDone={handleOutingCreated} />}
         {screen === 'outing-detail' && <OutingDetail onBack={() => go('home-active')} />}
         {screen === 'moments'       && <Moments onMomentTap={openMoment} />}
         {screen === 'moment-detail' && activeMoment && <MomentDetail moment={activeMoment} onBack={() => go('moments')} />}
         {screen === 'friends'       && <Friends />}
-        {screen === 'profile'  && <Profile  onBack={() => { setTab(returnScreen === 'moments' ? 'moments' : returnScreen === 'friends' ? 'friends' : 'home'); go(returnScreen) }} />}
-        {screen === 'settings' && <Settings onBack={() => go('profile')} />}
+        {screen === 'profile'       && (
+          <Profile
+            onBack={() => go(returnScreen)}
+            onAchievements={() => go('achievements')}
+            onWrapped={() => go('wrapped')}
+            onShop={() => go('shop')}
+          />
+        )}
+        {screen === 'achievements'  && <Achievements onBack={() => go('profile')} />}
+        {screen === 'wrapped'       && <Wrapped onBack={() => go('profile')} />}
+        {screen === 'shop'          && <Shop onBack={() => go('profile')} />}
+        {screen === 'settings'      && <Settings onBack={() => go('profile')} />}
 
       </div>
 
@@ -144,57 +143,26 @@ export default function App() {
       {showMore && (
         <div
           onClick={() => setShowMore(false)}
-          style={{
-            position: 'absolute', inset: 0, zIndex: 200,
-            background: 'rgba(10,10,10,0.45)',
-            display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-          }}
+          style={{ position: 'absolute', inset: 0, zIndex: 200, background: 'rgba(10,10,10,0.45)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}
         >
-          <div
-            onClick={e => e.stopPropagation()}
-            style={{
-              background: C.base,
-              borderTop: '2px solid #0A0A0A',
-              borderRadius: '20px 20px 0 0',
-              paddingBottom: 32,
-            }}
-          >
-            {/* Handle */}
+          <div onClick={e => e.stopPropagation()} style={{ background: C.base, borderTop: '2px solid #0A0A0A', borderRadius: '20px 20px 0 0', paddingBottom: 32 }}>
             <div style={{ padding: '12px 0 4px', display: 'flex', justifyContent: 'center' }}>
               <div style={{ width: 40, height: 4, borderRadius: 100, background: C.grey200 }} />
             </div>
-
-            {/* Profile */}
             <button
-              onClick={() => { setReturnScreen(screen); setTab('more'); setShowMore(false); go('profile') }}
-              style={{
-                width: '100%', display: 'flex', alignItems: 'center', gap: 14,
-                padding: '18px 20px',
-                background: 'transparent', border: 'none', cursor: 'pointer',
-                borderBottom: `1px solid ${C.grey100}`, textAlign: 'left',
-              }}
+              onClick={goProfile}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 14, padding: '18px 20px', background: 'transparent', border: 'none', cursor: 'pointer', borderBottom: `1px solid ${C.grey100}`, textAlign: 'left' }}
             >
               <PersonIcon />
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>
-                Profile
-              </span>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Profile</span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
             </button>
-
-            {/* Settings */}
             <button
-              onClick={() => { setReturnScreen(screen); setTab('more'); setShowMore(false); go('settings') }}
-              style={{
-                width: '100%', display: 'flex', alignItems: 'center', gap: 14,
-                padding: '18px 20px',
-                background: 'transparent', border: 'none', cursor: 'pointer',
-                textAlign: 'left',
-              }}
+              onClick={() => { setReturnScreen(screen); setShowMore(false); go('settings') }}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 14, padding: '18px 20px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
             >
               <GearIcon />
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>
-                Settings
-              </span>
+              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Settings</span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
             </button>
           </div>

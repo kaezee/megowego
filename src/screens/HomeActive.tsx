@@ -3,6 +3,7 @@ import { AvatarStack } from '../components/ui/Avatar'
 import { Card } from '../components/ui/Card'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
+import { TypeIcon } from '../components/ui/TypeIcon'
 import { SwipeableOutingCard } from '../components/SwipeableOutingCard'
 import { DeleteOutingModal } from '../components/DeleteOutingModal'
 import type { Outing } from '../App'
@@ -183,7 +184,7 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
                         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink }}>{o.name}</div>
                         <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.grey600, marginTop: 4 }}>{o.date}</div>
                       </div>
-                      <Chip color={o.color} tint>{o.type}</Chip>
+                      <Chip color={o.color} tint><TypeIcon type={o.type} size={13} />{o.type}</Chip>
                     </div>
                     <div style={{ marginTop: 12 }}>
                       <AvatarStack people={o.people} size={32} max={4} />
@@ -211,7 +212,7 @@ export function HomeActive({ outings, onOutingsChange, onOutingTap, onCreate }: 
                         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink }}>{o.name}</div>
                         <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.grey600, marginTop: 4 }}>{o.date}</div>
                       </div>
-                      <Chip color={o.color} tint>{o.type}</Chip>
+                      <Chip color={o.color} tint><TypeIcon type={o.type} size={13} />{o.type}</Chip>
                     </div>
                   </Card>
                 </SwipeableOutingCard>
