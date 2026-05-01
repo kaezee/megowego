@@ -189,9 +189,9 @@ export function Profile({ onBack }: Props) {
           {/* Green zone — title left, illustration right */}
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 4 }}>
-              <SectionBadge icon="🪙" color={C.base} size={36} />
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink, lineHeight: 1.1, whiteSpace: 'nowrap' }}>
-                Debt overview
+              <SectionBadge icon="🪙" color={C.base} size={52} />
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink, lineHeight: 1.15 }}>
+                Debt<br />overview
               </div>
             </div>
             <img src="/In debt.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }} />
