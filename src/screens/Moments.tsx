@@ -221,7 +221,6 @@ export function Moments({ onMomentTap }: Props) {
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontWeight: 600, fontSize: 13,
                 cursor: 'pointer',
-                boxShadow: filter === f.id ? '2px 2px 0 0 #0A0A0A' : 'none',
                 transition: 'background 120ms, color 120ms',
               }}
             >

@@ -16,7 +16,7 @@ export function Input({ placeholder, value, onChange, type = 'text', focused = f
   return (
     <div style={{
       height: 52, background: C.grey100,
-      border: `2px solid ${hot ? C.ink : C.grey200}`,
+      border: `2px solid ${hot ? C.purple : C.grey200}`,
       borderRadius: 12, padding: '0 16px',
       display: 'flex', alignItems: 'center', gap: 8,
       transition: 'border-color 150ms',
@@ -42,18 +42,23 @@ export function Input({ placeholder, value, onChange, type = 'text', focused = f
 }
 
 export function SearchInput({ placeholder = 'search...', value, onChange }: { placeholder?: string, value?: string, onChange?: (v: string) => void }) {
+  const [hot, setHot] = useState(false)
   return (
     <div style={{
       height: 48, background: C.grey100,
-      border: `2px solid ${C.grey200}`,
+      border: `2px solid ${hot ? C.purple : C.grey200}`,
       borderRadius: 100, padding: '0 16px',
       display: 'flex', alignItems: 'center', gap: 10,
+      transition: 'border-color 150ms',
     }}>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={C.grey400} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
       </svg>
       <input
-        value={value} onChange={e => onChange?.(e.target.value)}
+        value={value}
+        onChange={e => onChange?.(e.target.value)}
+        onFocus={() => setHot(true)}
+        onBlur={() => setHot(false)}
         placeholder={placeholder}
         style={{
           fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",

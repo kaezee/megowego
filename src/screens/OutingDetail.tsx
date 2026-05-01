@@ -48,7 +48,7 @@ export function OutingDetail({ onBack }: Props) {
           <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>chai @ irani</div>
           <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 11, color: C.grey600, marginTop: 2 }}>FRI 24 APR · 8:00 PM · BANDRA</div>
         </div>
-        <Chip color={C.yellow}>food</Chip>
+        <Chip color={C.yellow} tint>food</Chip>
       </div>
 
       {/* Stage tabs */}

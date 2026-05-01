@@ -71,7 +71,6 @@ export function Friends() {
                 border: '2px solid #0A0A0A',
                 borderRadius: i === 0 ? '12px 12px 4px 4px' : i === filtered.length - 1 ? '4px 4px 12px 12px' : 4,
                 padding: '14px 16px',
-                boxShadow: i === filtered.length - 1 ? '3px 3px 0 0 #0A0A0A' : 'none',
               }}>
                 <Avatar name={f.initials} color={f.color} size={44} />
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -133,7 +132,6 @@ export function Friends() {
                   border: '2px solid #0A0A0A',
                   borderRadius: i === 0 ? '12px 12px 4px 4px' : i === SUGGESTED.length - 1 ? '4px 4px 12px 12px' : 4,
                   padding: '14px 16px',
-                  boxShadow: i === SUGGESTED.length - 1 ? '3px 3px 0 0 #0A0A0A' : 'none',
                 }}>
                   <Avatar name={s.initials} color={s.color} size={44} />
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -153,7 +151,6 @@ export function Friends() {
                       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                       fontWeight: 600, fontSize: 12, color: C.base,
                       whiteSpace: 'nowrap', flexShrink: 0,
-                      boxShadow: added.includes(s.id) ? 'none' : '2px 2px 0 0 #0A0A0A',
                       transition: 'background 0.15s',
                     }}>
                     {added.includes(s.id) ? 'added ✓' : '+ add'}

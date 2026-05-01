@@ -142,7 +142,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 10 }}>what kind of chaos?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {OUTING_TYPES.map(t => (
-                <Chip key={t.label} color={t.color} active={type === t.label} onClick={() => setType(t.label)}>{t.label}</Chip>
+                <Chip key={t.label} color={t.color} tint={type !== t.label} active={type === t.label} onClick={() => setType(t.label)}>{t.label}</Chip>
               ))}
             </div>
           </div>
@@ -172,7 +172,6 @@ export function CreateOuting({ onBack, onDone }: Props) {
                     borderRadius: i === 0 ? '12px 12px 4px 4px' : i === MY_FRIENDS.length - 1 ? '4px 4px 12px 12px' : 4,
                     padding: '12px 16px',
                     cursor: 'pointer', textAlign: 'left',
-                    boxShadow: i === MY_FRIENDS.length - 1 ? '3px 3px 0 0 #0A0A0A' : 'none',
                     transition: 'background 0.1s',
                   }}>
                     <Avatar name={f.initials} color={f.color} size={36} />

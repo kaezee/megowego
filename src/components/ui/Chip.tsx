@@ -1,16 +1,17 @@
-import { C, S, fgFor } from '../../lib/tokens'
+import { C, S } from '../../lib/tokens'
 
 interface ChipProps {
   color?: string
   active?: boolean
+  tint?: boolean
   onClick?: () => void
   children: React.ReactNode
   style?: React.CSSProperties
 }
 
-export function Chip({ color = C.white, active = false, onClick, children, style = {} }: ChipProps) {
-  const bg = active ? C.ink : color
-  const fg = active ? C.base : (color === C.white || color === C.base ? C.ink : fgFor(color))
+export function Chip({ color = C.white, active = false, tint = false, onClick, children, style = {} }: ChipProps) {
+  const bg = active ? C.ink : tint ? `${color}33` : color
+  const fg = active ? C.base : C.ink
   return (
     <button
       onClick={onClick}
@@ -25,6 +26,7 @@ export function Chip({ color = C.white, active = false, onClick, children, style
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 4,
         whiteSpace: 'nowrap',
         flexShrink: 0,
+        boxShadow: 'none',
         ...style,
       }}
     >
