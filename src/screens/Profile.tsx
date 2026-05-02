@@ -56,6 +56,17 @@ const OVERVIEW = [
   { emoji: '💸', value: '₹14.2k', label: 'total spent'  },
 ]
 
+// Debt overview — net balances with friends
+const DEBTS = [
+  { name: 'Diya',  color: C.yellow, amount:  320,  owe: false }, // they owe you
+  { name: 'Kabir', color: C.green,  amount:  840,  owe: false },
+  { name: 'Mira',  color: C.blue,   amount: -200,  owe: true  }, // you owe them
+  { name: 'Rhea',  color: C.purple, amount:  0,    owe: false }, // settled
+  { name: 'Vir',   color: C.orange, amount: -550,  owe: true  },
+]
+const totalOwed = DEBTS.filter(d => !d.owe && d.amount > 0).reduce((s, d) => s + d.amount, 0)
+const totalOwe  = DEBTS.filter(d => d.owe).reduce((s, d) => s + Math.abs(d.amount), 0)
+
 type Sheet = 'stats' | { type: 'badge'; id: string } | null
 
 export function Profile({ onBack, onAchievements }: Props) {
@@ -111,6 +122,41 @@ export function Profile({ onBack, onAchievements }: Props) {
                   <div>
                     <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 18, color: C.ink, lineHeight: 1 }}>{s.value}</div>
                     <div style={{ fontFamily: F.body, fontSize: 12, color: C.grey600, marginTop: 3 }}>{s.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* ── Debt overview ────────────────────────────────── */}
+          <Card padding={20}>
+            <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.08em', marginBottom: 14 }}>SPLIT OVERVIEW</div>
+
+            {/* Net summary row */}
+            <div style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
+              <div style={{ flex: 1, background: '#E8F9EE', border: `2px solid ${C.green}`, borderRadius: 12, padding: '10px 14px' }}>
+                <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 18, color: C.ink }}>₹{totalOwed.toLocaleString('en-IN')}</div>
+                <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600, marginTop: 2 }}>you're owed</div>
+              </div>
+              <div style={{ flex: 1, background: '#FFF0F4', border: `2px solid ${C.pink}`, borderRadius: 12, padding: '10px 14px' }}>
+                <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 18, color: C.ink }}>₹{totalOwe.toLocaleString('en-IN')}</div>
+                <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600, marginTop: 2 }}>you owe</div>
+              </div>
+            </div>
+
+            {/* Per-friend rows */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {DEBTS.filter(d => d.amount !== 0).map(d => (
+                <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{ width: 30, height: 30, borderRadius: '50%', background: d.color, border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 600, fontSize: 14, color: C.ink, flexShrink: 0 }}>
+                    {d.name[0]}
+                  </div>
+                  <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 14, color: C.ink, flex: 1 }}>{d.name}</div>
+                  <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 14, color: d.owe ? C.pink : C.green }}>
+                    {d.owe ? `–₹${Math.abs(d.amount)}` : `+₹${d.amount}`}
+                  </div>
+                  <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600 }}>
+                    {d.owe ? 'you owe' : 'owes you'}
                   </div>
                 </div>
               ))}

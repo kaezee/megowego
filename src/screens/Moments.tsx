@@ -235,12 +235,14 @@ export function Moments({ onMomentTap }: Props) {
       {/* Scrollable grid */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px 40px' }}>
 
-        {/* On this day row — scrolls with content, hidden while searching */}
+        {/* On this day row — hidden while searching */}
         {!query && anniversaryMoments.length > 0 && (
-          <>
-            <OnThisDay moments={anniversaryMoments} onTap={onMomentTap} />
-            <div style={{ height: 1, background: C.surface, margin: '0 0 12px' }} />
-          </>
+          <OnThisDay moments={anniversaryMoments} onTap={onMomentTap} />
+        )}
+
+        {/* Hall of Fame — right below On This Day, hidden while searching/filtering */}
+        {!query && filter === 'all' && (
+          <HallOfFame moments={MOMENTS} onTap={onMomentTap} />
         )}
 
         {filtered.length === 0 ? (
@@ -249,42 +251,35 @@ export function Moments({ onMomentTap }: Props) {
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600, marginTop: 8 }}>try a different name, vibe, or person</div>
           </div>
         ) : (
-          <>
-            {grouped.map(({ year, months }) => (
-              <div key={year}>
-                {/* Year header */}
-                <div style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  paddingTop: 4, paddingBottom: 10,
-                }}>
-                  <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>{year}</div>
-                  <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
-                </div>
-
-                {months.map(({ month, items }) => (
-                  <div key={month} style={{ marginBottom: 20 }}>
-                    <div style={{
-                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                      fontWeight: 600, fontSize: 11, color: C.grey600,
-                      letterSpacing: '0.06em', marginBottom: 8,
-                    }}>
-                      {month.toUpperCase()}
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
-                      {items.map(m => (
-                        <MomentTile key={m.id} moment={m} onClick={() => onMomentTap(m)} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
+          grouped.map(({ year, months }) => (
+            <div key={year}>
+              {/* Year header */}
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                paddingTop: 4, paddingBottom: 10,
+              }}>
+                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>{year}</div>
+                <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
               </div>
-            ))}
 
-            {/* Hall of Fame — only when not filtering */}
-            {!query && filter === 'all' && (
-              <HallOfFame moments={MOMENTS} onTap={onMomentTap} />
-            )}
-          </>
+              {months.map(({ month, items }) => (
+                <div key={month} style={{ marginBottom: 20 }}>
+                  <div style={{
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                    fontWeight: 600, fontSize: 11, color: C.grey600,
+                    letterSpacing: '0.06em', marginBottom: 8,
+                  }}>
+                    {month.toUpperCase()}
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
+                    {items.map(m => (
+                      <MomentTile key={m.id} moment={m} onClick={() => onMomentTap(m)} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))
         )}
       </div>
     </div>
