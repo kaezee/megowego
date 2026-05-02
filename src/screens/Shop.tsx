@@ -12,7 +12,7 @@ const PACKS = [
     price: '₹49',
     color: C.pink,
     owned: false,
-    preview: ['the classic ghost 👻', 'last-minute bailout 💨', 'the eternal "on my way" 🚶', 'the wrong address 🗺️'],
+    preview: ['the classic ghost', 'last-minute bailout', 'the eternal "on my way"', 'the wrong address'],
   },
   {
     id: 'fomo-deluxe',
@@ -113,7 +113,7 @@ export function Shop({ onBack }: Props) {
                     <div style={{ background: C.base, padding: '12px 16px', display: 'flex', gap: 8, overflowX: 'auto', scrollbarWidth: 'none' }}>
                       {p.preview.slice(0, 3).map((card, i) => (
                         <div key={i} style={{
-                          flexShrink: 0, background: `${p.color}22`, border: `1.5px solid #0A0A0A`,
+                          flexShrink: 0, background: `${p.color}22`, border: S.border,
                           borderRadius: 8, padding: '8px 10px', minWidth: 100,
                           fontFamily: F.body, fontSize: 11, fontWeight: 500, color: C.ink, lineHeight: 1.3,
                         }}>
@@ -121,7 +121,7 @@ export function Shop({ onBack }: Props) {
                         </div>
                       ))}
                       {p.preview.length > 3 && (
-                        <div style={{ flexShrink: 0, background: C.grey100, border: `1.5px solid ${C.grey200}`, borderRadius: 8, padding: '8px 10px', minWidth: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.mono, fontSize: 11, color: C.grey400 }}>
+                        <div style={{ flexShrink: 0, background: C.grey100, border: S.borderSoft, borderRadius: 8, padding: '8px 10px', minWidth: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.mono, fontSize: 11, color: C.grey400 }}>
                           +{p.preview.length - 3}
                         </div>
                       )}
@@ -141,7 +141,7 @@ export function Shop({ onBack }: Props) {
             <div style={{ fontFamily: F.body, fontSize: 14, color: C.grey600 }}>{selected.sub}</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {selected.preview.map((card, i) => (
-                <div key={i} style={{ background: `${selected.color}22`, border: `1.5px solid #0A0A0A`, borderRadius: 10, padding: '12px 14px', fontFamily: F.body, fontSize: 14, fontWeight: 500, color: C.ink }}>
+                <div key={i} style={{ background: `${selected.color}22`, border: S.border, borderRadius: 10, padding: '12px 14px', fontFamily: F.body, fontSize: 14, fontWeight: 500, color: C.ink }}>
                   {card}
                 </div>
               ))}

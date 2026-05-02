@@ -5,39 +5,39 @@ import { C, F, S } from '../lib/tokens'
 interface Props { onBack: () => void }
 
 function IconOrganiser({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3L14 8H19L15 11.5L16.5 17L12 14L7.5 17L9 11.5L5 8H10Z" fill={c}/></svg>
 }
 function IconReliable({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
 }
 function IconHype({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M13 2L4.5 13.5H11L9 22L19.5 9.5H13L13 2Z" fill={c}/></svg>
 }
 function IconNightOwl({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9c-5 0-9-4-9-9z" fill={c}/></svg>
 }
 function IconBailProof({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="12" r="9" stroke={c} strokeWidth="2"/></svg>
 }
 function IconGhostBuster({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
-  return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 3 5 6.5 5 10v11l2.5-2 2.5 2 2.5-2 2.5 2 2.5-2 2.5 2V10C21 6.5 18 3 12 3z" fill={c}/><circle cx="9" cy="10" r="1.5" fill={c === '#FAFAF0' ? '#7C4DFF' : '#D0CEC8'}/><circle cx="15" cy="10" r="1.5" fill={c === '#FAFAF0' ? '#7C4DFF' : '#D0CEC8'}/></svg>
+  const c = locked ? C.grey400 : C.base
+  return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 3 5 6.5 5 10v11l2.5-2 2.5 2 2.5-2 2.5 2 2.5-2 2.5 2V10C21 6.5 18 3 12 3z" fill={c}/><circle cx="9" cy="10" r="1.5" fill={locked ? C.grey200 : C.purple}/><circle cx="15" cy="10" r="1.5" fill={locked ? C.grey200 : C.purple}/></svg>
 }
 function IconChaosAgent({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M13 2L5 14h7l-1 8 9-12h-7l2-8z" fill={c}/></svg>
 }
 function IconMoneybag({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
-  return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2c-2 0-4 1-4 3h8c0-2-2-3-4-3z" fill={c}/><path d="M6 7c0 0-3 3-3 8s3 7 9 7 9-2 9-7-3-8-3-8H6z" fill={c}/><path d="M10 13h4M12 11v4" stroke={c === '#FAFAF0' ? C.green : '#D0CEC8'} strokeWidth="1.8" strokeLinecap="round"/></svg>
+  const c = locked ? C.grey400 : C.base
+  return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2c-2 0-4 1-4 3h8c0-2-2-3-4-3z" fill={c}/><path d="M6 7c0 0-3 3-3 8s3 7 9 7 9-2 9-7-3-8-3-8H6z" fill={c}/><path d="M10 13h4M12 11v4" stroke={locked ? C.grey200 : C.green} strokeWidth="1.8" strokeLinecap="round"/></svg>
 }
 function IconLegendary({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill={c}/></svg>
 }
 
@@ -112,7 +112,7 @@ export function Achievements({ onBack }: Props) {
                 const { Icon } = a
                 return (
                   <button key={a.id} onClick={() => setSelected(a)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-                    <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#F0EEE8', border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 72, height: 72, borderRadius: '50%', background: C.grey100, border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Icon locked />
                     </div>
                     <div style={{ fontFamily: F.body, fontSize: 11, fontWeight: 600, color: C.grey400, textAlign: 'center', lineHeight: 1.2 }}>{a.label}</div>
@@ -129,7 +129,7 @@ export function Achievements({ onBack }: Props) {
       {selected && (
         <BottomSheet onClose={() => setSelected(null)}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, textAlign: 'center' }}>
-            <div style={{ width: 88, height: 88, borderRadius: '50%', background: selected.locked ? '#F0EEE8' : selected.color, border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 88, height: 88, borderRadius: '50%', background: selected.locked ? C.grey100 : selected.color, border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <selected.Icon locked={selected.locked} />
             </div>
             <div>

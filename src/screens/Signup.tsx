@@ -27,7 +27,11 @@ export function Signup({ onBack, onDone }: Props) {
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden', position: 'relative' }}>
 
       <div style={{ padding: '48px 20px 0', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ background: 'transparent', border: 'none', fontFamily: F.display, fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>
+        <button onClick={onBack} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
+        </button>
       </div>
 
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '28px 20px 8px', display: 'flex', flexDirection: 'column', gap: 28 }}>

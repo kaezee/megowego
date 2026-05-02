@@ -194,12 +194,16 @@ export function OutingDetail({ onBack }: Props) {
 
       {/* Top bar */}
       <div style={{ padding: '48px 20px 14px', display: 'flex', alignItems: 'center', gap: 12, borderBottom: `2px solid ${C.grey100}`, flexShrink: 0 }}>
-        <button onClick={onBack} style={{ background: 'transparent', border: 'none', fontFamily: F.display, fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>←</button>
+        <button onClick={onBack} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
+        </button>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 20, color: C.ink }}>chai @ irani</div>
           <div style={{ fontFamily: F.mono, fontSize: 11, color: C.grey600, marginTop: 2 }}>FRI 24 APR · 8:00 PM · BANDRA</div>
         </div>
-        <Chip color={C.yellow} tint>food</Chip>
+        <Chip color={C.yellow} active>food</Chip>
       </div>
 
       {/* Scrollable accordion content */}

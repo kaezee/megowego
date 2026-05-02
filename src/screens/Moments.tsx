@@ -79,7 +79,6 @@ export interface Moment {
   month: string
   year: string
   vibe: string
-  vibeEmoji: string
   type: string
   color: string
   people: typeof PEOPLE
@@ -90,51 +89,51 @@ export interface Moment {
 const MOMENTS: Moment[] = [
   // ─── 2026 ───────────────────────────────────────────────────
   // April 2026
-  { id: '1',  name: 'chai @ irani',          date: 'FRI 24 APR 2026', month: 'April',    year: '2026', vibe: 'chaotic',   vibeEmoji: '💀', type: 'food',    color: C.yellow,  people: PEOPLE.slice(0,4), bills: '₹840 split 4 ways' },
-  { id: '2',  name: 'bandra bouldering',     date: 'WED 22 APR 2026', month: 'April',    year: '2026', vibe: 'legendary', vibeEmoji: '🏆', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2], PEOPLE[4]] },
-  { id: '3',  name: 'midnight maggi run',    date: 'MON 14 APR 2026', month: 'April',    year: '2026', vibe: 'unhinged',  vibeEmoji: '🤯', type: 'food',    color: C.orange,  people: PEOPLE.slice(0,3) },
-  { id: '4',  name: 'rooftop nothing',       date: 'SUN 6 APR 2026',  month: 'April',    year: '2026', vibe: 'wholesome', vibeEmoji: '🫶', type: 'hangout', color: C.purple,  people: [PEOPLE[1], PEOPLE[3]] },
+  { id: '1',  name: 'chai @ irani',          date: 'FRI 24 APR 2026', month: 'April',    year: '2026', vibe: 'chaotic', type: 'food',    color: C.yellow,  people: PEOPLE.slice(0,4), bills: '₹840 split 4 ways' },
+  { id: '2',  name: 'bandra bouldering',     date: 'WED 22 APR 2026', month: 'April',    year: '2026', vibe: 'legendary', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2], PEOPLE[4]] },
+  { id: '3',  name: 'midnight maggi run',    date: 'MON 14 APR 2026', month: 'April',    year: '2026', vibe: 'unhinged', type: 'food',    color: C.orange,  people: PEOPLE.slice(0,3) },
+  { id: '4',  name: 'rooftop nothing',       date: 'SUN 6 APR 2026',  month: 'April',    year: '2026', vibe: 'wholesome', type: 'hangout', color: C.purple,  people: [PEOPLE[1], PEOPLE[3]] },
   // March 2026
-  { id: '5',  name: 'matinee madness',       date: 'SAT 15 MAR 2026', month: 'March',    year: '2026', vibe: 'legendary', vibeEmoji: '🏆', type: 'movies',  color: C.pink,    people: PEOPLE.slice(0,3) },
-  { id: '6',  name: 'holi at kabir\'s',      date: 'MON 10 MAR 2026', month: 'March',    year: '2026', vibe: 'chaotic',   vibeEmoji: '💀', type: 'hangout', color: C.orange,  people: PEOPLE },
-  { id: '7',  name: 'thrift market walk',    date: 'SAT 1 MAR 2026',  month: 'March',    year: '2026', vibe: 'wholesome', vibeEmoji: '🫶', type: 'hangout', color: C.blue,    people: [PEOPLE[0], PEOPLE[1], PEOPLE[3]] },
-  { id: '8',  name: 'biryani challenge',     date: 'FRI 7 MAR 2026',  month: 'March',    year: '2026', vibe: 'unhinged',  vibeEmoji: '🤯', type: 'food',    color: C.yellow,  people: PEOPLE.slice(2,6), bills: '₹1,400 split 4 ways' },
-  { id: '9',  name: 'cricket nets session',  date: 'SUN 22 MAR 2026', month: 'March',    year: '2026', vibe: 'mid',       vibeEmoji: '😐', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2], PEOPLE[5]] },
+  { id: '5',  name: 'matinee madness',       date: 'SAT 15 MAR 2026', month: 'March',    year: '2026', vibe: 'legendary', type: 'movies',  color: C.pink,    people: PEOPLE.slice(0,3) },
+  { id: '6',  name: 'holi at kabir\'s',      date: 'MON 10 MAR 2026', month: 'March',    year: '2026', vibe: 'chaotic', type: 'hangout', color: C.orange,  people: PEOPLE },
+  { id: '7',  name: 'thrift market walk',    date: 'SAT 1 MAR 2026',  month: 'March',    year: '2026', vibe: 'wholesome', type: 'hangout', color: C.blue,    people: [PEOPLE[0], PEOPLE[1], PEOPLE[3]] },
+  { id: '8',  name: 'biryani challenge',     date: 'FRI 7 MAR 2026',  month: 'March',    year: '2026', vibe: 'unhinged', type: 'food',    color: C.yellow,  people: PEOPLE.slice(2,6), bills: '₹1,400 split 4 ways' },
+  { id: '9',  name: 'cricket nets session',  date: 'SUN 22 MAR 2026', month: 'March',    year: '2026', vibe: 'mid', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2], PEOPLE[5]] },
   // February 2026
-  { id: '10', name: 'shuka dinner',          date: 'FRI 28 FEB 2026', month: 'February', year: '2026', vibe: 'wholesome', vibeEmoji: '🫶', type: 'food',    color: C.orange,  people: PEOPLE, bills: '₹1,200 split 6 ways' },
-  { id: '11', name: 'movie marathon',        date: 'SAT 22 FEB 2026', month: 'February', year: '2026', vibe: 'legendary', vibeEmoji: '🏆', type: 'movies',  color: C.pink,    people: PEOPLE.slice(0,4) },
-  { id: '12', name: 'carter road sunset',    date: 'SUN 9 FEB 2026',  month: 'February', year: '2026', vibe: 'wholesome', vibeEmoji: '🫶', type: 'hangout', color: C.blue,    people: [PEOPLE[1], PEOPLE[3], PEOPLE[4]] },
-  { id: '13', name: 'street food crawl',     date: 'SAT 1 FEB 2026',  month: 'February', year: '2026', vibe: 'chaotic',   vibeEmoji: '💀', type: 'food',    color: C.yellow,  people: PEOPLE.slice(1,5), bills: '₹680 split 4 ways' },
+  { id: '10', name: 'shuka dinner',          date: 'FRI 28 FEB 2026', month: 'February', year: '2026', vibe: 'wholesome', type: 'food',    color: C.orange,  people: PEOPLE, bills: '₹1,200 split 6 ways' },
+  { id: '11', name: 'movie marathon',        date: 'SAT 22 FEB 2026', month: 'February', year: '2026', vibe: 'legendary', type: 'movies',  color: C.pink,    people: PEOPLE.slice(0,4) },
+  { id: '12', name: 'carter road sunset',    date: 'SUN 9 FEB 2026',  month: 'February', year: '2026', vibe: 'wholesome', type: 'hangout', color: C.blue,    people: [PEOPLE[1], PEOPLE[3], PEOPLE[4]] },
+  { id: '13', name: 'street food crawl',     date: 'SAT 1 FEB 2026',  month: 'February', year: '2026', vibe: 'chaotic', type: 'food',    color: C.yellow,  people: PEOPLE.slice(1,5), bills: '₹680 split 4 ways' },
   // January 2026
-  { id: '14', name: 'goa boys (real this time)', date: 'SUN 12 JAN 2026', month: 'January', year: '2026', vibe: 'unhinged', vibeEmoji: '🤯', type: 'hangout', color: C.blue, people: PEOPLE.slice(0,5), bills: '₹8,400 split 5 ways' },
-  { id: '15', name: 'new year eve rooftop', date: 'WED 1 JAN 2026',   month: 'January',  year: '2026', vibe: 'legendary', vibeEmoji: '🏆', type: 'hangout', color: C.purple,  people: PEOPLE },
-  { id: '16', name: 'detox hike',           date: 'SAT 18 JAN 2026',  month: 'January',  year: '2026', vibe: 'mid',       vibeEmoji: '😐', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2]] },
-  { id: '17', name: 'dal rice & drama',     date: 'FRI 24 JAN 2026',  month: 'January',  year: '2026', vibe: 'wholesome', vibeEmoji: '🫶', type: 'food',    color: C.orange,  people: PEOPLE.slice(0,4) },
+  { id: '14', name: 'goa boys (real this time)', date: 'SUN 12 JAN 2026', month: 'January', year: '2026', vibe: 'unhinged', type: 'hangout', color: C.blue, people: PEOPLE.slice(0,5), bills: '₹8,400 split 5 ways' },
+  { id: '15', name: 'new year eve rooftop', date: 'WED 1 JAN 2026',   month: 'January',  year: '2026', vibe: 'legendary', type: 'hangout', color: C.purple,  people: PEOPLE },
+  { id: '16', name: 'detox hike',           date: 'SAT 18 JAN 2026',  month: 'January',  year: '2026', vibe: 'mid', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2]] },
+  { id: '17', name: 'dal rice & drama',     date: 'FRI 24 JAN 2026',  month: 'January',  year: '2026', vibe: 'wholesome', type: 'food',    color: C.orange,  people: PEOPLE.slice(0,4) },
 
   // ─── 2025 ───────────────────────────────────────────────────
   // December 2025
-  { id: '18', name: 'cricket in the rain',  date: 'SAT 21 DEC 2025', month: 'December', year: '2025', vibe: 'mid',       vibeEmoji: '😐', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2], PEOPLE[4]] },
-  { id: '19', name: 'christmas eve mess',   date: 'WED 24 DEC 2025', month: 'December', year: '2025', vibe: 'chaotic',   vibeEmoji: '💀', type: 'hangout', color: C.orange,  people: PEOPLE, bills: '₹2,200 split 6 ways' },
-  { id: '20', name: 'band practice → party', date: 'SAT 6 DEC 2025', month: 'December', year: '2025', vibe: 'legendary', vibeEmoji: '🏆', type: 'hangout', color: C.purple, people: PEOPLE.slice(1,5) },
-  { id: '21', name: 'airport drop drama',   date: 'FRI 12 DEC 2025', month: 'December', year: '2025', vibe: 'unhinged',  vibeEmoji: '🤯', type: 'hangout', color: C.blue,    people: [PEOPLE[0], PEOPLE[3]] },
+  { id: '18', name: 'cricket in the rain',  date: 'SAT 21 DEC 2025', month: 'December', year: '2025', vibe: 'mid', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2], PEOPLE[4]] },
+  { id: '19', name: 'christmas eve mess',   date: 'WED 24 DEC 2025', month: 'December', year: '2025', vibe: 'chaotic', type: 'hangout', color: C.orange,  people: PEOPLE, bills: '₹2,200 split 6 ways' },
+  { id: '20', name: 'band practice → party', date: 'SAT 6 DEC 2025', month: 'December', year: '2025', vibe: 'legendary', type: 'hangout', color: C.purple, people: PEOPLE.slice(1,5) },
+  { id: '21', name: 'airport drop drama',   date: 'FRI 12 DEC 2025', month: 'December', year: '2025', vibe: 'unhinged', type: 'hangout', color: C.blue,    people: [PEOPLE[0], PEOPLE[3]] },
   // November 2025
-  { id: '22', name: 'bandra walk',          date: 'SUN 10 NOV 2025', month: 'November', year: '2025', vibe: 'wholesome', vibeEmoji: '🫶', type: 'hangout', color: C.purple,  people: PEOPLE.slice(0,2) },
-  { id: '23', name: 'open mic night',       date: 'FRI 21 NOV 2025', month: 'November', year: '2025', vibe: 'legendary', vibeEmoji: '🏆', type: 'hangout', color: C.pink,    people: PEOPLE.slice(0,5) },
-  { id: '24', name: 'terrible karaoke',     date: 'SAT 8 NOV 2025',  month: 'November', year: '2025', vibe: 'chaotic',   vibeEmoji: '💀', type: 'hangout', color: C.yellow,  people: PEOPLE, bills: '₹1,800 split 6 ways' },
-  { id: '25', name: 'dawn run fail',        date: 'SUN 2 NOV 2025',  month: 'November', year: '2025', vibe: 'mid',       vibeEmoji: '😐', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2]] },
-  { id: '26', name: 'diwali at mira\'s',    date: 'THU 13 NOV 2025', month: 'November', year: '2025', vibe: 'wholesome', vibeEmoji: '🫶', type: 'hangout', color: C.orange,  people: PEOPLE },
+  { id: '22', name: 'bandra walk',          date: 'SUN 10 NOV 2025', month: 'November', year: '2025', vibe: 'wholesome', type: 'hangout', color: C.purple,  people: PEOPLE.slice(0,2) },
+  { id: '23', name: 'open mic night',       date: 'FRI 21 NOV 2025', month: 'November', year: '2025', vibe: 'legendary', type: 'hangout', color: C.pink,    people: PEOPLE.slice(0,5) },
+  { id: '24', name: 'terrible karaoke',     date: 'SAT 8 NOV 2025',  month: 'November', year: '2025', vibe: 'chaotic', type: 'hangout', color: C.yellow,  people: PEOPLE, bills: '₹1,800 split 6 ways' },
+  { id: '25', name: 'dawn run fail',        date: 'SUN 2 NOV 2025',  month: 'November', year: '2025', vibe: 'mid', type: 'sport',   color: C.green,   people: [PEOPLE[0], PEOPLE[2]] },
+  { id: '26', name: 'diwali at mira\'s',    date: 'THU 13 NOV 2025', month: 'November', year: '2025', vibe: 'wholesome', type: 'hangout', color: C.orange,  people: PEOPLE },
   // October 2025
-  { id: '27', name: 'ipl watch party',      date: 'FRI 25 OCT 2025', month: 'October',  year: '2025', vibe: 'legendary', vibeEmoji: '🏆', type: 'sport',   color: C.orange,  people: PEOPLE },
-  { id: '28', name: 'wada pav taste test',  date: 'SAT 18 OCT 2025', month: 'October',  year: '2025', vibe: 'unhinged',  vibeEmoji: '🤯', type: 'food',    color: C.yellow,  people: PEOPLE.slice(0,4), bills: '₹320 split 4 ways' },
-  { id: '29', name: 'bowling badly',        date: 'SUN 5 OCT 2025',  month: 'October',  year: '2025', vibe: 'chaotic',   vibeEmoji: '💀', type: 'sport',   color: C.pink,    people: PEOPLE.slice(1,6) },
-  { id: '30', name: 'navratri chaos',       date: 'SAT 11 OCT 2025', month: 'October',  year: '2025', vibe: 'legendary', vibeEmoji: '🏆', type: 'hangout', color: C.purple,  people: PEOPLE },
+  { id: '27', name: 'ipl watch party',      date: 'FRI 25 OCT 2025', month: 'October',  year: '2025', vibe: 'legendary', type: 'sport',   color: C.orange,  people: PEOPLE },
+  { id: '28', name: 'wada pav taste test',  date: 'SAT 18 OCT 2025', month: 'October',  year: '2025', vibe: 'unhinged', type: 'food',    color: C.yellow,  people: PEOPLE.slice(0,4), bills: '₹320 split 4 ways' },
+  { id: '29', name: 'bowling badly',        date: 'SUN 5 OCT 2025',  month: 'October',  year: '2025', vibe: 'chaotic', type: 'sport',   color: C.pink,    people: PEOPLE.slice(1,6) },
+  { id: '30', name: 'navratri chaos',       date: 'SAT 11 OCT 2025', month: 'October',  year: '2025', vibe: 'legendary', type: 'hangout', color: C.purple,  people: PEOPLE },
 
   // ─── 2025 April — for "on this day" row ────────────────────
-  { id: '31', name: 'kala ghoda wander',    date: 'SAT 27 APR 2025', month: 'April',    year: '2025', vibe: 'wholesome', vibeEmoji: '🫶', type: 'hangout', color: C.blue,    people: [PEOPLE[0], PEOPLE[1], PEOPLE[3]] },
-  { id: '32', name: 'grill night at vir\'s', date: 'FRI 25 APR 2025', month: 'April',   year: '2025', vibe: 'legendary', vibeEmoji: '🏆', type: 'food',    color: C.orange,  people: PEOPLE.slice(0,5), bills: '₹2,600 split 5 ways' },
+  { id: '31', name: 'kala ghoda wander',    date: 'SAT 27 APR 2025', month: 'April',    year: '2025', vibe: 'wholesome', type: 'hangout', color: C.blue,    people: [PEOPLE[0], PEOPLE[1], PEOPLE[3]] },
+  { id: '32', name: 'grill night at vir\'s', date: 'FRI 25 APR 2025', month: 'April',   year: '2025', vibe: 'legendary', type: 'food',    color: C.orange,  people: PEOPLE.slice(0,5), bills: '₹2,600 split 5 ways' },
 
   // ─── 2024 April — for "on this day" row ────────────────────
-  { id: '33', name: 'first trip together',  date: 'SUN 28 APR 2024', month: 'April',    year: '2024', vibe: 'legendary', vibeEmoji: '🏆', type: 'hangout', color: C.purple,  people: [PEOPLE[0], PEOPLE[1], PEOPLE[2]], bills: '₹4,400 split 3 ways' },
+  { id: '33', name: 'first trip together',  date: 'SUN 28 APR 2024', month: 'April',    year: '2024', vibe: 'legendary', type: 'hangout', color: C.purple,  people: [PEOPLE[0], PEOPLE[1], PEOPLE[2]], bills: '₹4,400 split 3 ways' },
 ]
 
 const CURRENT_YEAR = '2026'
@@ -440,7 +439,7 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
                 width: 64, height: 64,
                 borderRadius: '50%',
                 background: m.color,
-                border: '2.5px solid #0A0A0A',
+                border: S.border,
                 overflow: 'hidden',
               }}>
                 {/* Vibe icon — shifted up to make room for strip */}
@@ -460,7 +459,7 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
                 }}>
                   <span style={{
                     fontFamily: F.mono,
-                    fontSize: 8, fontWeight: 700, color: '#FAFAF0',
+                    fontSize: 8, fontWeight: 700, color: C.base,
                     whiteSpace: 'nowrap',
                   }}>
                     {label}
@@ -528,7 +527,7 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
         padding: '0 5px 5px',
         fontFamily: F.display,
         fontWeight: 600, fontSize: 14,
-        color: '#FAFAF0', lineHeight: 1.2,
+        color: C.base, lineHeight: 1.2,
         overflow: 'hidden',
         display: '-webkit-box',
         WebkitLineClamp: 2,
@@ -562,10 +561,13 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
           width: 40, height: 40, borderRadius: '50%',
           background: 'rgba(250,250,240,0.9)', border: S.border,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', fontFamily: F.display,
-          fontWeight: 600, fontSize: 18, color: C.ink,
-          boxShadow: '2px 2px 0 0 #0A0A0A',
-        }}>←</button>
+          cursor: 'pointer',
+          boxShadow: S.shadowSm,
+        }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
+          </svg>
+        </button>
 
         <div style={{ position: 'absolute', top: 52, right: 16 }}>
           <Chip color={m.color} style={{ background: 'rgba(250,250,240,0.9)', display: 'flex', alignItems: 'center', gap: 5 }}>

@@ -11,23 +11,23 @@ interface Props {
 
 // ── Achievement badge icons ────────────────────────────────────
 function IconOrganiser({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3L14 8H19L15 11.5L16.5 17L12 14L7.5 17L9 11.5L5 8H10Z" fill={c}/></svg>
 }
 function IconReliable({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
 }
 function IconHype({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L4.5 13.5H11L9 22L19.5 9.5H13L13 2Z" fill={c}/></svg>
 }
 function IconNightOwl({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9c-5 0-9-4-9-9z" fill={c}/></svg>
 }
 function IconBailProof({ locked }: { locked?: boolean }) {
-  const c = locked ? '#A8A49C' : '#FAFAF0'
+  const c = locked ? C.grey400 : C.base
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke={c} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="12" r="9" stroke={c} strokeWidth="2"/></svg>
 }
 
@@ -226,11 +226,11 @@ export function Profile({ onBack, onAchievements }: Props) {
 
             {/* Net summary */}
             <div style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
-              <div style={{ flex: 1, background: '#E8F9EE', border: `2px solid ${C.green}`, borderRadius: 12, padding: '10px 14px' }}>
+              <div style={{ flex: 1, background: C.debtPositive, border: `2px solid ${C.green}`, borderRadius: 12, padding: '10px 14px' }}>
                 <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 18, color: C.ink }}>₹{totalOwed.toLocaleString('en-IN')}</div>
                 <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600, marginTop: 2 }}>you're owed</div>
               </div>
-              <div style={{ flex: 1, background: '#FFF0F4', border: `2px solid ${C.pink}`, borderRadius: 12, padding: '10px 14px' }}>
+              <div style={{ flex: 1, background: C.debtNegative, border: `2px solid ${C.pink}`, borderRadius: 12, padding: '10px 14px' }}>
                 <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 18, color: C.ink }}>₹{totalOwe.toLocaleString('en-IN')}</div>
                 <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600, marginTop: 2 }}>you owe</div>
               </div>

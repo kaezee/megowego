@@ -77,7 +77,7 @@ export function Friends() {
                   <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 17, color: C.ink }}>{f.name}</div>
                   <div style={{ fontFamily: F.body, fontSize: 12, color: C.grey600, marginTop: 1 }}>{f.outingsTogether} outings together</div>
                   {f.status && (
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 5, background: C.yellow, border: '1.5px solid #0A0A0A', borderRadius: 100, padding: '2px 8px' }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 5, background: C.yellow, border: S.border, borderRadius: 100, padding: '2px 8px' }}>
                       <div style={{ width: 5, height: 5, borderRadius: '50%', background: C.ink, flexShrink: 0 }} />
                       <span style={{ fontFamily: F.body, fontSize: 10, fontWeight: 600, color: C.ink }}>{f.status}</span>
                     </div>
