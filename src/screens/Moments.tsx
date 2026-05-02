@@ -5,7 +5,7 @@ import { Chip } from '../components/ui/Chip'
 import { Illo } from '../components/ui/Illo'
 import { Button } from '../components/ui/Button'
 import { TypeIcon } from '../components/ui/TypeIcon'
-import { C } from '../lib/tokens'
+import { C, F, S } from '../lib/tokens'
 
 // ── Vibe icons (SVG placeholders, no emoji) ──────────────────
 function VibeIcon({ vibe, size = 28 }: { vibe: string; size?: number }) {
@@ -209,7 +209,7 @@ export function Moments({ onMomentTap }: Props) {
 
       {/* ── Fixed header ─────────────────────────────────────────── */}
       <div style={{ padding: '48px 20px 0', background: C.surface, flexShrink: 0 }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, marginBottom: 14 }}>
+        <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 26, color: C.ink, marginBottom: 14 }}>
           Moments
         </div>
         <SearchInput placeholder="search by outing, vibe, or person..." value={query} onChange={setQuery} />
@@ -230,10 +230,10 @@ export function Moments({ onMomentTap }: Props) {
                   display: 'flex', alignItems: 'center', gap: 5,
                   height: 36, padding: '0 14px',
                   borderRadius: 100,
-                  border: '2px solid #0A0A0A',
+                  border: S.border,
                   background: bg,
                   color: fg,
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  fontFamily: F.body,
                   fontWeight: 600, fontSize: 13,
                   cursor: 'pointer',
                   transition: 'background 120ms, color 120ms',
@@ -262,22 +262,22 @@ export function Moments({ onMomentTap }: Props) {
 
         {filtered.length === 0 ? (
           <div style={{ paddingTop: 60, textAlign: 'center' }}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>nothing found 😐</div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600, marginTop: 8 }}>try a different name, vibe, or person</div>
+            <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 20, color: C.ink }}>nothing here yet</div>
+            <div style={{ fontFamily: F.body, fontSize: 14, color: C.grey600, marginTop: 8 }}>try a different name, vibe, or person</div>
           </div>
         ) : (
           grouped.map(({ year, months }) => (
             <div key={year}>
               {/* Year divider */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 0 12px' }}>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>{year}</div>
+                <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 20, color: C.ink }}>{year}</div>
                 <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
               </div>
 
               {months.map(({ month, items }) => (
                 <div key={month} style={{ marginBottom: 24 }}>
                   <div style={{
-                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                    fontFamily: F.body,
                     fontWeight: 700, fontSize: 11, color: C.grey600,
                     letterSpacing: '0.08em', marginBottom: 10,
                   }}>
@@ -302,7 +302,7 @@ export function Moments({ onMomentTap }: Props) {
 const BAILERS = [
   { name: 'Vir',   color: C.orange, bails: 7,  excuse: 'stomach ache... again' },
   { name: 'Rhea',  color: C.purple, bails: 4,  excuse: 'something came up' },
-  { name: 'Kabir', color: C.green,  bails: 3,  excuse: 'work emergency 🙄' },
+  { name: 'Kabir', color: C.green,  bails: 3,  excuse: 'work emergency...' },
 ]
 
 function FlagIcon() {
@@ -320,12 +320,12 @@ function HallOfShame() {
       {/* Section header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
         <FlagIcon />
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
+        <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 17, color: C.ink }}>
           Hall of shame
         </div>
         <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
       </div>
-      <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 12 }}>
+      <div style={{ fontFamily: F.body, fontSize: 12, color: C.grey600, marginBottom: 12 }}>
         The serial bailers. You know who you are.
       </div>
 
@@ -342,10 +342,10 @@ function HallOfShame() {
               flexShrink: 0,
               width: 252,
               height: 92,
-              border: '2px solid #0A0A0A',
+              border: S.border,
               borderRadius: 14,
               overflow: 'hidden',
-              boxShadow: '3px 3px 0 0 #0A0A0A',
+              boxShadow: S.shadow,
               display: 'flex',
             }}
           >
@@ -360,13 +360,13 @@ function HallOfShame() {
                 width: 36, height: 36, borderRadius: '50%',
                 background: 'rgba(10,10,10,0.18)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: "'Fredoka', system-ui, sans-serif",
+                fontFamily: F.display,
                 fontWeight: 600, fontSize: 17, color: C.ink,
               }}>
                 {b.name[0]}
               </div>
               <div style={{
-                fontFamily: "'Fredoka', system-ui, sans-serif",
+                fontFamily: F.display,
                 fontWeight: 600, fontSize: 12, color: C.ink,
               }}>
                 {b.name}
@@ -380,15 +380,15 @@ function HallOfShame() {
               display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 3,
             }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-                <span style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 22, color: C.ink }}>
+                <span style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 22, color: C.ink }}>
                   {b.bails}x
                 </span>
-                <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: C.grey600 }}>
+                <span style={{ fontFamily: F.body, fontSize: 11, color: C.grey600 }}>
                   bailed
                 </span>
               </div>
               <div style={{
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontFamily: F.body,
                 fontSize: 11, color: C.grey400, fontStyle: 'italic', lineHeight: 1.4,
               }}>
                 "{b.excuse}"
@@ -411,10 +411,10 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
           <rect x="3" y="4" width="18" height="18" rx="2"/>
           <path d="M16 2v4M8 2v4M3 10h18"/>
         </svg>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
+        <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 17, color: C.ink }}>
           On this day
         </div>
-        <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 1 }}>
+        <div style={{ fontFamily: F.body, fontSize: 12, color: C.grey600, marginTop: 1 }}>
           · Apr 27
         </div>
       </div>
@@ -459,7 +459,7 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
                   textAlign: 'center',
                 }}>
                   <span style={{
-                    fontFamily: "'Space Mono', ui-monospace, monospace",
+                    fontFamily: F.mono,
                     fontSize: 8, fontWeight: 700, color: '#FAFAF0',
                     whiteSpace: 'nowrap',
                   }}>
@@ -470,7 +470,7 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
 
               {/* Name */}
               <div style={{
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontFamily: F.body,
                 fontSize: 10, fontWeight: 600, color: C.ink,
                 textAlign: 'center', maxWidth: 64,
                 overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
@@ -494,7 +494,7 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
         position: 'relative',
         aspectRatio: '1 / 1',
         borderRadius: 10,
-        border: '2px solid #0A0A0A',
+        border: S.border,
         overflow: 'hidden',
         background: m.color,
         cursor: 'pointer',
@@ -526,7 +526,7 @@ function MomentTile({ moment: m, onClick }: { moment: Moment; onClick: () => voi
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         padding: '0 5px 5px',
-        fontFamily: "'Fredoka', system-ui, sans-serif",
+        fontFamily: F.display,
         fontWeight: 600, fontSize: 14,
         color: '#FAFAF0', lineHeight: 1.2,
         overflow: 'hidden',
@@ -560,9 +560,9 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
         <button onClick={onBack} style={{
           position: 'absolute', top: 48, left: 16,
           width: 40, height: 40, borderRadius: '50%',
-          background: 'rgba(250,250,240,0.9)', border: '2px solid #0A0A0A',
+          background: 'rgba(250,250,240,0.9)', border: S.border,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', fontFamily: "'Fredoka', system-ui, sans-serif",
+          cursor: 'pointer', fontFamily: F.display,
           fontWeight: 600, fontSize: 18, color: C.ink,
           boxShadow: '2px 2px 0 0 #0A0A0A',
         }}>←</button>
@@ -583,12 +583,12 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
       {/* Detail body */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '20px 20px 40px', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 28, color: C.ink, lineHeight: 1.2 }}>{m.name}</div>
-          <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.grey600, marginTop: 6 }}>{m.date}</div>
+          <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 28, color: C.ink, lineHeight: 1.2 }}>{m.name}</div>
+          <div style={{ fontFamily: F.mono, fontSize: 12, color: C.grey600, marginTop: 6 }}>{m.date}</div>
         </div>
 
         <div style={{ background: C.surface, borderRadius: 12, padding: 16 }}>
-          <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 12 }}>WHO SHOWED UP</div>
+          <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 12 }}>WHO SHOWED UP</div>
           <AvatarStack people={m.people} size={36} max={6} />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>
             {m.people.map(p => (
@@ -599,16 +599,16 @@ export function MomentDetail({ moment: m, onBack }: { moment: Moment; onBack: ()
 
         {m.bills && (
           <div style={{ background: C.surface, borderRadius: 12, padding: 16 }}>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 8 }}>BILLS</div>
-            <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 600, fontSize: 18, color: C.ink }}>{m.bills}</div>
+            <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.05em', marginBottom: 8 }}>BILLS</div>
+            <div style={{ fontFamily: F.mono, fontWeight: 600, fontSize: 18, color: C.ink }}>{m.bills}</div>
           </div>
         )}
 
         <div>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 12 }}>share the memory</div>
+          <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 18, color: C.ink, marginBottom: 12 }}>share the memory</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <Button full variant="secondary">moment card 📸</Button>
-            <Button full variant="secondary">fomo card 😭</Button>
+            <Button full variant="secondary">moment card</Button>
+            <Button full variant="secondary">fomo card</Button>
           </div>
         </div>
       </div>

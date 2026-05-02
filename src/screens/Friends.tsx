@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Avatar } from '../components/ui/Avatar'
 import { Chip } from '../components/ui/Chip'
 import { SearchInput } from '../components/ui/Input'
-import { SectionBadge } from '../components/ui/SectionBadge'
 import { BottomSheet } from '../components/ui/BottomSheet'
 import { C, F, S } from '../lib/tokens'
 
@@ -104,7 +103,7 @@ export function Friends() {
         {!query && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <SectionBadge icon="🌸" color={C.purple} size={32} />
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><ellipse cx="12" cy="5.5" rx="3.5" ry="5" fill={C.purple} stroke={C.ink} strokeWidth="1.5"/><ellipse cx="12" cy="18.5" rx="3.5" ry="5" fill={C.purple} stroke={C.ink} strokeWidth="1.5"/><ellipse cx="5.5" cy="12" rx="5" ry="3.5" fill={C.purple} stroke={C.ink} strokeWidth="1.5"/><ellipse cx="18.5" cy="12" rx="5" ry="3.5" fill={C.purple} stroke={C.ink} strokeWidth="1.5"/><circle cx="12" cy="12" r="4" fill={C.yellow} stroke={C.ink} strokeWidth="1.5"/></svg>
               <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: 11, color: C.grey600, letterSpacing: '0.06em' }}>SUGGESTED</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -138,7 +137,7 @@ export function Friends() {
 
         {/* Invite from contacts */}
         {!query && (
-          <div style={{ background: C.yellow, border: S.border, borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ background: C.yellow, border: S.border, borderRadius: 12, boxShadow: S.shadow, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src="/Invite.png" alt="" style={{ width: 56, height: 56, objectFit: 'contain', flexShrink: 0 }} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 17, color: C.ink }}>Invite from contacts</div>

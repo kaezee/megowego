@@ -78,7 +78,7 @@ export function Achievements({ onBack }: Props) {
           </div>
 
           {/* Active title */}
-          <div style={{ border: S.border, borderRadius: 12, padding: '16px 16px', background: C.base, boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+          <div style={{ border: S.border, borderRadius: 12, padding: '16px 16px', background: C.base, boxShadow: S.shadow }}>
             <div style={{ fontFamily: F.body, fontSize: 12, color: C.grey600, marginBottom: 8 }}>showing on your profile right now</div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: C.ink, borderRadius: 100, padding: '6px 14px' }}>
               <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: 14, color: C.base }}>{active}</div>

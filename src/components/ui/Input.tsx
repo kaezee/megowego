@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { C } from '../../lib/tokens'
+import { C, F } from '../../lib/tokens'
 
 interface InputProps {
   placeholder?: string
@@ -30,7 +30,7 @@ export function Input({ placeholder, value, onChange, type = 'text', focused = f
         onBlur={() => setHot(false)}
         placeholder={placeholder}
         style={{
-          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+          fontFamily: F.body,
           fontWeight: 400, fontSize: 15,
           background: 'transparent', border: 'none', outline: 'none',
           color: C.ink, flex: 1, height: '100%',
@@ -61,7 +61,7 @@ export function SearchInput({ placeholder = 'search...', value, onChange }: { pl
         onBlur={() => setHot(false)}
         placeholder={placeholder}
         style={{
-          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+          fontFamily: F.body,
           fontSize: 14, color: C.ink,
           background: 'transparent', border: 'none', outline: 'none', flex: 1,
         }}

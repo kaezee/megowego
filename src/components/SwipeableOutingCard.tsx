@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { Trash2 } from 'lucide-react'
-import { C, S } from '../lib/tokens'
+import { C, F, S } from '../lib/tokens'
 
 const REVEAL_PCT      = 0.28   // how wide the delete zone is
 const LEFT_THRESHOLD  = 0.10   // how far you have to drag before it snaps
@@ -236,7 +236,7 @@ export function SwipeableOutingCard({ children, onDelete, onClick }: Props) {
         >
           <Trash2 size={20} strokeWidth={2.5} />
           <span style={{
-            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+            fontFamily: F.body,
             fontWeight: 600, fontSize: 11, letterSpacing: '0.04em', color: C.base,
           }}>delete</span>
         </button>

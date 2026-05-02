@@ -1,5 +1,5 @@
 import { Button } from './ui/Button'
-import { C, S } from '../lib/tokens'
+import { C, F, S } from '../lib/tokens'
 
 interface Props {
   outingName: string
@@ -40,13 +40,13 @@ export function DeleteOutingModal({ outingName, onConfirm, onCancel }: Props) {
         {/* Copy */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{
-            fontFamily: "'Fredoka', system-ui, sans-serif",
+            fontFamily: F.display,
             fontWeight: 600, fontSize: 24, color: C.ink, lineHeight: 1.2,
           }}>
             delete "{outingName}"?
           </div>
           <div style={{
-            fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+            fontFamily: F.body,
             fontSize: 14, color: C.grey600, lineHeight: 1.6,
           }}>
             this outing is gone for everyone in the crew. no undo, no "wait actually", no appeals process. just gone.
@@ -56,7 +56,7 @@ export function DeleteOutingModal({ outingName, onConfirm, onCancel }: Props) {
         {/* Actions */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           <Button full variant="destructive" onClick={onConfirm}>
-            yeah, kill it 💀
+            yeah, kill it
           </Button>
           <Button full variant="ghost" onClick={onCancel}>
             no wait, keep it

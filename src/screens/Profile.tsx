@@ -47,14 +47,26 @@ const PARTNERS = [
 ]
 
 const RANK_COLOURS = [C.yellow, C.grey200, C.orange]
-const RANK_LABELS  = ['🥇', '🥈', '🥉']
 
 // The Receipts — key stats
+function IconTarget() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={C.ink} strokeWidth="2"/><circle cx="12" cy="12" r="5" stroke={C.ink} strokeWidth="2"/><circle cx="12" cy="12" r="1.5" fill={C.ink}/></svg>
+}
+function IconCheckCircle() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={C.ink} strokeWidth="2"/><path d="M8 12l3 3 5-5" stroke={C.ink} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+}
+function IconXCircle() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={C.ink} strokeWidth="2"/><path d="M9 9l6 6M15 9l-6 6" stroke={C.ink} strokeWidth="2" strokeLinecap="round"/></svg>
+}
+function IconCoin() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={C.ink} strokeWidth="2"/><path d="M12 7v10M9.5 9.5C9.5 8.4 10.6 7.5 12 7.5s2.5.9 2.5 2-.9 1.5-2.5 2-2.5 1-2.5 2.3 1.1 2.2 2.5 2.2 2.5-.9 2.5-2" stroke={C.ink} strokeWidth="1.8" strokeLinecap="round"/></svg>
+}
+
 const RECEIPTS = [
-  { emoji: '🎯', value: '14',     label: 'organised'   },
-  { emoji: '🙌', value: '23',     label: 'showed up'   },
-  { emoji: '💀', value: '3',      label: 'bailed'      },
-  { emoji: '💸', value: '₹14.2k', label: 'total spent' },
+  { Icon: IconTarget,      value: '14',     label: 'organised'   },
+  { Icon: IconCheckCircle, value: '23',     label: 'showed up'   },
+  { Icon: IconXCircle,     value: '3',      label: 'bailed'      },
+  { Icon: IconCoin,        value: '₹14.2k', label: 'total spent' },
 ]
 
 // The Tab — net balances
@@ -180,9 +192,9 @@ export function Profile({ onBack, onAchievements }: Props) {
                       width: 22, height: 22, borderRadius: '50%',
                       background: RANK_COLOURS[i], border: S.border,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 11, lineHeight: 1,
+                      fontFamily: F.mono, fontWeight: 700, fontSize: 11, color: C.ink, lineHeight: 1,
                     }}>
-                      {RANK_LABELS[i]}
+                      #{i+1}
                     </div>
                   </div>
                   <div style={{ fontFamily: F.body, fontWeight: 600, fontSize: 13, color: C.ink }}>{p.name}</div>
@@ -198,7 +210,7 @@ export function Profile({ onBack, onAchievements }: Props) {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: 20, columnGap: 12 }}>
               {RECEIPTS.map(s => (
                 <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>{s.emoji}</span>
+                  <span style={{ lineHeight: 1, flexShrink: 0 }}><s.Icon /></span>
                   <div>
                     <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 18, color: C.ink, lineHeight: 1 }}>{s.value}</div>
                     <div style={{ fontFamily: F.body, fontSize: 12, color: C.grey600, marginTop: 3 }}>{s.label}</div>

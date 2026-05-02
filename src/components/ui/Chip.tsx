@@ -1,4 +1,4 @@
-import { C, S } from '../../lib/tokens'
+import { C, F, S } from '../../lib/tokens'
 
 // Dark fills need C.base text; light fills use C.ink
 function fgForFill(hex: string): string {
@@ -21,7 +21,7 @@ export function Chip({ color = C.base, active = false, tint: _tint, onClick, chi
     <button
       onClick={onClick}
       style={{
-        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+        fontFamily: F.body,
         fontWeight: 500, fontSize: 13,
         height: 32, padding: '0 12px',
         background: bg, color: fg,

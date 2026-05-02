@@ -5,7 +5,7 @@ import { Chip } from '../components/ui/Chip'
 import { Avatar } from '../components/ui/Avatar'
 import { TypeIcon } from '../components/ui/TypeIcon'
 import type { Outing } from '../App'
-import { C } from '../lib/tokens'
+import { C, F, S } from '../lib/tokens'
 
 interface Props {
   onBack: () => void
@@ -50,10 +50,10 @@ function StepProgress({ step }: { step: number }) {
         <div key={i} style={{
           flex: 1, height: 8,
           background: i <= step ? C.ink : C.grey200,
-          border: '2px solid #0A0A0A', borderRadius: 100,
+          border: S.border, borderRadius: 100,
         }} />
       ))}
-      <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 12, color: C.ink, marginLeft: 4 }}>{step}/3</div>
+      <div style={{ fontFamily: F.mono, fontSize: 12, color: C.ink, marginLeft: 4 }}>{step}/3</div>
     </div>
   )
 }
@@ -113,7 +113,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Top bar — fixed, never scrolls, hidden on celebration */}
       {step < 4 && (
         <div style={{ padding: '48px 20px 0', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
+          <button onClick={back} style={{ background: 'transparent', border: 'none', fontFamily: F.display, fontWeight: 600, fontSize: 24, color: C.ink, cursor: 'pointer', padding: 0 }}>
             {step === 1 ? '×' : '←'}
           </button>
           <StepProgress step={step} />
@@ -129,18 +129,18 @@ export function CreateOuting({ onBack, onDone }: Props) {
           {/* Heading with illustration on the left */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <img src="/Whats the plan.png" alt="" style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.25 }}>
+            <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.25 }}>
               okay so,<br />what's the plan?
             </div>
           </div>
 
           <div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 8 }}>outing name</div>
+            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 8 }}>outing name</div>
             <Input placeholder="give it a name..." value={name} onChange={setName} />
           </div>
 
           <div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 10 }}>what kind of chaos?</div>
+            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 10 }}>what kind of chaos?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {OUTING_TYPES.map(t => (
                 <Chip key={t.label} color={t.color} active={type === t.label} onClick={() => setType(t.label)}><TypeIcon type={t.label} size={14} />{t.label}</Chip>
@@ -149,7 +149,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
           </div>
 
           <div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 8 }}>when's this happening?</div>
+            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 8 }}>when's this happening?</div>
             <Input placeholder="pick a date & time" value={date} onChange={setDate} type="datetime-local" />
           </div>
         </>
@@ -158,10 +158,10 @@ export function CreateOuting({ onBack, onDone }: Props) {
       {/* Step 2 — invite */}
       {step === 2 && (
         <>
-          <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>who's invited?</div>
+          <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.2 }}>who's invited?</div>
 
           <div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 12 }}>YOUR FRIENDS</div>
+            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 12 }}>YOUR FRIENDS</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {MY_FRIENDS.map((f, i) => {
                 const on = selected.includes(f.id)
@@ -169,17 +169,17 @@ export function CreateOuting({ onBack, onDone }: Props) {
                   <button key={f.id} onClick={() => toggleFriend(f.id)} style={{
                     display: 'flex', alignItems: 'center', gap: 14,
                     background: on ? C.yellow : C.base,
-                    border: '2px solid #0A0A0A',
+                    border: S.border,
                     borderRadius: i === 0 ? '12px 12px 4px 4px' : i === MY_FRIENDS.length - 1 ? '4px 4px 12px 12px' : 4,
                     padding: '12px 16px',
                     cursor: 'pointer', textAlign: 'left',
                     transition: 'background 0.1s',
                   }}>
                     <Avatar name={f.initials} color={f.color} size={36} />
-                    <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>{f.name}</div>
+                    <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>{f.name}</div>
                     <div style={{
                       width: 22, height: 22, borderRadius: '50%',
-                      border: '2px solid #0A0A0A',
+                      border: S.border,
                       background: on ? C.ink : 'transparent',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     }}>
@@ -192,24 +192,24 @@ export function CreateOuting({ onBack, onDone }: Props) {
           </div>
 
           <div style={{
-            background: C.base, border: '2px solid #0A0A0A',
-            borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A', padding: '16px 20px',
+            background: C.base, border: S.border,
+            borderRadius: 12, boxShadow: S.shadow, padding: '16px 20px',
           }}>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 4 }}>
+            <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 16, color: C.ink, marginBottom: 4 }}>
               Not on Mego Wego yet?
             </div>
-            <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginBottom: 14 }}>
+            <div style={{ fontFamily: F.body, fontSize: 13, color: C.grey600, marginBottom: 14 }}>
               Share a link — they can RSVP without downloading the app.
             </div>
             <button onClick={handleShareLink} style={{
               width: '100%', height: 44,
               background: linkCopied ? C.green : C.surface,
-              border: '2px solid #0A0A0A', borderRadius: 10,
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              border: S.border, borderRadius: 10,
+              fontFamily: F.body,
               fontWeight: 500, fontSize: 14, color: C.ink,
               cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             }}>
-              {linkCopied ? '✓ link copied!' : '🔗 share invite link'}
+              {linkCopied ? '✓ link copied!' : 'share invite link'}
             </button>
           </div>
         </>
@@ -221,29 +221,29 @@ export function CreateOuting({ onBack, onDone }: Props) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <img src="/Eventcreated.png" alt="" style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
             <div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.25 }}>
-                looking good 👀
+              <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1.25 }}>
+                looking good
               </div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginTop: 4 }}>double-check before we send the invites</div>
+              <div style={{ fontFamily: F.body, fontSize: 13, color: C.grey600, marginTop: 4 }}>double-check before we send the invites</div>
             </div>
           </div>
 
-          <div style={{ background: C.base, border: '2px solid #0A0A0A', borderRadius: 12, boxShadow: '3px 3px 0 0 #0A0A0A', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ background: C.base, border: S.border, borderRadius: 12, boxShadow: S.shadow, padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>OUTING</div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>{name || 'untitled outing'}</div>
+              <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>OUTING</div>
+              <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 20, color: C.ink }}>{name || 'untitled outing'}</div>
             </div>
             <div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>WHEN</div>
-              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontSize: 13, color: C.ink }}>{formatDisplayDate(date)}</div>
+              <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>WHEN</div>
+              <div style={{ fontFamily: F.mono, fontSize: 13, color: C.ink }}>{formatDisplayDate(date)}</div>
             </div>
             <div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>TYPE</div>
+              <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 4 }}>TYPE</div>
               <Chip color={OUTING_TYPES.find(t => t.label === type)?.color ?? C.grey200}><TypeIcon type={type} size={13} />{type}</Chip>
             </div>
             {selectedFriends.length > 0 && (
               <div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 8 }}>INVITED</div>
+                <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 11, color: C.grey600, letterSpacing: '0.06em', marginBottom: 8 }}>INVITED</div>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                   {selectedFriends.map(f => (
                     <div key={f.id} style={{
@@ -252,7 +252,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
                       borderRadius: 100, padding: '4px 10px 4px 4px',
                     }}>
                       <Avatar name={f.initials} color={f.color} size={22} />
-                      <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: C.ink }}>{f.name}</span>
+                      <span style={{ fontFamily: F.body, fontSize: 13, fontWeight: 500, color: C.ink }}>{f.name}</span>
                     </div>
                   ))}
                 </div>
@@ -271,17 +271,17 @@ export function CreateOuting({ onBack, onDone }: Props) {
             style={{ width: 200, height: 200, objectFit: 'contain' }}
           />
           <div>
-            <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 30, color: C.ink, lineHeight: 1.2 }}>
-              you're all set! 🎉
+            <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 30, color: C.ink, lineHeight: 1.2 }}>
+              you're all set!
             </div>
             <div style={{
-              fontFamily: "'Fredoka', system-ui, sans-serif",
+              fontFamily: F.display,
               fontSize: 20, color: C.grey600, marginTop: 6,
             }}>
               {createdOuting.name}
             </div>
             <div style={{
-              fontFamily: "'Space Mono', ui-monospace, monospace",
+              fontFamily: F.mono,
               fontSize: 11, color: C.grey400, marginTop: 8, letterSpacing: '0.05em',
             }}>
               {createdOuting.date}
@@ -293,18 +293,18 @@ export function CreateOuting({ onBack, onDone }: Props) {
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
               {createdOuting.people.map(p => (
                 <div key={p.name} style={{
-                  background: p.color, border: '2px solid #0A0A0A',
+                  background: p.color, border: S.border,
                   borderRadius: 100, padding: '4px 12px',
-                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  fontFamily: F.body,
                   fontSize: 13, fontWeight: 500, color: C.ink,
                 }}>
                   {p.name}
                 </div>
               ))}
               <div style={{
-                background: C.grey100, border: '2px solid #0A0A0A',
+                background: C.grey100, border: S.border,
                 borderRadius: 100, padding: '4px 12px',
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontFamily: F.body,
                 fontSize: 13, fontWeight: 500, color: C.grey600,
               }}>
                 invites sent ✓

@@ -1,5 +1,5 @@
 import { Button } from '../components/ui/Button'
-import { C } from '../lib/tokens'
+import { C, F } from '../lib/tokens'
 
 interface Props { onSignup: () => void; onSignin: () => void }
 
@@ -8,7 +8,7 @@ export function Splash({ onSignup, onSignin }: Props) {
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 20px 32px', background: C.surface }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 32 }}>
         <div style={{
-          fontFamily: "'Fredoka', system-ui, sans-serif",
+          fontFamily: F.display,
           fontWeight: 600, fontSize: 64, lineHeight: 0.95,
           color: C.ink, letterSpacing: '-0.02em', textAlign: 'center',
         }}>
@@ -21,7 +21,7 @@ export function Splash({ onSignup, onSignin }: Props) {
           style={{ width: '100%', maxWidth: 380, objectFit: 'contain' }}
         />
         <div style={{
-          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+          fontFamily: F.body,
           fontSize: 15, color: C.grey600, textAlign: 'center', maxWidth: 280, lineHeight: 1.5,
         }}>
           plan outings. show up. roast the ones who don't.

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { C, S } from '../../lib/tokens'
+import { C, F, S } from '../../lib/tokens'
 
 type Variant = 'primary' | 'secondary' | 'destructive' | 'ghost'
 
@@ -29,7 +29,7 @@ export function Button({ variant = 'primary', full = false, disabled = false, on
       onPointerLeave={() => setPressed(false)}
       onClick={!disabled ? onClick : undefined}
       style={{
-        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+        fontFamily: F.body,
         fontWeight: 600, fontSize: 16,
         height: 52, padding: '0 24px',
         background: v.bg, color: v.fg,

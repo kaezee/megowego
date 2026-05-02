@@ -1,4 +1,4 @@
-import { C } from '../lib/tokens'
+import { C, F, S } from '../lib/tokens'
 
 export type Tab = 'home' | 'moments' | 'friends' | 'more'
 
@@ -48,7 +48,7 @@ export function BottomNav({ active, onChange }: Props) {
   return (
     <div style={{
       height: 64, background: C.surface,
-      borderTop: '2px solid #0A0A0A',
+      borderTop: S.border,
       display: 'flex', justifyContent: 'space-around', alignItems: 'stretch',
       flexShrink: 0,
     }}>
@@ -62,7 +62,7 @@ export function BottomNav({ active, onChange }: Props) {
           }}>
             <Icon on={on} />
             <span style={{
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontFamily: F.body,
               fontWeight: on ? 600 : 500, fontSize: 10,
               color: on ? C.ink : C.grey400,
             }}>{label}</span>

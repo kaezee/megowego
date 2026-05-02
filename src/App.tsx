@@ -16,7 +16,7 @@ import { Wrapped } from './screens/Wrapped'
 import { Shop } from './screens/Shop'
 import { Settings } from './screens/Settings'
 import type { Moment } from './screens/Moments'
-import { C } from './lib/tokens'
+import { C, F, S } from './lib/tokens'
 
 function PersonIcon() {
   return (
@@ -153,7 +153,7 @@ export default function App() {
           onClick={() => setShowMore(false)}
           style={{ position: 'absolute', inset: 0, zIndex: 200, background: 'rgba(10,10,10,0.45)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}
         >
-          <div onClick={e => e.stopPropagation()} style={{ background: C.base, borderTop: '2px solid #0A0A0A', borderRadius: '20px 20px 0 0', paddingBottom: 32 }}>
+          <div onClick={e => e.stopPropagation()} style={{ background: C.base, borderTop: S.border, borderRadius: '20px 20px 0 0', paddingBottom: 32 }}>
             <div style={{ padding: '12px 0 4px', display: 'flex', justifyContent: 'center' }}>
               <div style={{ width: 40, height: 4, borderRadius: 100, background: C.grey200 }} />
             </div>
@@ -162,7 +162,7 @@ export default function App() {
               style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 14, padding: '18px 20px', background: 'transparent', border: 'none', cursor: 'pointer', borderBottom: `1px solid ${C.grey100}`, textAlign: 'left' }}
             >
               <PersonIcon />
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Profile</span>
+              <span style={{ fontFamily: F.body, fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Profile</span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
             </button>
             <button
@@ -170,7 +170,7 @@ export default function App() {
               style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 14, padding: '18px 20px', background: 'transparent', border: 'none', cursor: 'pointer', borderBottom: `1px solid ${C.grey100}`, textAlign: 'left' }}
             >
               <ShopIcon />
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Shop</span>
+              <span style={{ fontFamily: F.body, fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Shop</span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
             </button>
             <button
@@ -178,7 +178,7 @@ export default function App() {
               style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 14, padding: '18px 20px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
             >
               <GearIcon />
-              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Settings</span>
+              <span style={{ fontFamily: F.body, fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Settings</span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
             </button>
           </div>

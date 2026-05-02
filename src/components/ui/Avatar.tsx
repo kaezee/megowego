@@ -1,4 +1,4 @@
-import { C } from '../../lib/tokens'
+import { C, F, S } from '../../lib/tokens'
 
 interface AvatarProps {
   name: string
@@ -11,9 +11,9 @@ export function Avatar({ name, color = C.pink, size = 32 }: AvatarProps) {
     <div style={{
       width: size, height: size, borderRadius: '50%',
       background: color, color: C.ink,
-      border: '2px solid #0A0A0A',
+      border: S.border,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      fontFamily: "'Fredoka', system-ui, sans-serif",
+      fontFamily: F.display,
       fontWeight: 600, fontSize: Math.round(size * 0.42),
       flexShrink: 0, lineHeight: 1,
       userSelect: 'none',
@@ -45,7 +45,7 @@ export function AvatarStack({ people, max = 5, size = 32 }: StackProps) {
             width: size, height: size, borderRadius: '50%',
             background: C.white, color: C.ink, border: '2px solid #0A0A0A',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: "'Space Mono', ui-monospace, monospace",
+            fontFamily: F.mono,
             fontWeight: 600, fontSize: Math.round(size * 0.34),
           }}>+{extra}</div>
         </div>

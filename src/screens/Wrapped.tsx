@@ -67,7 +67,7 @@ export function Wrapped({ onBack }: Props) {
               onClick={() => setSelected(s)}
               style={{
                 background: s.color, border: S.border, borderRadius: 14,
-                boxShadow: '3px 3px 0 0 #0A0A0A',
+                boxShadow: S.shadow,
                 padding: '14px 14px', cursor: 'pointer', textAlign: 'left',
                 display: 'flex', flexDirection: 'column', gap: 4,
                 aspectRatio: s.id === 'spent' || s.id === 'outings' ? undefined : undefined,

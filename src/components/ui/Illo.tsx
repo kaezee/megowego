@@ -1,4 +1,4 @@
-import { C } from '../../lib/tokens'
+import { C, F } from '../../lib/tokens'
 
 interface IlloProps {
   color?: string
@@ -15,7 +15,7 @@ export function Illo({ color = C.pink, height = 180, label = '[ illustration ]',
       border: `2px dashed ${color}`,
       borderRadius: 12,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+      fontFamily: F.body,
       fontWeight: 500, fontSize: 12, color: C.grey400,
       textAlign: 'center',
       ...style,

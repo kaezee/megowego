@@ -91,7 +91,7 @@ export function Shop({ onBack }: Props) {
                     background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', width: '100%',
                   }}
                 >
-                  <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+                  <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: S.shadow }}>
                     {/* Color header */}
                     <div style={{ background: p.color, padding: '16px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <div>

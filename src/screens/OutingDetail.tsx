@@ -42,7 +42,7 @@ function SummaryCard({ color, stage, summary, onExpand }: { color: string; stage
       onClick={onExpand}
       style={{
         border: S.border, borderRadius: 12, overflow: 'hidden', cursor: 'pointer',
-        boxShadow: '3px 3px 0 0 #0A0A0A',
+        boxShadow: S.shadow,
       }}
     >
       <div style={{ background: color, padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -61,7 +61,7 @@ function SummaryCard({ color, stage, summary, onExpand }: { color: string; stage
 // ── Bucket row (response accordion) ────────────────────────────
 function Bucket({ label, count, open, onToggle, children }: { label: string; count: number; open: boolean; onToggle: () => void; children: React.ReactNode }) {
   return (
-    <div style={{ border: S.border, borderRadius: 10, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+    <div style={{ border: S.border, borderRadius: 10, overflow: 'hidden', boxShadow: S.shadow }}>
       <button
         onClick={onToggle}
         style={{
@@ -207,7 +207,7 @@ export function OutingDetail({ onBack }: Props) {
 
         {/* ── PLAN ───────────────────────────────────────── */}
         {openSection === 'plan' ? (
-          <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+          <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: S.shadow }}>
             <SectionHeader color={C.yellow} label="PLAN">
               <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 22, color: C.ink, lineHeight: 1.2 }}>who's coming to chai @ irani?</div>
               <div style={{ fontFamily: F.body, fontSize: 13, color: C.ink, opacity: 0.7, marginTop: 4 }}>here's where everyone stands</div>
@@ -268,7 +268,7 @@ export function OutingDetail({ onBack }: Props) {
         {progressIdx >= 1 && (
           <div ref={commitRef}>
             {openSection === 'commit' ? (
-              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: S.shadow }}>
                 <SectionHeader color={C.blue} label="COMMIT">
                   <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 22, color: C.base, lineHeight: 1.2 }}>looks like it's happening</div>
                   <div style={{ fontFamily: F.mono, fontSize: 12, color: C.base, opacity: 0.8, marginTop: 6 }}>
@@ -316,7 +316,7 @@ export function OutingDetail({ onBack }: Props) {
         {progressIdx >= 2 && (
           <div ref={happenRef}>
             {openSection === 'happen' ? (
-              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: S.shadow }}>
                 <SectionHeader color={C.green} label="HAPPEN">
                   <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 22, color: C.ink, lineHeight: 1.2 }}>it's go time</div>
                   <div style={{ fontFamily: F.body, fontSize: 13, color: C.ink, opacity: 0.7, marginTop: 4 }}>mark anyone who didn't make it</div>
@@ -339,7 +339,7 @@ export function OutingDetail({ onBack }: Props) {
                             fontFamily: F.body, fontWeight: 600, fontSize: 12, color: isAbsent ? C.base : C.ink,
                           }}
                         >
-                          {isAbsent ? 'bailed 💀' : 'here ✓'}
+                          {isAbsent ? 'bailed' : 'here ✓'}
                         </button>
                       </div>
                     )
@@ -359,7 +359,7 @@ export function OutingDetail({ onBack }: Props) {
         {progressIdx >= 3 && (
           <div ref={settleRef}>
             {openSection === 'settle' ? (
-              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: S.shadow }}>
                 <SectionHeader color={C.pink} label="SETTLE">
                   <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 22, color: C.base, lineHeight: 1.2 }}>let's sort the bills</div>
                   <div style={{ fontFamily: F.body, fontSize: 13, color: C.base, opacity: 0.8, marginTop: 4 }}>who paid what?</div>
@@ -406,7 +406,7 @@ export function OutingDetail({ onBack }: Props) {
         {progressIdx >= 4 && (
           <div ref={rememberRef}>
             {openSection === 'remember' && (
-              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: '3px 3px 0 0 #0A0A0A' }}>
+              <div style={{ border: S.border, borderRadius: 12, overflow: 'hidden', boxShadow: S.shadow }}>
                 <SectionHeader color={C.purple} label="REMEMBER">
                   <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 22, lineHeight: 1.2 }}>that's a wrap</div>
                   <div style={{ fontFamily: F.body, fontSize: 13, opacity: 0.8, marginTop: 4 }}>how was it though?</div>
