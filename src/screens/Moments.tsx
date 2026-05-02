@@ -420,22 +420,37 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
                 flexShrink: 0,
               }}
             >
-              {/* Ring + circle */}
+              {/* Circle with year overlay inside */}
               <div style={{
-                width: 60, height: 60,
+                position: 'relative',
+                width: 64, height: 64,
                 borderRadius: '50%',
-                background: `conic-gradient(${m.color} 0%, ${m.color} 100%)`,
-                padding: 3,
-                boxSizing: 'border-box',
+                background: m.color,
                 border: '2.5px solid #0A0A0A',
+                overflow: 'hidden',
               }}>
+                {/* Vibe icon — shifted up to make room for strip */}
                 <div style={{
-                  width: '100%', height: '100%',
-                  borderRadius: '50%',
-                  background: m.color,
+                  position: 'absolute', inset: 0,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  paddingBottom: 14,
                 }}>
                   <VibeIcon vibe={m.vibe} size={26} />
+                </div>
+                {/* Year strip at bottom edge */}
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0,
+                  background: 'rgba(10,10,10,0.68)',
+                  padding: '3px 0',
+                  textAlign: 'center',
+                }}>
+                  <span style={{
+                    fontFamily: "'Space Mono', ui-monospace, monospace",
+                    fontSize: 8, fontWeight: 700, color: '#FAFAF0',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {label}
+                  </span>
                 </div>
               </div>
 
@@ -443,24 +458,10 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
               <div style={{
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
                 fontSize: 10, fontWeight: 600, color: C.ink,
-                textAlign: 'center', maxWidth: 60,
+                textAlign: 'center', maxWidth: 64,
                 overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
               }}>
                 {m.name}
-              </div>
-
-              {/* Year ago pill */}
-              <div style={{
-                fontFamily: "'Space Mono', ui-monospace, monospace",
-                fontSize: 9, fontWeight: 600,
-                color: C.base,
-                background: C.ink,
-                borderRadius: 100,
-                padding: '2px 6px',
-                marginTop: -2,
-                whiteSpace: 'nowrap',
-              }}>
-                {label}
               </div>
             </button>
           )
