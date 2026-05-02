@@ -1,17 +1,22 @@
 import { C, S } from '../../lib/tokens'
 
+// Dark fills need C.base text; light fills use C.ink
+function fgForFill(hex: string): string {
+  return (hex === C.blue || hex === C.purple || hex === C.ink) ? C.base : C.ink
+}
+
 interface ChipProps {
   color?: string
   active?: boolean
-  tint?: boolean
+  tint?: boolean        // deprecated — ignored, kept for call-site compatibility
   onClick?: () => void
   children: React.ReactNode
   style?: React.CSSProperties
 }
 
-export function Chip({ color = C.white, active = false, tint = false, onClick, children, style = {} }: ChipProps) {
-  const bg = active ? C.ink : tint ? `${color}33` : color
-  const fg = active ? C.base : C.ink
+export function Chip({ color = C.base, active = false, tint: _tint, onClick, children, style = {} }: ChipProps) {
+  const bg = active ? color : C.base
+  const fg = active ? fgForFill(color) : C.ink
   return (
     <button
       onClick={onClick}

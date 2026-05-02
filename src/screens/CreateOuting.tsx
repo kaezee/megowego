@@ -143,7 +143,7 @@ export function CreateOuting({ onBack, onDone }: Props) {
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 500, fontSize: 13, color: C.ink, marginBottom: 10 }}>what kind of chaos?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {OUTING_TYPES.map(t => (
-                <Chip key={t.label} color={t.color} tint={type !== t.label} active={type === t.label} onClick={() => setType(t.label)}><TypeIcon type={t.label} size={14} />{t.label}</Chip>
+                <Chip key={t.label} color={t.color} active={type === t.label} onClick={() => setType(t.label)}><TypeIcon type={t.label} size={14} />{t.label}</Chip>
               ))}
             </div>
           </div>

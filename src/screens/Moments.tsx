@@ -178,6 +178,14 @@ const FILTERS: { id: Filter; label: string }[] = [
   { id: 'movies',  label: 'movies' },
   { id: 'hangout', label: 'hangout' },
 ]
+// Selected fill + text per filter type (spec-exact)
+const FILTER_CHIP: Record<Filter, { fill: string; fg: string }> = {
+  all:     { fill: C.ink,    fg: C.base },
+  food:    { fill: C.yellow, fg: C.ink  },
+  sport:   { fill: C.green,  fg: C.ink  },
+  movies:  { fill: C.pink,   fg: C.ink  },
+  hangout: { fill: C.blue,   fg: C.base },
+}
 
 export function Moments({ onMomentTap }: Props) {
   const [query,  setQuery]  = useState('')
@@ -208,28 +216,34 @@ export function Moments({ onMomentTap }: Props) {
 
         {/* Filter chips */}
         <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 14, marginTop: 12, scrollbarWidth: 'none' }}>
-          {FILTERS.map(f => (
-            <button
-              key={f.id}
-              onClick={() => setFilter(f.id)}
-              style={{
-                flexShrink: 0,
-                display: 'flex', alignItems: 'center', gap: 5,
-                height: 36, padding: '0 14px',
-                borderRadius: 100,
-                border: '2px solid #0A0A0A',
-                background: filter === f.id ? C.ink : C.base,
-                color: filter === f.id ? C.base : C.ink,
-                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                fontWeight: 600, fontSize: 13,
-                cursor: 'pointer',
-                transition: 'background 120ms, color 120ms',
-              }}
-            >
-              {f.id !== 'all' && <TypeIcon type={f.id} size={14} color={filter === f.id ? '#FAFAF0' : '#0A0A0A'} />}
-              {f.label}
-            </button>
-          ))}
+          {FILTERS.map(f => {
+            const isActive = filter === f.id
+            const chip = FILTER_CHIP[f.id]
+            const bg  = isActive ? chip.fill : C.base
+            const fg  = isActive ? chip.fg   : C.ink
+            return (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id)}
+                style={{
+                  flexShrink: 0,
+                  display: 'flex', alignItems: 'center', gap: 5,
+                  height: 36, padding: '0 14px',
+                  borderRadius: 100,
+                  border: '2px solid #0A0A0A',
+                  background: bg,
+                  color: fg,
+                  fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                  fontWeight: 600, fontSize: 13,
+                  cursor: 'pointer',
+                  transition: 'background 120ms, color 120ms',
+                }}
+              >
+                {f.id !== 'all' && <TypeIcon type={f.id} size={14} color={fg} />}
+                {f.label}
+              </button>
+            )
+          })}
         </div>
       </div>
 
