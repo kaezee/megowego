@@ -80,24 +80,36 @@ export function Profile({ onBack, onAchievements }: Props) {
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto' }}>
 
         {/* ── Full-width banner ─────────────────────────────────── */}
-        <div style={{ background: C.base }}>
-          {/* Nav row */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '48px 20px 0' }}>
+        <div style={{ background: C.yellow }}>
+          {/* Back button row */}
+          <div style={{ padding: '48px 20px 0' }}>
             <button onClick={onBack} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/>
-              </svg>
-            </button>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
               </svg>
             </button>
           </div>
 
           {/* Avatar + title + name centered */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px 20px 28px', gap: 8 }}>
-            <Avatar name="A" color={C.pink} size={76} />
+
+            {/* Avatar with camera edit badge */}
+            <div style={{ position: 'relative' }}>
+              <Avatar name="A" color={C.pink} size={80} />
+              <button style={{
+                position: 'absolute', bottom: 0, right: -2,
+                width: 28, height: 28, borderRadius: '50%',
+                background: C.base, border: S.border,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', padding: 0,
+                boxShadow: '1px 1px 0 0 #0A0A0A',
+              }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+              </button>
+            </div>
 
             {/* Title pill — tappable, sits above name */}
             <button
@@ -105,31 +117,38 @@ export function Profile({ onBack, onAchievements }: Props) {
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
                 background: C.ink, borderRadius: 100, padding: '5px 14px',
-                border: 'none', cursor: 'pointer', marginTop: 4,
+                border: 'none', cursor: 'pointer',
               }}
             >
               {currentBadge && <currentBadge.Icon locked={false} />}
               <span style={{ fontFamily: F.body, fontWeight: 600, fontSize: 12, color: C.base }}>{activeTitle}</span>
-              <span style={{ color: 'rgba(250,250,240,0.5)', fontSize: 12, lineHeight: 1 }}>›</span>
+              <span style={{ color: 'rgba(250,250,240,0.45)', fontSize: 12, lineHeight: 1 }}>›</span>
             </button>
 
-            {/* Name */}
-            <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1 }}>
-              Aarav Sharma
+            {/* Name + inline edit button */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 26, color: C.ink, lineHeight: 1 }}>
+                Aarav Sharma
+              </div>
+              <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 2, flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={C.ink} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                </svg>
+              </button>
             </div>
 
             {/* Inline mini stats */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginTop: 4 }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: 2 }}>
               {[
                 { value: '14', label: 'organised' },
                 { value: '23', label: 'showed up' },
                 { value: '3',  label: 'bailed' },
               ].map((s, i) => (
                 <div key={s.label} style={{ display: 'flex', alignItems: 'center' }}>
-                  {i > 0 && <div style={{ width: 1, height: 28, background: C.grey200, margin: '0 16px' }} />}
+                  {i > 0 && <div style={{ width: 1, height: 28, background: 'rgba(10,10,10,0.2)', margin: '0 16px' }} />}
                   <div style={{ textAlign: 'center' }}>
                     <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 20, color: C.ink, lineHeight: 1 }}>{s.value}</div>
-                    <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600, marginTop: 2 }}>{s.label}</div>
+                    <div style={{ fontFamily: F.body, fontSize: 11, color: 'rgba(10,10,10,0.55)', marginTop: 2 }}>{s.label}</div>
                   </div>
                 </div>
               ))}

@@ -291,27 +291,42 @@ const BAILERS = [
   { name: 'Kabir', color: C.green,  bails: 3,  excuse: 'work emergency 🙄' },
 ]
 
+function FlagIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+      <path d="M5 21V4" stroke="#0A0A0A" strokeWidth="2.2" strokeLinecap="round"/>
+      <path d="M5 4l13 5-13 5z" fill="#0A0A0A"/>
+    </svg>
+  )
+}
+
 function HallOfShame() {
   return (
     <div style={{ marginBottom: 8 }}>
       {/* Section header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+        <FlagIcon />
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
-          🚩 hall of shame
+          Hall of shame
         </div>
         <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
       </div>
       <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 12 }}>
-        the serial bailers. you know who you are.
+        The serial bailers. You know who you are.
       </div>
 
-      {/* Three shame cards */}
-      <div style={{ display: 'flex', gap: 8 }}>
+      {/* Horizontal scroll — 3rd card peeks to invite scroll */}
+      <div style={{
+        display: 'flex', gap: 10,
+        overflowX: 'auto', paddingBottom: 16, scrollbarWidth: 'none',
+        margin: '0 -20px', padding: '0 20px 16px',
+      }}>
         {BAILERS.map((b, i) => (
           <div
             key={b.name}
             style={{
-              flex: 1,
+              flexShrink: 0,
+              width: 152,
               border: '2px solid #0A0A0A',
               borderRadius: 14,
               overflow: 'hidden',
@@ -319,22 +334,20 @@ function HallOfShame() {
             }}
           >
             {/* Coloured top */}
-            <div style={{ background: b.color, padding: '14px 0 10px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-              {/* Rank */}
+            <div style={{ background: b.color, padding: '14px 0 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
               <div style={{
                 fontFamily: "'Space Mono', ui-monospace, monospace",
-                fontWeight: 700, fontSize: 10, color: C.ink, opacity: 0.6,
+                fontWeight: 700, fontSize: 10, color: C.ink, opacity: 0.55,
               }}>
                 #{i + 1}
               </div>
-              {/* Avatar letter */}
               <div style={{
-                width: 44, height: 44, borderRadius: '50%',
+                width: 46, height: 46, borderRadius: '50%',
                 background: 'rgba(10,10,10,0.15)',
-                border: '2px solid rgba(10,10,10,0.2)',
+                border: '2px solid rgba(10,10,10,0.18)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontFamily: "'Fredoka', system-ui, sans-serif",
-                fontWeight: 600, fontSize: 20, color: C.ink,
+                fontWeight: 600, fontSize: 22, color: C.ink,
               }}>
                 {b.name[0]}
               </div>
@@ -342,18 +355,18 @@ function HallOfShame() {
             </div>
 
             {/* Bottom stats */}
-            <div style={{ background: C.base, padding: '10px 8px 12px', textAlign: 'center' }}>
-              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 20, color: C.ink }}>
+            <div style={{ background: C.base, padding: '12px 10px 14px', textAlign: 'center' }}>
+              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 22, color: C.ink }}>
                 {b.bails}x
               </div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 10, color: C.grey600, marginTop: 1 }}>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: C.grey600, marginTop: 2 }}>
                 bailed
               </div>
               <div style={{
-                marginTop: 8, background: C.grey100, borderRadius: 8,
-                padding: '5px 6px',
+                marginTop: 10, background: C.grey100, borderRadius: 8,
+                padding: '6px 8px',
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                fontSize: 10, color: C.grey600, fontStyle: 'italic', lineHeight: 1.3,
+                fontSize: 11, color: C.grey600, fontStyle: 'italic', lineHeight: 1.4,
               }}>
                 "{b.excuse}"
               </div>
@@ -370,10 +383,13 @@ function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) =
   return (
     <div style={{ paddingBottom: 24 }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
-        <span style={{ fontSize: 15 }}>📅</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
-          on this day
+          On this day
         </div>
         <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 1 }}>
           · Apr 27
