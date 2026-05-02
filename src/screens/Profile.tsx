@@ -69,8 +69,9 @@ const totalOwed = DEBTS.filter(d => !d.owe && d.amount > 0).reduce((s, d) => s +
 const totalOwe  = DEBTS.filter(d => d.owe).reduce((s, d) => s + Math.abs(d.amount), 0)
 
 export function Profile({ onBack, onAchievements }: Props) {
-  const [activeTitle, setActiveTitle] = useState('serial organiser')
+  const [activeTitle, setActiveTitle]       = useState('serial organiser')
   const [showAchievements, setShowAchievements] = useState(false)
+  const [showAllDebts, setShowAllDebts]     = useState(false)
 
   const currentBadge = ACHIEVEMENTS.find(a => a.label === activeTitle)
 
@@ -205,22 +206,38 @@ export function Profile({ onBack, onAchievements }: Props) {
             </div>
 
             {/* Per-friend rows */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {DEBTS.filter(d => d.amount !== 0).map(d => (
-                <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ width: 30, height: 30, borderRadius: '50%', background: d.color, border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 600, fontSize: 14, color: C.ink, flexShrink: 0 }}>
-                    {d.name[0]}
+            {(() => {
+              const allRows = DEBTS.filter(d => d.amount !== 0)
+              const visible = showAllDebts ? allRows : allRows.slice(0, 2)
+              return (
+                <>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {visible.map(d => (
+                      <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <div style={{ width: 32, height: 32, borderRadius: '50%', background: d.color, border: S.border, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 600, fontSize: 15, color: C.ink, flexShrink: 0 }}>
+                          {d.name[0]}
+                        </div>
+                        <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 14, color: C.ink, flex: 1 }}>{d.name}</div>
+                        <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 14, color: d.owe ? C.pink : C.green }}>
+                          {d.owe ? `–₹${Math.abs(d.amount)}` : `+₹${d.amount}`}
+                        </div>
+                        <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey400, minWidth: 54, textAlign: 'right' }}>
+                          {d.owe ? 'you owe' : 'owes you'}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 14, color: C.ink, flex: 1 }}>{d.name}</div>
-                  <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 14, color: d.owe ? C.pink : C.green }}>
-                    {d.owe ? `–₹${Math.abs(d.amount)}` : `+₹${d.amount}`}
-                  </div>
-                  <div style={{ fontFamily: F.body, fontSize: 11, color: C.grey600 }}>
-                    {d.owe ? 'you owe' : 'owes you'}
-                  </div>
-                </div>
-              ))}
-            </div>
+                  {allRows.length > 2 && (
+                    <button
+                      onClick={() => setShowAllDebts(v => !v)}
+                      style={{ marginTop: 14, width: '100%', height: 38, border: S.border, borderRadius: 10, background: 'transparent', fontFamily: F.body, fontWeight: 600, fontSize: 13, color: C.grey600, cursor: 'pointer' }}
+                    >
+                      {showAllDebts ? 'show less ↑' : `see all ${allRows.length} ↓`}
+                    </button>
+                  )}
+                </>
+              )
+            })()}
           </Card>
 
         </div>

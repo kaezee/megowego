@@ -199,22 +199,23 @@ export function Moments({ onMomentTap }: Props) {
   return (
     <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: C.surface, overflow: 'hidden' }}>
 
-      {/* Fixed header */}
-      <div style={{ padding: '48px 16px 8px', background: C.surface, flexShrink: 0 }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 24, color: C.ink, marginBottom: 12 }}>
+      {/* ── Fixed header ─────────────────────────────────────────── */}
+      <div style={{ padding: '48px 20px 0', background: C.surface, flexShrink: 0 }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 26, color: C.ink, marginBottom: 14 }}>
           Moments
         </div>
         <SearchInput placeholder="search by outing, vibe, or person..." value={query} onChange={setQuery} />
 
         {/* Filter chips */}
-        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 2, marginTop: 12, scrollbarWidth: 'none' }}>
+        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 14, marginTop: 12, scrollbarWidth: 'none' }}>
           {FILTERS.map(f => (
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
               style={{
                 flexShrink: 0,
-                height: 32, padding: '0 14px',
+                display: 'flex', alignItems: 'center', gap: 5,
+                height: 36, padding: '0 14px',
                 borderRadius: 100,
                 border: '2px solid #0A0A0A',
                 background: filter === f.id ? C.ink : C.base,
@@ -225,22 +226,22 @@ export function Moments({ onMomentTap }: Props) {
                 transition: 'background 120ms, color 120ms',
               }}
             >
-              {f.id !== 'all' && <TypeIcon type={f.id} size={13} color={filter === f.id ? '#FAFAF0' : '#0A0A0A'} />}
+              {f.id !== 'all' && <TypeIcon type={f.id} size={14} color={filter === f.id ? '#FAFAF0' : '#0A0A0A'} />}
               {f.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Scrollable grid */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '12px 16px 40px' }}>
+      {/* ── Scrollable content ───────────────────────────────────── */}
+      <div style={{ flex: 1, overflowY: 'auto', padding: '8px 20px 100px' }}>
 
-        {/* On this day row — hidden while searching */}
+        {/* On this day — hidden while searching */}
         {!query && anniversaryMoments.length > 0 && (
           <OnThisDay moments={anniversaryMoments} onTap={onMomentTap} />
         )}
 
-        {/* Hall of Fame — right below On This Day, hidden while searching/filtering */}
+        {/* Hall of Shame — hidden while searching/filtering */}
         {!query && filter === 'all' && (
           <HallOfShame />
         )}
@@ -253,25 +254,22 @@ export function Moments({ onMomentTap }: Props) {
         ) : (
           grouped.map(({ year, months }) => (
             <div key={year}>
-              {/* Year header */}
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: 12,
-                paddingTop: 4, paddingBottom: 10,
-              }}>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>{year}</div>
+              {/* Year divider */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 0 12px' }}>
+                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 20, color: C.ink }}>{year}</div>
                 <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
               </div>
 
               {months.map(({ month, items }) => (
-                <div key={month} style={{ marginBottom: 20 }}>
+                <div key={month} style={{ marginBottom: 24 }}>
                   <div style={{
                     fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                    fontWeight: 600, fontSize: 11, color: C.grey600,
-                    letterSpacing: '0.06em', marginBottom: 8,
+                    fontWeight: 700, fontSize: 11, color: C.grey600,
+                    letterSpacing: '0.08em', marginBottom: 10,
                   }}>
                     {month.toUpperCase()}
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10 }}>
                     {items.map(m => (
                       <MomentTile key={m.id} moment={m} onClick={() => onMomentTap(m)} />
                     ))}
@@ -289,21 +287,21 @@ export function Moments({ onMomentTap }: Props) {
 // ── Hall of Shame ────────────────────────────────────────────
 const BAILERS = [
   { name: 'Vir',   color: C.orange, bails: 7,  excuse: 'stomach ache... again' },
-  { name: 'Rhea',  color: C.purple, bails: 4,  excuse: '"something came up"' },
+  { name: 'Rhea',  color: C.purple, bails: 4,  excuse: 'something came up' },
   { name: 'Kabir', color: C.green,  bails: 3,  excuse: 'work emergency 🙄' },
 ]
 
 function HallOfShame() {
   return (
-    <div style={{ marginTop: 8, marginBottom: 20 }}>
+    <div style={{ marginBottom: 8 }}>
       {/* Section header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
           🚩 hall of shame
         </div>
         <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
       </div>
-      <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginBottom: 14 }}>
+      <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginBottom: 12 }}>
         the serial bailers. you know who you are.
       </div>
 
@@ -370,20 +368,20 @@ function HallOfShame() {
 // ── On This Day row ─────────────────────────────────────────
 function OnThisDay({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) => void }) {
   return (
-    <div style={{ padding: '8px 16px 12px', flexShrink: 0 }}>
+    <div style={{ paddingBottom: 24 }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-        <span style={{ fontSize: 14 }}>📅</span>
-        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
+        <span style={{ fontSize: 15 }}>📅</span>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: C.ink }}>
           on this day
         </div>
-        <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600 }}>
+        <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 12, color: C.grey600, marginTop: 1 }}>
           · Apr 27
         </div>
       </div>
 
-      {/* Story ring row */}
-      <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none' }}>
+      {/* Story ring row — bleeds to screen edges */}
+      <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none', margin: '0 -20px', padding: '0 20px 4px' }}>
         {moments.map(m => {
           const yearsAgo = Number(CURRENT_YEAR) - Number(m.year)
           const label = yearsAgo === 1 ? '1 yr ago' : `${yearsAgo} yrs ago`
