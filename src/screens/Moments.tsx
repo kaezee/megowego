@@ -315,58 +315,67 @@ function HallOfShame() {
         The serial bailers. You know who you are.
       </div>
 
-      {/* Horizontal scroll — 3rd card peeks to invite scroll */}
+      {/* Horizontal scroll — wide landscape cards, 3rd peeks */}
       <div style={{
         display: 'flex', gap: 10,
-        overflowX: 'auto', paddingBottom: 16, scrollbarWidth: 'none',
+        overflowX: 'auto', scrollbarWidth: 'none',
         margin: '0 -20px', padding: '0 20px 16px',
       }}>
-        {BAILERS.map((b, i) => (
+        {BAILERS.map((b) => (
           <div
             key={b.name}
             style={{
               flexShrink: 0,
-              width: 152,
+              width: 252,
+              height: 92,
               border: '2px solid #0A0A0A',
               borderRadius: 14,
               overflow: 'hidden',
               boxShadow: '3px 3px 0 0 #0A0A0A',
+              display: 'flex',
             }}
           >
-            {/* Coloured top */}
-            <div style={{ background: b.color, padding: '14px 0 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            {/* Left: coloured column — avatar + name */}
+            <div style={{
+              width: 80, flexShrink: 0,
+              background: b.color,
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center', gap: 4,
+            }}>
               <div style={{
-                fontFamily: "'Space Mono', ui-monospace, monospace",
-                fontWeight: 700, fontSize: 10, color: C.ink, opacity: 0.55,
-              }}>
-                #{i + 1}
-              </div>
-              <div style={{
-                width: 46, height: 46, borderRadius: '50%',
-                background: 'rgba(10,10,10,0.15)',
-                border: '2px solid rgba(10,10,10,0.18)',
+                width: 36, height: 36, borderRadius: '50%',
+                background: 'rgba(10,10,10,0.18)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontFamily: "'Fredoka', system-ui, sans-serif",
-                fontWeight: 600, fontSize: 22, color: C.ink,
+                fontWeight: 600, fontSize: 17, color: C.ink,
               }}>
                 {b.name[0]}
               </div>
-              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 15, color: C.ink }}>{b.name}</div>
+              <div style={{
+                fontFamily: "'Fredoka', system-ui, sans-serif",
+                fontWeight: 600, fontSize: 12, color: C.ink,
+              }}>
+                {b.name}
+              </div>
             </div>
 
-            {/* Bottom stats */}
-            <div style={{ background: C.base, padding: '12px 10px 14px', textAlign: 'center' }}>
-              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 22, color: C.ink }}>
-                {b.bails}x
-              </div>
-              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: C.grey600, marginTop: 2 }}>
-                bailed
+            {/* Right: white — count + excuse */}
+            <div style={{
+              flex: 1, background: C.base,
+              padding: '10px 12px',
+              display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 3,
+            }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+                <span style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 22, color: C.ink }}>
+                  {b.bails}x
+                </span>
+                <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 11, color: C.grey600 }}>
+                  bailed
+                </span>
               </div>
               <div style={{
-                marginTop: 10, background: C.grey100, borderRadius: 8,
-                padding: '6px 8px',
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                fontSize: 11, color: C.grey600, fontStyle: 'italic', lineHeight: 1.4,
+                fontSize: 11, color: C.grey400, fontStyle: 'italic', lineHeight: 1.4,
               }}>
                 "{b.excuse}"
               </div>
