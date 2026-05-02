@@ -36,6 +36,16 @@ function GearIcon() {
   )
 }
 
+function ShopIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" fill={C.ink} />
+      <path d="M3 6h18" stroke={C.base} strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M16 10a4 4 0 0 1-8 0" stroke={C.base} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  )
+}
+
 type Screen =
   | 'splash' | 'signup' | 'signin'
   | 'home-empty' | 'home-active'
@@ -126,8 +136,6 @@ export default function App() {
           <Profile
             onBack={() => go(returnScreen)}
             onAchievements={() => go('achievements')}
-            onWrapped={() => go('wrapped')}
-            onShop={() => go('shop')}
           />
         )}
         {screen === 'achievements'  && <Achievements onBack={() => go('profile')} />}
@@ -155,6 +163,14 @@ export default function App() {
             >
               <PersonIcon />
               <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Profile</span>
+              <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
+            </button>
+            <button
+              onClick={() => { setReturnScreen(screen); setShowMore(false); go('shop') }}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 14, padding: '18px 20px', background: 'transparent', border: 'none', cursor: 'pointer', borderBottom: `1px solid ${C.grey100}`, textAlign: 'left' }}
+            >
+              <ShopIcon />
+              <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16, color: C.ink, flex: 1 }}>Shop</span>
               <span style={{ color: C.grey400, fontSize: 18 }}>›</span>
             </button>
             <button

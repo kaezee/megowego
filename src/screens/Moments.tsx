@@ -249,37 +249,130 @@ export function Moments({ onMomentTap }: Props) {
             <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 14, color: C.grey600, marginTop: 8 }}>try a different name, vibe, or person</div>
           </div>
         ) : (
-          grouped.map(({ year, months }) => (
-            <div key={year}>
-              {/* Year header */}
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: 12,
-                paddingTop: 4, paddingBottom: 10,
-              }}>
-                <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>{year}</div>
-                <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
-              </div>
-
-              {months.map(({ month, items }) => (
-                <div key={month} style={{ marginBottom: 20 }}>
-                  <div style={{
-                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                    fontWeight: 600, fontSize: 11, color: C.grey600,
-                    letterSpacing: '0.06em', marginBottom: 8,
-                  }}>
-                    {month.toUpperCase()}
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
-                    {items.map(m => (
-                      <MomentTile key={m.id} moment={m} onClick={() => onMomentTap(m)} />
-                    ))}
-                  </div>
+          <>
+            {grouped.map(({ year, months }) => (
+              <div key={year}>
+                {/* Year header */}
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 12,
+                  paddingTop: 4, paddingBottom: 10,
+                }}>
+                  <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>{year}</div>
+                  <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
                 </div>
-              ))}
 
-            </div>
-          ))
+                {months.map(({ month, items }) => (
+                  <div key={month} style={{ marginBottom: 20 }}>
+                    <div style={{
+                      fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                      fontWeight: 600, fontSize: 11, color: C.grey600,
+                      letterSpacing: '0.06em', marginBottom: 8,
+                    }}>
+                      {month.toUpperCase()}
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
+                      {items.map(m => (
+                        <MomentTile key={m.id} moment={m} onClick={() => onMomentTap(m)} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+
+            {/* Hall of Fame — only when not filtering */}
+            {!query && filter === 'all' && (
+              <HallOfFame moments={MOMENTS} onTap={onMomentTap} />
+            )}
+          </>
         )}
+      </div>
+    </div>
+  )
+}
+
+// ── Hall of Fame ────────────────────────────────────────────
+const HALL_OF_FAME_IDS = ['15', '6', '32', '23', '27', '14'] // new year, holi, grill night, open mic, ipl, goa
+
+function HallOfFame({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) => void }) {
+  const stars = HALL_OF_FAME_IDS.map(id => moments.find(m => m.id === id)).filter(Boolean) as Moment[]
+
+  return (
+    <div style={{ marginTop: 8, marginBottom: 8 }}>
+      {/* Section header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+        <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>
+          🏆 hall of fame
+        </div>
+        <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
+      </div>
+      <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginBottom: 14, marginTop: -8 }}>
+        the outings that became legends
+      </div>
+
+      {/* Horizontal scroll of big cards */}
+      <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none', margin: '0 -16px', padding: '0 16px 4px' }}>
+        {stars.map((m, i) => (
+          <button
+            key={m.id}
+            onClick={() => onTap(m)}
+            style={{
+              position: 'relative',
+              flexShrink: 0,
+              width: 150, height: 190,
+              borderRadius: 14,
+              border: '2px solid #0A0A0A',
+              overflow: 'hidden',
+              background: m.color,
+              cursor: 'pointer',
+              padding: 0,
+              boxShadow: '3px 3px 0 0 #0A0A0A',
+            }}
+          >
+            {/* Rank badge */}
+            <div style={{
+              position: 'absolute', top: 8, left: 8, zIndex: 2,
+              width: 24, height: 24, borderRadius: '50%',
+              background: C.ink,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontFamily: "'Space Mono', ui-monospace, monospace",
+              fontWeight: 700, fontSize: 10, color: C.base,
+            }}>
+              #{i + 1}
+            </div>
+
+            {/* Vibe icon centred */}
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <VibeIcon vibe={m.vibe} size={48} />
+            </div>
+
+            {/* Gradient + text */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0) 55%)',
+              pointerEvents: 'none',
+            }} />
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              padding: '0 8px 8px',
+            }}>
+              <div style={{
+                fontFamily: "'Fredoka', system-ui, sans-serif",
+                fontWeight: 600, fontSize: 15, color: '#FAFAF0', lineHeight: 1.2,
+                overflow: 'hidden', display: '-webkit-box',
+                WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textAlign: 'left',
+              }}>
+                {m.name}
+              </div>
+              <div style={{
+                fontFamily: "'Space Mono', ui-monospace, monospace",
+                fontSize: 9, color: 'rgba(250,250,240,0.65)', marginTop: 3,
+              }}>
+                {m.date}
+              </div>
+            </div>
+          </button>
+        ))}
       </div>
     </div>
   )
