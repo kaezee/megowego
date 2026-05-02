@@ -242,7 +242,7 @@ export function Moments({ onMomentTap }: Props) {
 
         {/* Hall of Fame — right below On This Day, hidden while searching/filtering */}
         {!query && filter === 'all' && (
-          <HallOfFame moments={MOMENTS} onTap={onMomentTap} />
+          <HallOfShame />
         )}
 
         {filtered.length === 0 ? (
@@ -286,87 +286,81 @@ export function Moments({ onMomentTap }: Props) {
   )
 }
 
-// ── Hall of Fame ────────────────────────────────────────────
-const HALL_OF_FAME_IDS = ['15', '6', '32', '23', '27', '14'] // new year, holi, grill night, open mic, ipl, goa
+// ── Hall of Shame ────────────────────────────────────────────
+const BAILERS = [
+  { name: 'Vir',   color: C.orange, bails: 7,  excuse: 'stomach ache... again' },
+  { name: 'Rhea',  color: C.purple, bails: 4,  excuse: '"something came up"' },
+  { name: 'Kabir', color: C.green,  bails: 3,  excuse: 'work emergency 🙄' },
+]
 
-function HallOfFame({ moments, onTap }: { moments: Moment[]; onTap: (m: Moment) => void }) {
-  const stars = HALL_OF_FAME_IDS.map(id => moments.find(m => m.id === id)).filter(Boolean) as Moment[]
-
+function HallOfShame() {
   return (
-    <div style={{ marginTop: 8, marginBottom: 8 }}>
+    <div style={{ marginTop: 8, marginBottom: 20 }}>
       {/* Section header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
         <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 22, color: C.ink }}>
-          🏆 hall of fame
+          🚩 hall of shame
         </div>
         <div style={{ flex: 1, height: 2, background: C.grey200, borderRadius: 1 }} />
       </div>
-      <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginBottom: 14, marginTop: -8 }}>
-        the outings that became legends
+      <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 13, color: C.grey600, marginBottom: 14 }}>
+        the serial bailers. you know who you are.
       </div>
 
-      {/* Horizontal scroll of big cards */}
-      <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none', margin: '0 -16px', padding: '0 16px 4px' }}>
-        {stars.map((m, i) => (
-          <button
-            key={m.id}
-            onClick={() => onTap(m)}
+      {/* Three shame cards */}
+      <div style={{ display: 'flex', gap: 8 }}>
+        {BAILERS.map((b, i) => (
+          <div
+            key={b.name}
             style={{
-              position: 'relative',
-              flexShrink: 0,
-              width: 150, height: 190,
-              borderRadius: 14,
+              flex: 1,
               border: '2px solid #0A0A0A',
+              borderRadius: 14,
               overflow: 'hidden',
-              background: m.color,
-              cursor: 'pointer',
-              padding: 0,
               boxShadow: '3px 3px 0 0 #0A0A0A',
             }}
           >
-            {/* Rank badge */}
-            <div style={{
-              position: 'absolute', top: 8, left: 8, zIndex: 2,
-              width: 24, height: 24, borderRadius: '50%',
-              background: C.ink,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontFamily: "'Space Mono', ui-monospace, monospace",
-              fontWeight: 700, fontSize: 10, color: C.base,
-            }}>
-              #{i + 1}
-            </div>
-
-            {/* Vibe icon centred */}
-            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <VibeIcon vibe={m.vibe} size={48} />
-            </div>
-
-            {/* Gradient + text */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0) 55%)',
-              pointerEvents: 'none',
-            }} />
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              padding: '0 8px 8px',
-            }}>
-              <div style={{
-                fontFamily: "'Fredoka', system-ui, sans-serif",
-                fontWeight: 600, fontSize: 15, color: '#FAFAF0', lineHeight: 1.2,
-                overflow: 'hidden', display: '-webkit-box',
-                WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textAlign: 'left',
-              }}>
-                {m.name}
-              </div>
+            {/* Coloured top */}
+            <div style={{ background: b.color, padding: '14px 0 10px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+              {/* Rank */}
               <div style={{
                 fontFamily: "'Space Mono', ui-monospace, monospace",
-                fontSize: 9, color: 'rgba(250,250,240,0.65)', marginTop: 3,
+                fontWeight: 700, fontSize: 10, color: C.ink, opacity: 0.6,
               }}>
-                {m.date}
+                #{i + 1}
+              </div>
+              {/* Avatar letter */}
+              <div style={{
+                width: 44, height: 44, borderRadius: '50%',
+                background: 'rgba(10,10,10,0.15)',
+                border: '2px solid rgba(10,10,10,0.2)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: "'Fredoka', system-ui, sans-serif",
+                fontWeight: 600, fontSize: 20, color: C.ink,
+              }}>
+                {b.name[0]}
+              </div>
+              <div style={{ fontFamily: "'Fredoka', system-ui, sans-serif", fontWeight: 600, fontSize: 15, color: C.ink }}>{b.name}</div>
+            </div>
+
+            {/* Bottom stats */}
+            <div style={{ background: C.base, padding: '10px 8px 12px', textAlign: 'center' }}>
+              <div style={{ fontFamily: "'Space Mono', ui-monospace, monospace", fontWeight: 700, fontSize: 20, color: C.ink }}>
+                {b.bails}x
+              </div>
+              <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: 10, color: C.grey600, marginTop: 1 }}>
+                bailed
+              </div>
+              <div style={{
+                marginTop: 8, background: C.grey100, borderRadius: 8,
+                padding: '5px 6px',
+                fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+                fontSize: 10, color: C.grey600, fontStyle: 'italic', lineHeight: 1.3,
+              }}>
+                "{b.excuse}"
               </div>
             </div>
-          </button>
+          </div>
         ))}
       </div>
     </div>
